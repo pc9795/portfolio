@@ -12,6 +12,7 @@
     <c:url value="/blog/tag/" var="blog_by_tag"/>
     <c:url value="/blog/year/" var="blog_by_year"/>
     <c:url value="/blog/search/" var="blog_by_search"/>
+    <c:url value="/blog/single/" var="blog_single"/>
 </head>
 <body>
 <ul>
@@ -22,7 +23,7 @@
 <hr>
 <ul>
     <c:forEach items="${blogItems}" var="blog_item">
-        <li>${blog_item}</li>
+        <li><a href="${blog_single}${blog_item.id}">${blog_item}</a></li>
     </c:forEach>
 
 </ul>

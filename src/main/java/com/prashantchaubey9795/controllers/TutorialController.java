@@ -27,7 +27,7 @@ public class TutorialController {
     TutorialTagRepository tutorialTagRepository;
     @Autowired
     TutorialItemRepository tutorialItemRepository;
-    private static final Logger LOGGER = Logger.getLogger(BlogController.class);
+    private static final Logger LOGGER = Logger.getLogger(TutorialController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public String tutorial(Model model) {
@@ -70,12 +70,22 @@ public class TutorialController {
         return "tutorial";
     }
 
+    @RequestMapping(value = "/single/{tutorial_id}", method = RequestMethod.GET)
+    public String singleTutorial(@PathVariable("tutorial_id") String tutorialId, Model model) {
+        LOGGER.info("Getting tutorial for id:" + tutorialId);
+        TutorialItem tutorialItem = tutorialItemRepository.findTutorialItemById(Long.parseLong(tutorialId));
+        model.addAttribute("tutorialItem", tutorialItem);
+        return "tutorial_single";
+    }
+
+    //    Helper method
     private List<TutorialTag> getAllTags() {
         List<TutorialTag> tutorialTags = tutorialTagRepository.findAll();
         LOGGER.info("tutorialTags:" + tutorialTags);
         return tutorialTags;
     }
 
+    //  Helper method
     private void addTutorialsAndTagsToModel(Model model, Collection<TutorialTag> tutorialTags, Collection<TutorialItem> tutorialItems) {
         model.addAttribute("tutorialTags", tutorialTags);
         model.addAttribute("tutorialItems", tutorialItems);

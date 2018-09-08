@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
@@ -17,5 +18,11 @@ public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
     public List<BlogItem> findBlogItemsByYear(@Param("year") String year);
 
     public List<BlogItem> findBlogItemsByHeadingContaining(String serachText);
+
+    public BlogItem findBlogItemById(long id);
+
+    public List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
+
+    public List<BlogItem> findBlogItemsByOrOrderByTimestampDesc(Pageable)
 
 }

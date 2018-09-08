@@ -72,6 +72,14 @@ public class BlogController {
         return "blog";
     }
 
+    @RequestMapping(value = "/single/{blog_id}", method = RequestMethod.GET)
+    public String singleBlog(@PathVariable("blog_id") String blogId, Model model) {
+        LOGGER.info("Getting blog for id:" + blogId);
+        BlogItem blogItem = blogItemRepository.findBlogItemById(Long.parseLong(blogId));
+        model.addAttribute("blogItem", blogItem);
+        return "blog_single";
+    }
+
     private List<BlogTag> getAllTags() {
         List<BlogTag> blogTags = blogTagRepository.findAll();
         LOGGER.info("blogTags:" + blogTags);

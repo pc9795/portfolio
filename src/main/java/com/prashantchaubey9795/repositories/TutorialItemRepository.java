@@ -17,4 +17,6 @@ public interface TutorialItemRepository extends JpaRepository<TutorialItem, Long
     public List<TutorialItem> findTutorialItemsByYear(@Param("year") String year);
 
     public List<TutorialItem> findTutorialItemsByHeadingContaining(String serachText);
+
+    public TutorialItem findTutorialItemById(long id);
 }

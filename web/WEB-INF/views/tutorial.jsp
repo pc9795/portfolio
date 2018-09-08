@@ -3,6 +3,7 @@
   Date: 08-09-2018
   Time: 15:38
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,17 +12,18 @@
     <c:url value="/tutorial/tag/" var="tutorial_by_tag"/>
     <c:url value="/tutorial/year/" var="tutorial_by_year"/>
     <c:url value="/tutorial/search/" var="tutorial_by_search"/>
+    <c:url value="/tutorial/single/" var="tutorial_single"/>
 </head>
 <body>
 <ul>
-    <c:forEach items="${tutorialTags}" var="blog_tag">
-        <li><a href="${tutorial_by_tag}${blog_tag.id}">${blog_tag}</a></li>
+    <c:forEach items="${tutorialTags}" var="tutorial_tag">
+        <li><a href="${tutorial_by_tag}${tutorial_tag.id}">${tutorial_tag}</a></li>
     </c:forEach>
 </ul>
 <hr>
 <ul>
-    <c:forEach items="${tutorialItems}" var="blog_item">
-        <li>${blog_item}</li>
+    <c:forEach items="${tutorialItems}" var="tutorial_item">
+        <li><a href="${tutorial_single}${tutorial_item.id}">${tutorial_item}</a></li>
     </c:forEach>
 
 </ul>
