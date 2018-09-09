@@ -4,17 +4,12 @@
   Time: 04:20
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Blog</title>
-    <c:url value="/blog/month/" var="blog_by_month"/>
-    <c:url value="/blog/tag/" var="blog_by_tag"/>
-    <c:url value="/blog/year/" var="blog_by_year"/>
-    <c:url value="/blog/search/" var="blog_by_search"/>
-    <c:url value="/blog/single/" var="blog_single"/>
-</head>
-<body>
+<c:url value="/blog/month/" var="blog_by_month"/>
+<c:url value="/blog/tag/" var="blog_by_tag"/>
+<c:url value="/blog/year/" var="blog_by_year"/>
+<c:url value="/blog/search/" var="blog_by_search"/>
+<c:url value="/blog/single/" var="blog_single"/>
+<div class="container">
 <ul>
     <c:forEach items="${blogTags}" var="blog_tag">
         <li><a href="${blog_by_tag}${blog_tag.id}">${blog_tag}</a></li>
@@ -46,5 +41,4 @@
     <input name="search_text" type="text"/><br>
     <button type="submit">Search</button>
 </form>
-</body>
-</html>
+</div>

@@ -6,13 +6,8 @@
 --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Contact me</title>
-    <c:url var="resume_link" value="/resume"></c:url>
-</head>
-<body>
+<c:url var="resume_link" value="/resume"/>
+<div class="container">
 <%--@elvariable id="contactForm" type="com.prashantchaubey9795.entities.ContactForm"--%>
 <sf:form method="post" commandName="contactForm">
     <sf:label path="name">Name:</sf:label><sf:input path="name"/><br>
@@ -26,5 +21,4 @@
 <c:if test="${success}">
     Details submitted successfully!
 </c:if>
-</body>
-</html>
+</div>

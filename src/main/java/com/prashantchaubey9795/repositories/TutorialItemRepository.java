@@ -1,6 +1,7 @@
 package com.prashantchaubey9795.repositories;
 
 import com.prashantchaubey9795.entities.TutorialItem;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +20,8 @@ public interface TutorialItemRepository extends JpaRepository<TutorialItem, Long
     public List<TutorialItem> findTutorialItemsByHeadingContaining(String serachText);
 
     public TutorialItem findTutorialItemById(long id);
+
+    public List<TutorialItem> findTop3TutorialItemsByOrderByTimestampDesc();
+
+    public List<TutorialItem> findTutorialItemsByOrderByTimestampDesc(Pageable pageable);
 }

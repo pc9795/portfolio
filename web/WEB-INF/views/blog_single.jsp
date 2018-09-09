@@ -3,12 +3,7 @@
   Date: 08-09-2018
   Time: 16:37
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>${blogItem.heading}</title>
-</head>
-<body>
+<div class="container">
 <h1>${blogItem.heading}</h1>
 <label>Description:</label>
 <p>${blogItem.description}</p>
@@ -18,5 +13,4 @@
 <p>${blogItem.content}</p>
 <label>Timestamp</label>
 <p>${blogItem.timestamp}</p>
-</body>
-</html>
+</div>

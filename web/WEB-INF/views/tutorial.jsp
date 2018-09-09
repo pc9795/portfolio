@@ -4,17 +4,12 @@
   Time: 15:38
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Tutorials</title>
-    <c:url value="/tutorial/month/" var="tutorial_by_month"/>
-    <c:url value="/tutorial/tag/" var="tutorial_by_tag"/>
-    <c:url value="/tutorial/year/" var="tutorial_by_year"/>
-    <c:url value="/tutorial/search/" var="tutorial_by_search"/>
-    <c:url value="/tutorial/single/" var="tutorial_single"/>
-</head>
-<body>
+<c:url value="/tutorial/month/" var="tutorial_by_month"/>
+<c:url value="/tutorial/tag/" var="tutorial_by_tag"/>
+<c:url value="/tutorial/year/" var="tutorial_by_year"/>
+<c:url value="/tutorial/search/" var="tutorial_by_search"/>
+<c:url value="/tutorial/single/" var="tutorial_single"/>
+<div class="container">
 <ul>
     <c:forEach items="${tutorialTags}" var="tutorial_tag">
         <li><a href="${tutorial_by_tag}${tutorial_tag.id}">${tutorial_tag}</a></li>
@@ -46,6 +41,4 @@
     <input name="search_text" type="text"/><br>
     <button type="submit">Search</button>
 </form>
-
-</body>
-</html>
+</div>

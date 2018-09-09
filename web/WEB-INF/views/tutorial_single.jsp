@@ -3,12 +3,7 @@
   Date: 08-09-2018
   Time: 16:37
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>${tutorialItem.heading}</title>
-</head>
-<body>
+<div class="container">
 <h1>${tutorialItem.heading}</h1>
 <label>Description:</label>
 <p>${tutorialItem.description}</p>
@@ -18,5 +13,4 @@
 <p>${tutorialItem.content}</p>
 <label>Timestamp</label>
 <p>${tutorialItem.timestamp}</p>
-</body>
-</html>
+</div>

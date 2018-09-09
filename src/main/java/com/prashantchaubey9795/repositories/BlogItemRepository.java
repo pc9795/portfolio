@@ -1,11 +1,12 @@
 package com.prashantchaubey9795.repositories;
 
 import com.prashantchaubey9795.entities.BlogItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
@@ -23,6 +24,7 @@ public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
 
     public List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
 
-    public List<BlogItem> findBlogItemsByOrOrderByTimestampDesc(Pageable)
+    public List<BlogItem> findBlogItemsByOrderByTimestampDesc(Pageable pageable);
 
+//    public Page<BlogItem> findBlogItemsByOrderByTimestampDesc(Pageable pageable);
 }
