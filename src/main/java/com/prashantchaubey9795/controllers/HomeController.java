@@ -1,13 +1,23 @@
 package com.prashantchaubey9795.controllers;
 
+import com.prashantchaubey9795.entities.BlogItem;
+import com.prashantchaubey9795.entities.TutorialItem;
+import com.prashantchaubey9795.entities.WorkItem;
+import com.prashantchaubey9795.repositories.BlogItemRepository;
+import com.prashantchaubey9795.repositories.TutorialItemRepository;
+import com.prashantchaubey9795.repositories.WorkItemRepository;
 import org.apache.log4j.Logger;
+import org.aspectj.lang.annotation.Around;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 
 /**
@@ -19,10 +29,22 @@ import java.io.*;
 @RequestMapping(value = "/")
 public class HomeController {
     private static Logger LOGGER = Logger.getLogger(HomeController.class);
+    @Autowired
+    private BlogItemRepository blogItemRepository;
+    @Autowired
+    private TutorialItemRepository tutorialItemRepository;
+    @Autowired
+    private WorkItemRepository workItemRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home() {
+    public String home(Model model) {
         LOGGER.info("Getting HOME page!");
+        List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
+        List<TutorialItem> tutorialItems = tutorialItemRepository.findTop3TutorialItemsByOrderByTimestampDesc();
+        List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
+        model.addAttribute("blogItems", blogItems);
+        model.addAttribute("tutorialItems", tutorialItems);
+        model.addAttribute("workItems", workItems);
         return "home";
     }
 

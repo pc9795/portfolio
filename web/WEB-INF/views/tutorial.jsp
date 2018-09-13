@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Blog</h1>
+            <h1>Tutorials</h1>
         </div>
         <div class="col-md-8 col-sm-12">
             <c:forEach items="${tutorialItems}" var="tutorial_item">

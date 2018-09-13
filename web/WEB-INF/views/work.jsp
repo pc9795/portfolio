@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-8 col-sm-12">
             <h4 class="mt-3">Role Description</h4>
-            <p>Automating business units.</p>
+            <p>Devloping desktop application using Python and Electron.</p>
             <h4>Certifications</h4>
             <ul>
                 <li>Codechef's Data Structures and Algorithms - Foundation</li>
