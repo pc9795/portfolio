@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Each value represent items from different lists which i am maintaining i.e.,
@@ -15,12 +17,20 @@ import java.sql.Date;
 
 @Entity
 public class ListItem implements Serializable {
-    @Id
-    @GeneratedValue
     private long id;
     private String name;
     private String type;
     private Date date;
+
+    @Id
+    @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -8,9 +8,6 @@ body {
     padding-bottom: 80px;
 }
 
-.content{
-}
-
 .footer {
     height: 80px;
     position: absolute;
@@ -30,3 +27,4 @@ footer p {
 .header div {
     padding: 0 !important;
 }
+
