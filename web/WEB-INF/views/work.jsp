@@ -5,6 +5,7 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="resume_link" value="/resume"/>
+<c:url value="/resources/profile.jpg" var="profile"/>
 <div class="container">
     <div class="row">
         <div class="col-12 mt-3">
@@ -46,7 +47,7 @@
     <div class="row">
         <div class="col-md-4 bg-light col-sm-12">
             <div class="text-center">
-                <img src="/resources/profile.jpg" class="mt-3 text-center img-fluid" alt="profile photo"/>
+                <img src="${profile}" class="mt-3 text-center img-fluid" alt="profile photo"/>
             </div>
 
             <p class="mt-3"><span class="font-weight-bold">Experience:</span> 2 Years</p>

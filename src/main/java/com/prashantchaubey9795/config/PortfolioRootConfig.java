@@ -2,6 +2,7 @@ package com.prashantchaubey9795.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -54,11 +55,28 @@ public class PortfolioRootConfig {
      * @return
      */
     @Bean
-    public DataSource dataSource() {
+    @Profile("local")
+    public DataSource dataSourceLocal() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:postgresql://localhost:5432/portfolio");
         dataSource.setUsername("postgres");
         dataSource.setPassword("password");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        return dataSource;
+    }
+
+    /**
+     * Details of the database.
+     *
+     * @return
+     */
+    @Bean
+    @Profile("prod")
+    public DataSource dataSourceProd() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/portfolio");
+        dataSource.setUsername("pc");
+        dataSource.setPassword("9451379336");
         dataSource.setDriverClassName("org.postgresql.Driver");
         return dataSource;
     }

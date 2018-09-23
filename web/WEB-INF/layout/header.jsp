@@ -8,7 +8,7 @@
 <c:url value="/work" var="work"/>
 <c:url value="/tutorial" var="tutorial"/>
 <c:url value="/blog" var="blog"/>
-<c:url value="lists" var="lists"/>
+<c:url value="/lists" var="lists"/>
 <c:url value="/contact" var="contact"/>
 <div class="container">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
