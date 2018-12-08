@@ -30,7 +30,7 @@
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Reading List</h4>
+                    <h4 class="card-title">Current reading list of books</h4>
                     <p class="card-text">I prefer traditional way of learning through books and like to maintain active
                         lists.</p>
                 </div>
@@ -42,7 +42,7 @@
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Gaming List</h4>
+                    <h4 class="card-title">Games which I play</h4>
                     <p class="card-text">Care to check which games I play</p>
                 </div>
                 <div class="card-footer">
@@ -53,12 +53,12 @@
     </div>
     <hr>
     <div class="row card-deck">
-        <div class="col-4"><h3>Projects</h3></div>
+        <div class="col-4"><h3>Work Samples/Personal Projects</h3></div>
         <div class="col-8"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Portfolio</h4>
+                    <h4 class="card-title">Portfolio website/Blog</h4>
                     <p class="card-text">This website runs on Spring and Hibernate in the Backend, and JQuery and
                         Bootstrap
                         is used for UI</p>

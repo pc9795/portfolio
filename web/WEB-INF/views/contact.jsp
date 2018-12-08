@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="resume_link" value="/resume"/>
 <div class="container">
-<%--@elvariable id="contactForm" type="com.prashantchaubey9795.entities.ContactForm"--%>
+    <%--@elvariable id="contactForm" type="com.pc.entities.ContactForm"--%>
 <div class="row ">
     <div class="col-sm-12 mt-3 col-md-4 p-1">
         <sf:form method="post" commandName="contactForm">

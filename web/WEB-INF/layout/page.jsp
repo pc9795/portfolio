@@ -4,8 +4,8 @@
   Time: 23:37
 --%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:url value="/node_modules/bootstrap/dist/css/bootstrap.min.css" var="bootstrap"/>
 <c:url value="/node_modules/font-awesome/css/font-awesome.min.css" var="font_awesome"/>
 <c:url value="/resources/css/page.css" var="custom_css"/>
@@ -14,6 +14,14 @@
 <html>
 <head>
     <title><t:insertAttribute name="title"/></title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Portfolio website of Prashant Chaubey. Contains links of Prashant
+    Chaubey's resume and work samples. Also has a blog for Coding, Guitar, Weight loss, Diet plans and GRE prepration
+    . This website contains some coding tutorials also.">
+    <meta name="keywords" content="Prashant Chaubey, Portfolio, Resume, Work samples, Coding Blog, Coding Tutorials,
+    Diet Plans, Guitar Tutorials, Weight loss, GRE prep">
+    <meta name="author" content="Prashant Chaubey">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link  rel="stylesheet" type="text/css" href="${bootstrap}"/>
     <link rel="stylesheet" type="text/css" href="${font_awesome}"/>
     <link rel="stylesheet" type="text/css" href="${custom_css}">
@@ -30,6 +38,5 @@
     </div>
     <script type="text/javascript" src="${jquery}"></script>
     <script type="text/javascript" src="${bootstrap_js}"></script>
-    <%--<script type="text/javascript" src="/resources/js/page.js"></script>--%>
 </body>
 </html>
