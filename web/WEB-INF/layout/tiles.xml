@@ -38,7 +38,7 @@
         <put-attribute name="body" value="/WEB-INF/views/contact.jsp"/>
         <put-attribute name="title" value="Contact Page - Help/Consultation/Freelance"/>
     </definition>
-    <definition name="sunshine" template="/WEB-INF/views/">
+    <definition name="sunshine" template="/WEB-INF/views/sunshine.jsp">
 
     </definition>
 </tiles-definitions>

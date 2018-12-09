@@ -17,6 +17,7 @@ public class SunshineController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home() {
+        LOGGER.info("Getting SUNSHINE page");
         return "sunshine";
     }
 }

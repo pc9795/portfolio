@@ -8,31 +8,31 @@
 <c:url value="/node_modules/jquery/dist/jquery.min.js" var="jquery"/>
 <c:url value="/node_modules/bootstrap/dist/js/bootstrap.min.js" var="bootstrap_js"/>
 <c:url value="/resources/js/sunshine.js" var="custom_js"/>
+<c:url value="/resources/css/sunshine.css" var="custom_css"/>
 <html>
     <head>
         <title>Happy Birthday Sunshine</title>
         <link rel="shortcut icon" type="image/x-icon"
               href='<c:url value="/resources/img/favicon-16x16.png"></c:url>'/>
         <link rel="stylesheet" type="text/css" href="${bootstrap}"/>
+        <link rel="stylesheet" type="text/css" href="${custom_css}"/>
     </head>
-    <body style="background-color: #6cbf84;">
+    <body>
         <div class="container">
-            <div class="row mt-3">
+            <div id="hb_div" class="row mt-3">
                 <div class="col-12 text-center">
-                    <h1 style="color: #f26968">Happy Birthday Sheenam :)</h1>
+                    <h1>Happy Birthday Sheenam :)</h1>
                 </div>
             </div>
             <div class="row mt-5 b">
                 <div class="col-12 col-sm-3 b mt-3">
                     <img alt="It should be a cake" class="img-fluid b"
-                         style="min-width: 100%; height: auto;"
                          src='<c:url value="/resources/img/cake.png"></c:url>'>
                 </div>
                 <div class="col-12 col-sm-6 b text-center mt-3">
-                    <button id="start" class="btn btn-info b"
-                            style="background-color: #323339; color: #dfe2d2">
-                        This is what I felt.<br>I don't know whether<br>I am able
-                        to pen<br> it down properly or not<br>But I tried<br>PRESS
+                    <button id="start" class="btn btn-info b">
+                        This is what I feel for you.<br>I don't know whether<br>I can
+                        pen it down properly<br> or not, but I want to try<br><br>PRESS
                         IT!!!
                     </button>
 
@@ -52,7 +52,7 @@
                         class="firstWord">A</span> feeling was there <br> <span
                         class="firstWord">Y</span>et I never expressed <br> <span
                         class="space" hidden="hidden"><br></span> <span
-                        class="firstWord">S</span>urrounded by fears and anxiety<br>
+                        class="firstWord">S</span>urrounded by fears and anxieties<br>
                         <span class="firstWord">H</span>opes were not able to breed<br>
                         <span class="firstWord">E</span>ither it was luck or destiny<br>
                         <span class="firstWord">E</span>ither it was fluke or coincidence<br>
@@ -62,14 +62,13 @@
                                                                       hidden="hidden"><br></span>
                     </p>
                     <button id="show" class="btn btn-info b"
-                            style="background-color: #323339; color: #dfe2d2" hidden="hidden">
+                            hidden="hidden">
                         If you read it<br>PRESS IT!!!
                     </button>
 
                 </div>
                 <div class="col-12 	col-sm-3 b mt-3">
                     <img alt="25 year old diva" class="img-fluid b"
-                         style="min-width: 100%; height: auto;"
                          src='<c:url value="/resources/img/25.png"></c:url>'>
                 </div>
             </div>

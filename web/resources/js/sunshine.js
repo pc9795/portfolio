@@ -22,6 +22,7 @@ $(document).on('click', "#show", function () {
     } else if (counter === 4) {
         $('.space').attr("hidden", false);
         $(".firstWord").css('color', '#f26968');
+        $(this).attr('hidden', 'hidden');
     }
 
 })
