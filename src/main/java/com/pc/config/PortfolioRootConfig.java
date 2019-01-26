@@ -74,8 +74,8 @@ public class PortfolioRootConfig {
     public DataSource dataSourceProd() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:postgresql://localhost:5432/portfolio");
-        dataSource.setUsername("pc");
-        dataSource.setPassword("9451379336");
+//         dataSource.setUsername(null);
+//         dataSource.setPassword(null);
         dataSource.setDriverClassName("org.postgresql.Driver");
         return dataSource;
     }
