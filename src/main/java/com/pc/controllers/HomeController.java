@@ -51,7 +51,7 @@ public class HomeController {
     public void resume(HttpServletResponse response, HttpServletRequest request) {
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "inline; filename=PrashantChaubey_resume.pdf");
-        FileInputStream pdfFileStream;
+        FileInputStream pdfFileStream = null;
         OutputStream responseStream;
         try {
             String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/PrashantChaubey_resume.pdf");
@@ -65,6 +65,14 @@ public class HomeController {
             responseStream.flush();
         } catch (Exception ex) {
             LOGGER.error(ex);
+        } finally {
+            if (pdfFileStream != null) {
+                try {
+                    pdfFileStream.close();
+                } catch (Exception exc) {
+                    LOGGER.error("Error in closing pdf stream");
+                }
+            }
         }
     }
 }
