@@ -54,29 +54,12 @@ public class PortfolioRootConfig {
      * @return
      */
     @Bean
-    @Profile("local")
-    public DataSource dataSourceLocal() {
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/portfolio");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("password");
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        return dataSource;
-    }
-
-    /**
-     * Details of the database.
-     *
-     * @return
-     */
-    @Bean
-    @Profile("prod")
-    public DataSource dataSourceProd() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/portfolio");
-//         dataSource.setUsername(null);
-//         dataSource.setPassword(null);
-        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(System.getenv("PORTFOLIO_DB_URL"));
+        dataSource.setUsername(System.getenv("PORTFOLIO_DB_USERNAME"));
+        dataSource.setPassword(System.getenv("PORTFOLIO_DB_PASSWORD"));
+        dataSource.setDriverClassName(System.getenv("PORTFOLIO_DB_DRIVER"));
         return dataSource;
     }
 
