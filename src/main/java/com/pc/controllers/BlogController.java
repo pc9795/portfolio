@@ -34,14 +34,14 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET)
     public String blog(Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByOrderByTimestampDesc();
-        LOGGER.info("blogItems:" + blogItems);
+        LOGGER.debug("blogItems:" + blogItems.size());
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
     }
 
     @RequestMapping(value = "/month/{month_year}", method = RequestMethod.GET)
     public String blogsByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
-        LOGGER.info("Getting blogs for:" + monthYear);
+        LOGGER.debug("Getting blogs for:" + monthYear);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByMonthsAndYear(monthYear);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
@@ -49,7 +49,7 @@ public class BlogController {
 
     @RequestMapping(value = "/year/{year}", method = RequestMethod.GET)
     public String blogsByYear(@PathVariable(value = "year") String year, Model model) {
-        LOGGER.info("Getting blogs for:" + year);
+        LOGGER.debug("Getting blogs for:" + year);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByYear(year);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
@@ -57,7 +57,7 @@ public class BlogController {
 
     @RequestMapping(value = "/tag/{tag_id}", method = RequestMethod.GET)
     public String blogsByTag(@PathVariable(value = "tag_id") String tagId, Model model) {
-        LOGGER.info("Getting blogs for:" + tagId);
+        LOGGER.debug("Getting blogs for:" + tagId);
         BlogTag blogTag = blogTagRepository.findBlogTagById(Long.parseLong(tagId));
         addBlogsAndTagsToModel(model, getAllTags(), blogTag.getBlogItems());
         return "blog";
@@ -66,7 +66,7 @@ public class BlogController {
 
     @RequestMapping(value = "/search/", method = RequestMethod.GET)
     public String blogsBySearchText(@RequestParam("search_text") String searchText, Model model) {
-        LOGGER.info("Getting blogs for:" + searchText);
+        LOGGER.debug("Getting blogs for:" + searchText);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByHeadingContaining(searchText);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
@@ -74,7 +74,7 @@ public class BlogController {
 
     @RequestMapping(value = "/single/{blog_id}", method = RequestMethod.GET)
     public String singleBlog(@PathVariable("blog_id") String blogId, Model model) {
-        LOGGER.info("Getting blog for id:" + blogId);
+        LOGGER.debug("Getting blog for id:" + blogId);
         BlogItem blogItem = blogItemRepository.findBlogItemById(Long.parseLong(blogId));
         model.addAttribute("blogItem", blogItem);
         return "blog_single";
@@ -82,7 +82,7 @@ public class BlogController {
 
     private List<BlogTag> getAllTags() {
         List<BlogTag> blogTags = blogTagRepository.findAll();
-        LOGGER.info("blogTags:" + blogTags);
+        LOGGER.debug("blogTags:" + blogTags.size());
         return blogTags;
     }
 

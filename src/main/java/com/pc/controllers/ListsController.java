@@ -29,11 +29,11 @@ public class ListsController {
     @RequestMapping(method = RequestMethod.GET)
     public String lists(Model model) {
         List<ListItem> casualReadingList = repository.findListItemsByType(ListItemTypes.CASUAL);
-        LOGGER.info("casualReadingList:" + casualReadingList);
+        LOGGER.debug("casualReadingList:" + casualReadingList.size());
         List<ListItem> technicalReadingList = repository.findListItemsByType(ListItemTypes.TECHNICAL);
-        LOGGER.info("technicalReadingList:" + technicalReadingList);
+        LOGGER.debug("technicalReadingList:" + technicalReadingList.size());
         List<ListItem> gamingReadingList = repository.findListItemsByType(ListItemTypes.GAMING);
-        LOGGER.info("gamingReadingList:" + gamingReadingList);
+        LOGGER.debug("gamingReadingList:" + gamingReadingList.size());
         model.addAttribute("casualReadingList", casualReadingList);
         model.addAttribute("technicalReadingList", technicalReadingList);
         model.addAttribute("gamingReadingList", gamingReadingList);

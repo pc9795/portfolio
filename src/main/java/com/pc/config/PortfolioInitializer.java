@@ -2,6 +2,11 @@ package com.pc.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.SessionTrackingMode;
+import java.util.EnumSet;
+
 /**
  * Dispatcher servlet for the portfolio.
  * We have to extend this particular class to make it a Dispatcher servlet.
@@ -38,5 +43,17 @@ public class PortfolioInitializer extends AbstractAnnotationConfigDispatcherServ
         return new String[]{
                 "/"
         };
+    }
+
+    /**
+     * Added so that jsession id doesn't sent to url.
+     *
+     * @param servletContext
+     * @throws ServletException
+     */
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.setSessionTrackingModes(EnumSet.of(SessionTrackingMode.COOKIE));
     }
 }

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
+import static com.pc.utils.Constants.RESUME_FILE_NAME;
+
 
 /**
  * Controller for the home page.
@@ -37,7 +39,7 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
-        LOGGER.info("Getting HOME page!");
+        LOGGER.debug("Getting HOME page!");
         List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
         List<TutorialItem> tutorialItems = tutorialItemRepository.findTop3TutorialItemsByOrderByTimestampDesc();
         List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
@@ -51,11 +53,11 @@ public class HomeController {
     public void resume(HttpServletResponse response, HttpServletRequest request) {
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "inline; filename=PrashantChaubey_resume.pdf");
-        FileInputStream pdfFileStream;
+        FileInputStream pdfFileStream = null;
         OutputStream responseStream;
         try {
-            String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/PrashantChaubey_resume.pdf");
-            LOGGER.info(resumeFilePath);
+            String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/" + RESUME_FILE_NAME);
+            LOGGER.debug(resumeFilePath);
             pdfFileStream = new FileInputStream(new File(resumeFilePath));
             int readData = 0;
             responseStream = response.getOutputStream();
@@ -65,6 +67,14 @@ public class HomeController {
             responseStream.flush();
         } catch (Exception ex) {
             LOGGER.error(ex);
+        } finally {
+            if (pdfFileStream != null) {
+                try {
+                    pdfFileStream.close();
+                } catch (Exception exc) {
+                    LOGGER.error("Error in closing pdf stream");
+                }
+            }
         }
     }
 }

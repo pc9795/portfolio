@@ -33,7 +33,7 @@ public class PortfolioRootConfig {
     }
 
     /**
-     * Genearte a Entity manager factory bean.
+     * Generate a Entity manager factory bean.
      *
      * @param dataSource       - it will contain details of database.
      * @param jpaVendorAdapter - it will contain details of the Jpa implementor.

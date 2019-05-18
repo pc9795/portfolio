@@ -1,3 +1,4 @@
+<!-- Single page of the blog. -->
 <%--
   User: Prashant Chaubey
   Date: 08-09-2018
@@ -22,3 +23,4 @@
         </div>
     </div>
 </div>
+
