@@ -1,5 +1,9 @@
 package com.pc.entities;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
+import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import java.sql.Timestamp;
 
@@ -11,6 +15,8 @@ import java.sql.Timestamp;
 public class Item {
     private String heading;
     private String description;
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String content;
     private Timestamp timestamp;
 

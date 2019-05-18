@@ -28,20 +28,20 @@ public class ContactController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String contact(Model model) {
-        LOGGER.info("Getting CONTACT page!");
+        LOGGER.debug("Getting CONTACT page!");
         model.addAttribute("contactForm", new ContactForm());
         return "contact";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String postContactForm(@Valid ContactForm contactForm, Errors errors, Model model) {
-        LOGGER.info("Form details:" + contactForm);
+        LOGGER.debug("Form details:" + contactForm);
         LOGGER.warn("Errors:" + errors);
-        LOGGER.info("Submittng Contact form");
+        LOGGER.debug("Submittng Contact form");
         if (!errors.hasErrors()) {
             model.addAttribute("success", true);
             repository.save(contactForm);
-            LOGGER.info("Details saved Successfully!");
+            LOGGER.debug("Details saved Successfully!");
         }
         return "contact";
     }

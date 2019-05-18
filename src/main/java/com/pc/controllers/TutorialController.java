@@ -32,14 +32,14 @@ public class TutorialController {
     @RequestMapping(method = RequestMethod.GET)
     public String tutorial(Model model) {
         List<TutorialItem> tutorialItems = tutorialItemRepository.findTutorialItemsByOrderByTimestampDesc();
-        LOGGER.info("tutorialItems:" + tutorialItems);
+        LOGGER.debug("tutorialItems:" + tutorialItems.size());
         addTutorialsAndTagsToModel(model, getAllTags(), tutorialItems);
         return "tutorial";
     }
 
     @RequestMapping(value = "/month/{month_year}", method = RequestMethod.GET)
     public String tutorialsByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
-        LOGGER.info("Getting tutorials for:" + monthYear);
+        LOGGER.debug("Getting tutorials for:" + monthYear);
         List<TutorialItem> tutorialItems = tutorialItemRepository.findTutorialItemsByMonthsAndYear(monthYear);
         addTutorialsAndTagsToModel(model, getAllTags(), tutorialItems);
         return "tutorial";
@@ -47,7 +47,7 @@ public class TutorialController {
 
     @RequestMapping(value = "/year/{year}", method = RequestMethod.GET)
     public String tutorialsByYear(@PathVariable(value = "year") String year, Model model) {
-        LOGGER.info("Getting tutorials for:" + year);
+        LOGGER.debug("Getting tutorials for:" + year);
         List<TutorialItem> tutorialItems = tutorialItemRepository.findTutorialItemsByYear(year);
         addTutorialsAndTagsToModel(model, getAllTags(), tutorialItems);
         return "tutorial";
@@ -55,7 +55,7 @@ public class TutorialController {
 
     @RequestMapping(value = "/tag/{tag_id}", method = RequestMethod.GET)
     public String tutorialsByTag(@PathVariable(value = "tag_id") String tagId, Model model) {
-        LOGGER.info("Getting tutorials for:" + tagId);
+        LOGGER.debug("Getting tutorials for:" + tagId);
         TutorialTag tutorialTag = tutorialTagRepository.findTutorialTagById(Long.parseLong(tagId));
         addTutorialsAndTagsToModel(model, getAllTags(), tutorialTag.getTutorialItems());
         return "tutorial";
@@ -64,7 +64,7 @@ public class TutorialController {
 
     @RequestMapping(value = "/search/", method = RequestMethod.GET)
     public String tutorialsBySearchText(@RequestParam("search_text") String searchText, Model model) {
-        LOGGER.info("Getting tutorials for:" + searchText);
+        LOGGER.debug("Getting tutorials for:" + searchText);
         List<TutorialItem> tutorialItems = tutorialItemRepository.findTutorialItemsByHeadingContaining(searchText);
         addTutorialsAndTagsToModel(model, getAllTags(), tutorialItems);
         return "tutorial";
@@ -72,7 +72,7 @@ public class TutorialController {
 
     @RequestMapping(value = "/single/{tutorial_id}", method = RequestMethod.GET)
     public String singleTutorial(@PathVariable("tutorial_id") String tutorialId, Model model) {
-        LOGGER.info("Getting tutorial for id:" + tutorialId);
+        LOGGER.debug("Getting tutorial for id:" + tutorialId);
         TutorialItem tutorialItem = tutorialItemRepository.findTutorialItemById(Long.parseLong(tutorialId));
         model.addAttribute("tutorialItem", tutorialItem);
         return "tutorial_single";
@@ -81,7 +81,7 @@ public class TutorialController {
     //    Helper method
     private List<TutorialTag> getAllTags() {
         List<TutorialTag> tutorialTags = tutorialTagRepository.findAll();
-        LOGGER.info("tutorialTags:" + tutorialTags);
+        LOGGER.debug("tutorialTags:" + tutorialTags.size());
         return tutorialTags;
     }
 
