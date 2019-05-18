@@ -16,10 +16,9 @@
                 <div class="card-body">
                     <h4 class="card-title">What I am good at?</h4>
                     <p class="card-text">
-                        A language-agnostic developer.
-                        An ex Web developer experienced in Spring MVC. Had my hands dirty in Bootstrap and Jquery.
-                        Currently building desktop
-                        applications in Electron and Python.
+                        A language agnostic software developer who worked on a myriad of programming languages such as
+                        Java, Python, JavaScript and GO. In the past I built web and desktop applications and worked on
+                        areas like automatic code generation. Currently I build distributed RPA systems
                     </p>
                 </div>
                 <div class="card-footer">
@@ -31,8 +30,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Current reading list of books</h4>
-                    <p class="card-text">I prefer traditional way of learning through books and like to maintain active
-                        lists.</p>
+                    <p class="card-text">I prefer traditional way of learning through books and like to maintain a list.</p>
                 </div>
                 <div class="card-footer">
                     <a href="${lists}" class="text-secondary">Reading List</a>
@@ -42,8 +40,8 @@
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Games which I play</h4>
-                    <p class="card-text">Care to check which games I play</p>
+                    <h4 class="card-title">Video-games</h4>
+                    <p class="card-text">Care to check which games I play :p</p>
                 </div>
                 <div class="card-footer">
                     <a href="${lists}" class="text-secondary">Gaming List</a>
