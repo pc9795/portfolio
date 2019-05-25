@@ -64,16 +64,19 @@
                 <div class="col-12 mt-3">
                     <h2>Archives</h2>
                     <ul>
-                        <li><a class="text-secondary" href="${blog_by_year}2017">2017</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}JAN_2018">January 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}FEB_2018">Feburary 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}MAR_2018">March 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}APR_2018">April 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}MAY_2018">May 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}JUN_2018">June 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}JUL_2018">July 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}AUG_2018">Auguest 2018</a></li>
-                        <li><a class="text-secondary" href="${blog_by_month}SEP_2018">September 2018</a></li>
+                        <li><a class="text-secondary" href="${blog_by_year}2018">2017</a></li>
+                        <li><a class="text-secondary" href="${blog_by_month}JAN_2019">January 2019</a></li>
+                        <li><a class="text-secondary" href="${blog_by_month}FEB_2019">Feburary 2019</a></li>
+                        <li><a class="text-secondary" href="${blog_by_month}MAR_2019">March 2019</a></li>
+                        <li><a class="text-secondary" href="${blog_by_month}APR_2019">April 2019</a></li>
+                        <li><a class="text-secondary" href="${blog_by_month}MAY_2019">May 2019</a></li>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}JUN_2019">June 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}JUL_2019">July 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}AUG_2019">Auguest 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}SEP_2019">September 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}OCT_2019">October 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}NOV_2019">September 2018</a></li>--%>
+                        <%--<li><a class="text-secondary" href="${blog_by_month}DEC_2019">September 2018</a></li>--%>
                     </ul>
                 </div>
 

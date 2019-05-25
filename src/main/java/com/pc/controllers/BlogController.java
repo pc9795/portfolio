@@ -24,10 +24,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
+    private BlogTagRepository blogTagRepository;
+    private BlogItemRepository blogItemRepository;
+
     @Autowired
-    BlogTagRepository blogTagRepository;
-    @Autowired
-    BlogItemRepository blogItemRepository;
+    public BlogController(BlogItemRepository blogItemRepository, BlogTagRepository blogTagRepository) {
+        this.blogItemRepository = blogItemRepository;
+        this.blogTagRepository = blogTagRepository;
+    }
 
     private static final Logger LOGGER = Logger.getLogger(BlogController.class);
 

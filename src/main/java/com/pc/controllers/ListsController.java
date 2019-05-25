@@ -22,9 +22,13 @@ import java.util.List;
 @RequestMapping("/lists")
 public class ListsController {
 
-    @Autowired
     ListItemRepository repository;
     private static final Logger LOGGER = Logger.getLogger(ListsController.class);
+
+    @Autowired
+    public ListsController(ListItemRepository listItemRepository) {
+        this.repository = listItemRepository;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String lists(Model model) {

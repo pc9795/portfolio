@@ -50,14 +50,18 @@
                 <img src="${profile}" class="mt-3 text-center img-fluid" alt="profile photo"/>
             </div>
 
-            <p class="mt-3"><span class="font-weight-bold">Experience:</span> 2 Years</p>
+            <p class="mt-3"><span class="font-weight-bold">Experience:</span> 2 Year and 9 months</p>
             <p><span class="font-weight-bold">Employed in:</span> Software Robotics Cooperation Ltd</p>
-            <p><span class="font-weight-bold">Role:</span> Software Engineer</p>
-            <P><span class="font-weight-bold">Skills:</span> Java8, Python3, NodeJS </P>
+            <p><span class="font-weight-bold">Role:</span>Senior Software Engineer</p>
+            <p><span class="font-weight-bold">Day to Day Languages:</span> Python, GO, SQL </p>
+            <p><span class="font-weight-bold">Familiar Languages:</span> Java, Javascript, HTML, CS </p>
+            <p><span class="font-weight-bold">Day to Day S.E. Technologies:</span> SQLAlchemy, Pytest, Git, PostgreSQL  </p>
+            <p><span class="font-weight-bold">Familiar S.E Technologies:</span> Spring, JQuery, Bootstrap, Junit, SOAP and
+            RestFul web services, SVN, Maven, MySQL, Oracle DB, JSP and Servlets, Electron, CockroachDB, Flask, Django</p>
         </div>
         <div class="col-md-8 col-sm-12">
-            <h4 class="mt-3">Role Description</h4>
-            <p>Devloping desktop application using Python and Electron.</p>
+            <h4 class="mt-3">Current Assignment</h4>
+            <p>Working on automatic routing between clusters for a major player in financial services.</p>
             <h4>Certifications</h4>
             <ul>
                 <li>Codechef's Data Structures and Algorithms - Foundation</li>

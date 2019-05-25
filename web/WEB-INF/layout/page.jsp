@@ -15,7 +15,6 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="${favicon}" sizes="16x16" />
-    <link rel="icon" href="${favicon}" type="image/x-icon">
     <title><t:insertAttribute name="title"/></title>
     <meta charset="UTF-8">
     <meta name="description" content="Portfolio website of Prashant Chaubey. Contains links of Prashant

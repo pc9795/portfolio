@@ -52,8 +52,4 @@ public class PortfolioWebConfig extends WebMvcConfigurerAdapter {
         return tilesConfigurer;
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resource/**").addResourceLocations("/resources/", "/node_modules/");
-//    }
 }

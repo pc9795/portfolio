@@ -22,9 +22,13 @@ import javax.validation.Valid;
 @RequestMapping(value = "/contact")
 public class ContactController {
 
-    @Autowired
     private ContactFormRepository repository;
     private static Logger LOGGER = Logger.getLogger(ContactController.class);
+
+    @Autowired
+    public ContactController(ContactFormRepository contactFormRepository) {
+        this.repository = contactFormRepository;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String contact(Model model) {

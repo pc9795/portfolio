@@ -29,23 +29,26 @@ footer p {
 }
 
 .card {
-    margin: 0!important;
+    margin: 0 !important;
 }
 
-
 /*Footer*/
-.fa-quora{
+.fa-quora {
     color: #B92B27;
 }
 
-.fa-linkedin{
-    color:#0090C1;
+.fa-linkedin {
+    color: #0090C1;
 }
 
-.fa-github{
-    color:#373C40;
+.fa-github {
+    color: #373C40;
 }
 
-.fa-stack-overflow{
+.fa-stack-overflow {
     color: #F48024;
+}
+
+.card {
+    min-height: 250px;
 }

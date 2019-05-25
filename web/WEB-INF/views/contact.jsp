@@ -41,7 +41,7 @@
                 <sf:label cssClass="col-3 col-form-label" path="purpose">Purpose:</sf:label>
                 <div class="col-9">
                     <sf:textarea rows="3" cssClass="form-control" path="purpose"/>
-                    <small class="form-text text-muted">How can I help your <i class="fa fa-question"> </i></small>
+                    <small class="form-text text-muted">How can I help you <i class="fa fa-question"> </i></small>
                 </div>
             </div>
             <button type="submit" class="btn btn-success">Say Hello!</button>

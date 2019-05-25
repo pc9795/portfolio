@@ -23,7 +23,4 @@ public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
 
     public List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
 
-    public List<BlogItem> findBlogItemsByOrderByTimestampDesc(Pageable pageable);
-
-//    public Page<BlogItem> findBlogItemsByOrderByTimestampDesc(Pageable pageable);
 }

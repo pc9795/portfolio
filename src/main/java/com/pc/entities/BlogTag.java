@@ -35,7 +35,7 @@ public class BlogTag extends Tag {
         this.blogItems = blogItems;
     }
 
-    public static String toStringWithougBlogItems(Collection<BlogTag> blogTagList) {
+     static String toStringWithougBlogItems(Collection<BlogTag> blogTagList) {
         StringBuilder blogTagListWithoutBlogItems = new StringBuilder();
         blogTagListWithoutBlogItems.append("[");
         for (BlogTag blogTag : blogTagList) {

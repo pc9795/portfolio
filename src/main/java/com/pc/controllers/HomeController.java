@@ -1,10 +1,8 @@
 package com.pc.controllers;
 
 import com.pc.entities.BlogItem;
-import com.pc.entities.TutorialItem;
 import com.pc.entities.WorkItem;
 import com.pc.repositories.BlogItemRepository;
-import com.pc.repositories.TutorialItemRepository;
 import com.pc.repositories.WorkItemRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,21 +28,21 @@ import static com.pc.utils.Constants.RESUME_FILE_NAME;
 @RequestMapping(value = "/")
 public class HomeController {
     private static Logger LOGGER = Logger.getLogger(HomeController.class);
-    @Autowired
     private BlogItemRepository blogItemRepository;
-    @Autowired
-    private TutorialItemRepository tutorialItemRepository;
-    @Autowired
     private WorkItemRepository workItemRepository;
+
+    @Autowired
+    public HomeController(BlogItemRepository blogItemRepository, WorkItemRepository workItemRepository) {
+        this.blogItemRepository = blogItemRepository;
+        this.workItemRepository = workItemRepository;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
         LOGGER.debug("Getting HOME page!");
         List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
-        List<TutorialItem> tutorialItems = tutorialItemRepository.findTop3TutorialItemsByOrderByTimestampDesc();
         List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
         model.addAttribute("blogItems", blogItems);
-        model.addAttribute("tutorialItems", tutorialItems);
         model.addAttribute("workItems", workItems);
         return "home";
     }

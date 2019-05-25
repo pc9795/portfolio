@@ -21,8 +21,12 @@ import java.util.List;
 public class WorkController {
 
     private static final Logger LOGGER = Logger.getLogger(WorkController.class);
-    @Autowired
     private WorkItemRepository workItemRepository;
+
+    @Autowired
+    public WorkController(WorkItemRepository repository) {
+        this.workItemRepository = repository;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String work(Model model) {

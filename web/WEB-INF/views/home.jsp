@@ -8,10 +8,10 @@
 <c:url value="/work" var="work"/>
 <c:url value="/lists" var="lists"/>
 <c:url value="/blog" var="blog"/>
-<c:url value="/tutorial" var="tutorial"/>
+<c:url value="/blog/single/" var="blog_single"/>
 <div class="container">
     <div class="row card-deck">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">What I am good at?</h4>
@@ -21,15 +21,12 @@
                         areas like automatic code generation. Currently I build distributed RPA systems
                     </p>
                 </div>
-                <div class="card-footer">
-                    <a class="text-secondary" href='${work}'>See more of my work</a>
-                </div>
             </div>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Current reading list of books</h4>
+                    <h4 class="card-title">Reading List</h4>
                     <p class="card-text">I prefer traditional way of learning through books and like to maintain a list.</p>
                 </div>
                 <div class="card-footer">
@@ -37,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Video-games</h4>
@@ -49,10 +46,14 @@
             </div>
         </div>
     </div>
+    <br>
     <hr>
+    <br>
+    <div class="row my-3">
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Work Samples/Personal Projects</h3></div>
+        <div class="col-4 col-xs-12"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
+    </div>
     <div class="row card-deck">
-        <div class="col-4"><h3>Work Samples/Personal Projects</h3></div>
-        <div class="col-8"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
@@ -83,16 +84,20 @@
                                         <c:otherwise>
                                             #
                                         </c:otherwise>
-                                     </c:choose>' class="text-secondary">Github Link</a>
+                                     </c:choose>' class="text-secondary">Project Link</a>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
+    <br>
     <hr>
+    <br>
+    <div class="row my-3">
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles</h3></div>
+        <div class="col-4 col-xs-12"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
+    </div>
     <div class="row card-deck">
-        <div class="col-4"><h3>Recent articles from the blog</h3></div>
-        <div class="col-8"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
         <c:forEach items="${blogItems}" var="blog_item">
             <div class="col-md-4 col-sm-12">
                 <div class="card">
@@ -100,20 +105,8 @@
                         <h4 class="card-title">${blog_item.heading}</h4>
                         <p class="card-text">${blog_item.description}</p>
                     </div>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
-    <hr>
-    <div class="row card-deck">
-        <div class="col-4"><h3>Recent tutorials</h3></div>
-        <div class="col-8"><a href="${tutorial}" class="text-secondary pull-right">All tutorials</a></div>
-        <c:forEach items="${tutorialItems}" var="tutorial_item">
-            <div class="col-md-4 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">${tutorial_item.heading}</h4>
-                        <p class="card-text">${tutorial_item.description}</p>
+                    <div class="card-footer">
+                        <a href="${blog_single}{blog_item.id}" class="text-secondary">Read More</a>
                     </div>
                 </div>
             </div>

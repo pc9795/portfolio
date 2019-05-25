@@ -14,7 +14,6 @@ public class WorkItem extends Item {
     @Id
     @GeneratedValue
     private long id;
-
     private String link;
 
     public long getId() {

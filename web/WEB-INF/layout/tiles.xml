@@ -14,14 +14,6 @@
         <put-attribute name="body" value="/WEB-INF/views/work.jsp"/>
         <put-attribute name="title" value="Personal Projects/Work Samples/Github Repo Links"/>
     </definition>
-    <definition name="tutorial" extends="base">
-        <put-attribute name="body" value="/WEB-INF/views/tutorial.jsp"/>
-        <put-attribute name="title" value="Coding, Guitar, GRE, Weight Loss Tutorials"/>
-    </definition>
-    <definition name="tutorial_single" extends="base">
-        <put-attribute name="body" value="/WEB-INF/views/tutorial_single.jsp"/>
-        <put-attribute name="title" value="Coding, Guitar, GRE, Weight Loss Tutorials"/>
-    </definition>
     <definition name="blog" extends="base">
         <put-attribute name="body" value="/WEB-INF/views/blog.jsp"/>
         <put-attribute name="title" value="Coding, Guitar, GRE, TOEFL, Weight Loss Blog"/>
