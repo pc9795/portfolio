@@ -11,8 +11,11 @@
 <c:url value="/resources/css/page.css" var="custom_css"/>
 <c:url value="/node_modules/jquery/dist/jquery.min.js" var="jquery"/>
 <c:url value="/node_modules/bootstrap/dist/js/bootstrap.min.js" var="bootstrap_js"/>
+<c:url value="/resources/favicon-16x16.png" var="favicon"/>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="${favicon}" sizes="16x16" />
+    <link rel="icon" href="${favicon}" type="image/x-icon">
     <title><t:insertAttribute name="title"/></title>
     <meta charset="UTF-8">
     <meta name="description" content="Portfolio website of Prashant Chaubey. Contains links of Prashant
