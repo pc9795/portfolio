@@ -31,3 +31,21 @@ footer p {
 .card {
     margin: 0!important;
 }
+
+
+/*Footer*/
+.fa-quora{
+    color: #B92B27;
+}
+
+.fa-linkedin{
+    color:#0090C1;
+}
+
+.fa-github{
+    color:#373C40;
+}
+
+.fa-stack-overflow{
+    color: #F48024;
+}
