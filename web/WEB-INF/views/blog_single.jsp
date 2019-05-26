@@ -4,6 +4,7 @@
   Date: 08-09-2018
   Time: 16:37
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url value="/blog/tag/" var="blog_by_tag"/>
 <div class="container">
@@ -12,7 +13,8 @@
             <h1>${blogItem.heading}</h1>
         </div>
         <div class="col-12 mt-3">
-            <p>Created on: ${blogItem.timestamp}
+            <p> Created on: <fmt:formatDate type = "date"
+                                            value = "${blogItem.timestamp}" />
                 <c:forEach items="${blogItem.blogTags}" var="blog_tag">
                     <a href="${blog_by_tag}${blog_tag.id}"
                        class="badge badge-secondary pull-right mx-1">${blog_tag.name}</a>

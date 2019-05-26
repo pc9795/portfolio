@@ -3,6 +3,7 @@
   Date: 02-09-2018
   Time: 04:20
 --%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url value="/blog/month/" var="blog_by_month"/>
 <c:url value="/blog/tag/" var="blog_by_tag"/>
@@ -22,7 +23,8 @@
                             <div class="card-body">
                                 <h3>${blog_item.heading}</h3>
                                 <p>
-                                    Created on: ${blog_item.timestamp}
+                                    Created on: <fmt:formatDate type = "date"
+                                                               value = "${blog_item.timestamp}" />
                                     <c:forEach items="${blog_item.blogTags}" var="blogtag">
                                         <a href="${blog_by_tag}${blogtag.id}"
                                            class="badge badge-secondary pull-right mx-1">${blogtag.name}</a>
@@ -64,7 +66,7 @@
                 <div class="col-12 mt-3">
                     <h2>Archives</h2>
                     <ul>
-                        <li><a class="text-secondary" href="${blog_by_year}2018">2017</a></li>
+                        <li><a class="text-secondary" href="${blog_by_year}2018">2018</a></li>
                         <li><a class="text-secondary" href="${blog_by_month}JAN_2019">January 2019</a></li>
                         <li><a class="text-secondary" href="${blog_by_month}FEB_2019">Feburary 2019</a></li>
                         <li><a class="text-secondary" href="${blog_by_month}MAR_2019">March 2019</a></li>

@@ -46,7 +46,6 @@
             </div>
         </div>
     </div>
-    <br>
     <hr>
     <br>
     <div class="row my-3">
@@ -90,7 +89,6 @@
             </div>
         </c:forEach>
     </div>
-    <br>
     <hr>
     <br>
     <div class="row my-3">
