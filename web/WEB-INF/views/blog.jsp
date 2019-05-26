@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3>${blog_item.heading}</h3>
-                                <p>
+                                <p class="font-italic">
                                     Created on: <fmt:formatDate type = "date"
                                                                value = "${blog_item.timestamp}" />
                                     <c:forEach items="${blog_item.blogTags}" var="blogtag">

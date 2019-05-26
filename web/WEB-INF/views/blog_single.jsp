@@ -13,14 +13,14 @@
             <h1>${blogItem.heading}</h1>
         </div>
         <div class="col-12 mt-3">
-            <p> Created on: <fmt:formatDate type = "date"
+            <p class="font-italic"> Created on: <fmt:formatDate type = "date"
                                             value = "${blogItem.timestamp}" />
                 <c:forEach items="${blogItem.blogTags}" var="blog_tag">
                     <a href="${blog_by_tag}${blog_tag.id}"
                        class="badge badge-secondary pull-right mx-1">${blog_tag.name}</a>
                 </c:forEach></p>
         </div>
-        <div class="col-12">
+        <div class="col-12 text-justify">
             ${blogItem.content}
         </div>
     </div>
