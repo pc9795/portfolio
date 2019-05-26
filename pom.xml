@@ -40,6 +40,14 @@
     <packaging>war</packaging>
 
     <dependencies>
+        <!--Junit paramterize testing-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--Spring web project-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -138,6 +146,12 @@
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>${apache_tiles_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.0.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

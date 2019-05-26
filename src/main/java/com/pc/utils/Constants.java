@@ -5,6 +5,7 @@ package com.pc.utils;
  * Created On: 18-05-2019 14:08
  * Purpose: TODO:
  **/
-public class Constants {
-    public static final String RESUME_FILE_NAME = "PrashantChaubey_resume.pdf";
+public interface Constants {
+    String RESUME_FILE_NAME = "PrashantChaubey_resume.pdf";
+    int BLOG_DESCRIPTION_SIZE = 250;
 }

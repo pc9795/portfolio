@@ -4,6 +4,8 @@ import com.pc.entities.BlogItem;
 import com.pc.entities.WorkItem;
 import com.pc.repositories.BlogItemRepository;
 import com.pc.repositories.WorkItemRepository;
+import com.pc.utils.BlogUtils;
+import com.pc.utils.Constants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +44,8 @@ public class HomeController {
         LOGGER.debug("Getting HOME page!");
         List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
         List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
+        // If there is no description create one from content.
+        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogItems", blogItems);
         model.addAttribute("workItems", workItems);
         return "home";

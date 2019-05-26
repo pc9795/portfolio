@@ -4,6 +4,8 @@ import com.pc.entities.BlogItem;
 import com.pc.entities.BlogTag;
 import com.pc.repositories.BlogItemRepository;
 import com.pc.repositories.BlogTagRepository;
+import com.pc.utils.BlogUtils;
+import com.pc.utils.Constants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,8 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET)
     public String blog(Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByOrderByTimestampDesc();
+        // If there is no description create one from content.
+        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
         LOGGER.debug("blogItems:" + blogItems.size());
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
@@ -47,6 +51,8 @@ public class BlogController {
     public String blogsByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
         LOGGER.debug("Getting blogs for:" + monthYear);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByMonthsAndYear(monthYear);
+        // If there is no description create one from content.
+        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
     }
@@ -55,6 +61,8 @@ public class BlogController {
     public String blogsByYear(@PathVariable(value = "year") String year, Model model) {
         LOGGER.debug("Getting blogs for:" + year);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByYear(year);
+        // If there is no description create one from content.
+        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
     }
@@ -72,6 +80,8 @@ public class BlogController {
     public String blogsBySearchText(@RequestParam("search_text") String searchText, Model model) {
         LOGGER.debug("Getting blogs for:" + searchText);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByHeadingContaining(searchText);
+        // If there is no description create one from content.
+        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
         addBlogsAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
     }
@@ -80,6 +90,7 @@ public class BlogController {
     public String singleBlog(@PathVariable("blog_id") String blogId, Model model) {
         LOGGER.debug("Getting blog for id:" + blogId);
         BlogItem blogItem = blogItemRepository.findBlogItemById(Long.parseLong(blogId));
+        BlogUtils.checkAndFillDescriptionIfNot(blogItem);
         model.addAttribute("blogItem", blogItem);
         return "blog_single";
     }

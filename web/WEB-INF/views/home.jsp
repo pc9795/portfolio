@@ -47,7 +47,26 @@
         </div>
     </div>
     <hr>
-    <br>
+    <div class="row my-3">
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles</h3></div>
+        <div class="col-4 col-xs-12"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
+    </div>
+    <div class="row card-deck">
+        <c:forEach items="${blogItems}" var="blog_item">
+            <div class="col-md-4 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">${blog_item.heading}</h4>
+                        <p class="card-text">${blog_item.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${blog_single}${blog_item.id}" class="text-secondary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    <hr>
     <div class="row my-3">
         <div class="col-8 col-xs-12"><h3 style="display: inline">Work Samples/Personal Projects</h3></div>
         <div class="col-4 col-xs-12"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
@@ -89,25 +108,5 @@
             </div>
         </c:forEach>
     </div>
-    <hr>
-    <br>
-    <div class="row my-3">
-        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles</h3></div>
-        <div class="col-4 col-xs-12"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
-    </div>
-    <div class="row card-deck">
-        <c:forEach items="${blogItems}" var="blog_item">
-            <div class="col-md-4 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">${blog_item.heading}</h4>
-                        <p class="card-text">${blog_item.description}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="${blog_single}{blog_item.id}" class="text-secondary">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
+
 </div>
