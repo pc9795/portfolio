@@ -50,18 +50,15 @@
                 <img src="${profile}" class="mt-3 text-center img-fluid" alt="profile photo"/>
             </div>
 
-            <p class="mt-3"><span class="font-weight-bold">Experience:</span> 2 Year and 9 months</p>
-            <p><span class="font-weight-bold">Employed in:</span> Software Robotics Cooperation Ltd</p>
-            <p><span class="font-weight-bold">Role:</span>Senior Software Engineer</p>
-            <p><span class="font-weight-bold">Day to Day Languages:</span> Python, GO, SQL </p>
-            <p><span class="font-weight-bold">Familiar Languages:</span> Java, Javascript, HTML, CS </p>
-            <p><span class="font-weight-bold">Day to Day S.E. Technologies:</span> SQLAlchemy, Pytest, Git, PostgreSQL  </p>
-            <p><span class="font-weight-bold">Familiar S.E Technologies:</span> Spring, JQuery, Bootstrap, Junit, SOAP and
-            RestFul web services, SVN, Maven, MySQL, Oracle DB, JSP and Servlets, Electron, CockroachDB, Flask, Django</p>
+            <p><span class="font-weight-bold">Day to Day Languages:</span> Python, SQL </p>
+            <p><span class="font-weight-bold">Familiar Languages:</span> Java, JavaScript, HTML, CSS, Go </p>
+            <p><span class="font-weight-bold">Day to Day S.E. Technologies:</span> PyTest, Git, SQLAlchamy, PostgreSQL,
+                Build and Release pipelines, Azure Devops </p>
+            <p><span class="font-weight-bold">Familiar S.E Technologies:</span> Spring, jQuery, Bootstrap, Junit, SOAP
+                and RESTful web services, SVN, Maven, MySQL, Oracle DB, JSP and Servlets, Electron, Cockroach DB, Flask,
+                Django, Gitlab.</p>
         </div>
         <div class="col-md-8 col-sm-12">
-            <h4 class="mt-3">Current Assignment</h4>
-            <p>Working on automatic routing between clusters for a major player in financial services.</p>
             <h4>Certifications</h4>
             <ul>
                 <li>Codechef's Data Structures and Algorithms - Foundation</li>
@@ -69,8 +66,17 @@
                 <li>Alogorithms Specialization - Coursera</li>
             </ul>
             <h4>Education</h4>
-            <li>BTech, Japyee Institute of Information Technology, CGPA: 8.9, (2016)</li>
-            <li>Intermediate, Kendriya Vidhyalaya, 88.6%, (2012)</li>
+            <ul>
+                <li>MS in CS University College Dublin, Ireland, 2020(Expected)</li>
+                <li>B-Tech in ECE, Japyee Institute of Information Technology, Noida, India, CGPA: 8.9, (2016)</li>
+                <li>Intermediate, Kendriya Vidhyalaya, Unnao, India, 88.6%, (2012)</li>
+            </ul>
+            <h4>Work Ex (3 Years)</h4>
+            <ul>
+                <li>Senior Software Engineer, Soroco India (April 2019 - August 2019)</li>
+                <li>Software Engineer, Soroco India, (May 2019 - March 2019)</li>
+                <li>Java Developer, Wipro technologies, (August 2016 - April 2018)</li>
+            </ul>
         </div>
     </div>
 </div>

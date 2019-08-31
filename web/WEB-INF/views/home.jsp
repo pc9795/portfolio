@@ -16,9 +16,11 @@
                 <div class="card-body">
                     <h4 class="card-title">What I am good at?</h4>
                     <p class="card-text">
-                        A language agnostic software developer who worked on a myriad of programming languages such as
-                        Java, Python, JavaScript and GO. In the past I built web and desktop applications and worked on
-                        areas like automatic code generation. Currently I build distributed RPA systems
+                        A language agnostic software engineer who used several programming languages such as Java,
+                        Python, JavaScript and GO. In the past I built web and desktop applications, delivered
+                        distributed RPA systems and worked on areas like automatic code generation and text
+                        classification. Currently I am pursuing my Masters in Computer Science from University College
+                        Dublin, Fall 2019.
                     </p>
                 </div>
             </div>
