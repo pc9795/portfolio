@@ -1,10 +1,6 @@
 package com.prashantchaubey.utils;
 
 import com.prashantchaubey.entities.BlogItem;
-import com.prashantchaubey.entities.BlogTag;
-import org.springframework.ui.Model;
-
-import java.util.Collection;
 
 /**
  * Created By: Prashant Chaubey
@@ -37,10 +33,5 @@ public final class Utils {
             blogItem.setDescription(Utils.getDescriptionFromContent(blogItem.getContent(),
                     Constants.BLOG_DESCRIPTION_SIZE));
         }
-    }
-
-    public static void addBlogAndTagsToModel(Model model, Collection<BlogTag> blogTags, Collection<BlogItem> blogItems) {
-        model.addAttribute("blogTags", blogTags);
-        model.addAttribute("blogItems", blogItems);
     }
 }

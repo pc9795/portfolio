@@ -22,7 +22,7 @@ import javax.validation.Valid;
  **/
 
 @Controller
-@RequestMapping(value = "/contact")
+@RequestMapping(value = "/contacts")
 public class ContactController {
 
     private ContactFormRepository repository;

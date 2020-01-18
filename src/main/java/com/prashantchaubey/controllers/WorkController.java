@@ -15,7 +15,7 @@ import java.util.List;
  * Created On: 08-09-2018 15:21
  **/
 @Controller
-@RequestMapping("/work")
+@RequestMapping("/works")
 public class WorkController {
 
     private WorkItemRepository workItemRepository;

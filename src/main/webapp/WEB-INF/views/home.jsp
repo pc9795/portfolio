@@ -5,10 +5,9 @@
   Time: 02:36
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/work" var="work"/>
+<c:url value="/works" var="work"/>
 <c:url value="/lists" var="lists"/>
-<c:url value="/blog" var="blog"/>
-<c:url value="/blog/single/" var="blog_single"/>
+<c:url value="/blogs" var="blog"/>
 <div class="container">
     <div class="row card-deck">
         <div class="col-md-4 col-xs-12">
@@ -65,7 +64,7 @@
                         <p class="card-text">${blog_item.description}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="${blog_single}${blog_item.id}" class="text-secondary">Read More</a>
+                        <a href="${blog}/${blog_item.id}" class="text-secondary">Read More</a>
                     </div>
                 </div>
             </div>

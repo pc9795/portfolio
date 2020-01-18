@@ -51,7 +51,7 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(value = "resume")
+    @GetMapping(value = "resume")
     public void resume(HttpServletResponse response, HttpServletRequest request) {
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "inline; filename=" + RESUME_FILE_NAME);

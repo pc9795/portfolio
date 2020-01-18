@@ -5,10 +5,10 @@ Time: 23:37
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url value="/" var="home"/>
-<c:url value="/work" var="work"/>
-<c:url value="/blog" var="blog"/>
+<c:url value="/works" var="work"/>
+<c:url value="/blogs" var="blog"/>
 <c:url value="/lists" var="lists"/>
-<c:url value="/contact" var="contact"/>
+<c:url value="/contacts" var="contact"/>
 <div class="container">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a id="home_link" class="navbar-brand" href="${home}">Prashant Chaubey</a>
