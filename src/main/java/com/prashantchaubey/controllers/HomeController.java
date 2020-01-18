@@ -4,7 +4,7 @@ import com.prashantchaubey.entities.BlogItem;
 import com.prashantchaubey.entities.WorkItem;
 import com.prashantchaubey.repositories.BlogItemRepository;
 import com.prashantchaubey.repositories.WorkItemRepository;
-import com.prashantchaubey.utils.BlogUtils;
+import com.prashantchaubey.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +43,9 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model) {
-        LOGGER.debug("Getting HOME page!");
         List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
         List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
-        // If there is no description create one from content.
-        blogItems.forEach(BlogUtils::checkAndFillDescriptionIfNot);
+        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogItems", blogItems);
         model.addAttribute("workItems", workItems);
         return "home";
@@ -56,21 +54,22 @@ public class HomeController {
     @RequestMapping(value = "resume")
     public void resume(HttpServletResponse response, HttpServletRequest request) {
         response.setContentType("application/pdf");
-        response.addHeader("Content-Disposition", "inline; filename=PrashantChaubey_resume.pdf");
+        response.addHeader("Content-Disposition", "inline; filename=" + RESUME_FILE_NAME);
         FileInputStream pdfFileStream = null;
         OutputStream responseStream;
         try {
             String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/" + RESUME_FILE_NAME);
-            LOGGER.debug(resumeFilePath);
+            LOGGER.debug("Resume file path:" + resumeFilePath);
             pdfFileStream = new FileInputStream(new File(resumeFilePath));
-            int readData = 0;
+            int readData;
             responseStream = response.getOutputStream();
             for (; (readData = pdfFileStream.read()) != -1; ) {
                 responseStream.write(readData);
             }
             responseStream.flush();
+
         } catch (Exception ex) {
-            LOGGER.error(ex);
+            LOGGER.error("Error in getting resume:", ex);
         } finally {
             if (pdfFileStream != null) {
                 try {

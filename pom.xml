@@ -116,6 +116,9 @@
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>${basedir}/src/main/webapp</directory>
+            </resource>
         </resources>
         <plugins>
             <plugin>

@@ -35,7 +35,6 @@ public class ContactController {
 
     @GetMapping
     public String contact(Model model) {
-        LOGGER.debug("Getting CONTACT page!");
         model.addAttribute("contactForm", new ContactForm());
         return "contact";
     }
@@ -44,7 +43,6 @@ public class ContactController {
     public String postContactForm(@Valid ContactForm contactForm, Errors errors, Model model) {
         LOGGER.debug("Form details:" + contactForm);
         LOGGER.warn("Errors:" + errors);
-        LOGGER.debug("Submittng Contact form");
         if (!errors.hasErrors()) {
             model.addAttribute("success", true);
             repository.save(contactForm);

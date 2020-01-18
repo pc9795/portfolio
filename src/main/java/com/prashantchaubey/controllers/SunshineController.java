@@ -1,9 +1,8 @@
 package com.prashantchaubey.controllers;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created By: Prashant Chaubey
@@ -13,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/sunshine")
 public class SunshineController {
 
-    private static Logger LOGGER = Logger.getLogger(SunshineController.class);
-
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String home() {
-        LOGGER.debug("Getting SUNSHINE page");
         return "sunshine";
     }
 }

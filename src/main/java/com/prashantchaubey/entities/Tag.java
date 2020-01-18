@@ -1,5 +1,8 @@
 package com.prashantchaubey.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -8,15 +11,9 @@ import javax.persistence.MappedSuperclass;
  **/
 @MappedSuperclass
 public abstract class Tag {
+    @Getter
+    @Setter
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String toString() {

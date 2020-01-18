@@ -1,5 +1,8 @@
 package com.prashantchaubey.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,31 +16,19 @@ public class BlogItem extends Item {
 
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private long id;
     @ManyToMany(mappedBy = "blogItems", fetch = FetchType.EAGER)
+    @Getter
+    @Setter
     private Set<BlogTag> blogTags = new HashSet<>();
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Set<BlogTag> getBlogTags() {
-        return blogTags;
-    }
-
-    public void setBlogTags(Set<BlogTag> blogTags) {
-        this.blogTags = blogTags;
-    }
 
     @Override
     public String toString() {
         return "BlogItem{" +
                 "id=" + id +
-                ", blogTags=" + BlogTag.toStringWithougBlogItems(blogTags) +
+                ", blogTags=" + BlogTag.toStringWithoutBlogItems(blogTags) +
                 "} " + super.toString();
     }
 }

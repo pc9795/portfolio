@@ -1,6 +1,9 @@
 package com.prashantchaubey.entities;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,45 +20,23 @@ import java.io.Serializable;
 public class ContactForm implements Serializable {
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private Long id;
+    @Getter
+    @Setter
     private String name;
+    @Getter
+    @Setter
     private String contact;
     @NotNull
     @Email(message = "Email address is not valid!")
+    @Getter
+    @Setter
     private String email;
+    @Getter
+    @Setter
     private String purpose;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
-    }
 
     @Override
     public String toString() {

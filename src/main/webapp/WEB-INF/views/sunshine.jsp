@@ -13,7 +13,7 @@
     <head>
         <title>Happy Birthday Sunshine</title>
         <link rel="shortcut icon" type="image/x-icon"
-              href='<c:url value="/resources/img/favicon-16x16.png"></c:url>'/>
+              href='<c:url value="/resources/img/favicon-16x16.png"/>'/>
         <link rel="stylesheet" type="text/css" href="${bootstrap}"/>
         <link rel="stylesheet" type="text/css" href="${custom_css}"/>
     </head>
@@ -27,7 +27,7 @@
             <div class="row mt-5 b">
                 <div class="col-12 col-sm-3 b mt-3">
                     <img alt="It should be a cake" class="img-fluid b"
-                         src='<c:url value="/resources/img/cake.png"></c:url>'>
+                         src='<c:url value="/resources/img/cake.png"/>'>
                 </div>
                 <div class="col-12 col-sm-6 b text-center mt-3">
                     <button id="start" class="btn btn-info b">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-12 	col-sm-3 b mt-3">
                     <img alt="25 year old diva" class="img-fluid b"
-                         src='<c:url value="/resources/img/25.png"></c:url>'>
+                         src='<c:url value="/resources/img/25.png"/>'>
                 </div>
             </div>
 

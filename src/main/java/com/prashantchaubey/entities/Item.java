@@ -1,5 +1,7 @@
 package com.prashantchaubey.entities;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Lob;
@@ -12,44 +14,20 @@ import java.sql.Timestamp;
  **/
 @MappedSuperclass
 public class Item {
+    @Setter
+    @Getter
     private String heading;
+    @Setter
+    @Getter
     private String description;
     @Lob
     @Type(type = "org.hibernate.type.TextType")
+    @Setter
+    @Getter
     private String content;
+    @Setter
+    @Getter
     private Timestamp timestamp;
-
-    public String getHeading() {
-        return heading;
-    }
-
-    public void setHeading(String heading) {
-        this.heading = heading;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
 
     @Override
     public String toString() {

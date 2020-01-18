@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/lists")
 public class ListsController {
 
-    ListItemRepository repository;
+    private ListItemRepository repository;
     private static final Logger LOGGER = LoggerFactory.getLogger(ListsController.class);
 
     @Autowired
@@ -30,14 +30,14 @@ public class ListsController {
         this.repository = listItemRepository;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String lists(Model model) {
-        List<ListItem> casualReadingList = repository.findListItemsByType(ListItemTypes.CASUAL);
-        LOGGER.debug("casualReadingList:" + casualReadingList.size());
-        List<ListItem> technicalReadingList = repository.findListItemsByType(ListItemTypes.TECHNICAL);
-        LOGGER.debug("technicalReadingList:" + technicalReadingList.size());
-        List<ListItem> gamingReadingList = repository.findListItemsByType(ListItemTypes.GAMING);
-        LOGGER.debug("gamingReadingList:" + gamingReadingList.size());
+        List<ListItem> casualReadingList = repository.findListItemsByType(ListItem.Type.CASUAL);
+        LOGGER.debug("Casual:" + casualReadingList.size());
+        List<ListItem> technicalReadingList = repository.findListItemsByType(ListItem.Type.TECHNICAL);
+        LOGGER.debug("Technical:" + technicalReadingList.size());
+        List<ListItem> gamingReadingList = repository.findListItemsByType(ListItem.Type.GAMING);
+        LOGGER.debug("Gaming:" + gamingReadingList.size());
         model.addAttribute("casualReadingList", casualReadingList);
         model.addAttribute("technicalReadingList", technicalReadingList);
         model.addAttribute("gamingReadingList", gamingReadingList);

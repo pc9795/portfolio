@@ -4,7 +4,7 @@ $(document).on('click', '#start', function () {
     $(this).attr("hidden", true);
     $("#poem").attr("hidden", false);
     $("#show").attr("hidden", false);
-})
+});
 
 $(document).on('click', "#show", function () {
     if (counter === 0) {
@@ -24,4 +24,4 @@ $(document).on('click', "#show", function () {
         $(".firstWord").css('color', '#f26968');
         $(this).attr('hidden', 'hidden');
     }
-})
+});

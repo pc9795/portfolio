@@ -16,11 +16,11 @@
                 <div class="card-body">
                     <h4 class="card-title">What I am good at?</h4>
                     <p class="card-text">
-                        A language agnostic software engineer who used several programming languages such as Java,
-                        Python, JavaScript and GO. In the past I built web and desktop applications, delivered
-                        distributed RPA systems and worked on areas like automatic code generation and text
-                        classification. Currently I am pursuing my Masters in Computer Science from University College
-                        Dublin, Fall 2019.
+                        Currently, I am pursuing my Masters in Computer Science from University College Dublin with
+                        Artificial Intelligence and Distributed Computing as my focus areas. A language agnostic
+                        software engineer in the past who developed everything from an application's front-end to the
+                        back-end and everything between. I built web and desktop applications, delivered distributed RPA
+                        systems and worked on areas like automatic code generation and text classification.
                     </p>
                 </div>
             </div>
@@ -29,7 +29,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Reading List</h4>
-                    <p class="card-text">I prefer traditional way of learning through books and like to maintain a list.</p>
+                    <p class="card-text">I prefer traditional way of learning through books and like to maintain a
+                        list.</p>
                 </div>
                 <div class="card-footer">
                     <a href="${lists}" class="text-secondary">Reading List</a>
@@ -78,9 +79,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Portfolio website/Blog</h4>
-                    <p class="card-text">This website runs on Spring and Hibernate in the Backend, and JQuery and
-                        Bootstrap
-                        is used for UI</p>
+                    <p class="card-text">This website runs with Spring boot, JQuery and
+                        Bootstrap</p>
                 </div>
             </div>
         </div>

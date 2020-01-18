@@ -8,18 +8,18 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
-    public List<BlogItem> findBlogItemsByOrderByTimestampDesc();
+    List<BlogItem> findBlogItemsByOrderByTimestampDesc();
 
     @Query(value = "select * from blogitem where to_char(timestamp,'MON_YYYY')=:monthYear", nativeQuery = true)
-    public List<BlogItem> findBlogItemsByMonthsAndYear(@Param("monthYear") String monthYear);
+    List<BlogItem> findBlogItemsByMonthsAndYear(@Param("monthYear") String monthYear);
 
     @Query(value = "select * from blogitem where to_char(timestamp,'YYYY')=:year", nativeQuery = true)
-    public List<BlogItem> findBlogItemsByYear(@Param("year") String year);
+    List<BlogItem> findBlogItemsByYear(@Param("year") String year);
 
-    public List<BlogItem> findBlogItemsByHeadingContaining(String serachText);
+    List<BlogItem> findBlogItemsByHeadingContaining(String searchText);
 
-    public BlogItem findBlogItemById(long id);
+    BlogItem findBlogItemById(long id);
 
-    public List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
+    List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
 
 }

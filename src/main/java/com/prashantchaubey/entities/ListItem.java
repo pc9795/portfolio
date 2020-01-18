@@ -1,8 +1,9 @@
 package com.prashantchaubey.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -15,44 +16,25 @@ import java.sql.Date;
 
 @Entity
 public class ListItem implements Serializable {
-    private long id;
-    private String name;
-    private String type;
-    private Date date;
+    public enum Type {
+        GAMING, CASUAL, TECHNICAL
+    }
 
     @Id
     @GeneratedValue
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    @Getter
+    @Setter
+    private long id;
+    @Getter
+    @Setter
+    private String name;
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private Type type;
+    @Getter
+    @Setter
+    private Date date;
 
     @Override
     public String toString() {

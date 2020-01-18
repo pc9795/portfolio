@@ -2,13 +2,12 @@ package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.WorkItem;
 import com.prashantchaubey.repositories.WorkItemRepository;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ import java.util.List;
 @RequestMapping("/work")
 public class WorkController {
 
-    private static final Logger LOGGER = Logger.getLogger(WorkController.class);
     private WorkItemRepository workItemRepository;
 
     @Autowired
@@ -28,7 +26,7 @@ public class WorkController {
         this.workItemRepository = repository;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String work(Model model) {
         Sort descendingOrder = new Sort(Sort.Direction.DESC, "timestamp");
         List<WorkItem> workItems = workItemRepository.findAll(descendingOrder);

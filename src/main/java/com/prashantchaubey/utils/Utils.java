@@ -1,14 +1,18 @@
 package com.prashantchaubey.utils;
 
 import com.prashantchaubey.entities.BlogItem;
+import com.prashantchaubey.entities.BlogTag;
+import org.springframework.ui.Model;
+
+import java.util.Collection;
 
 /**
  * Created By: Prashant Chaubey
  * Created On: 26-05-2019 16:47
  * Purpose: TODO:
  **/
-public final class BlogUtils {
-    public static String getDescriptionFromContent(String content, int descriptionSize) {
+public final class Utils {
+    static String getDescriptionFromContent(String content, int descriptionSize) {
         if (content == null || content.length() == 0) {
             return "...";
         }
@@ -30,8 +34,13 @@ public final class BlogUtils {
 
     public static void checkAndFillDescriptionIfNot(BlogItem blogItem) {
         if (blogItem.getDescription() == null || blogItem.getDescription().trim().isEmpty()) {
-            blogItem.setDescription(BlogUtils.getDescriptionFromContent(blogItem.getContent(),
+            blogItem.setDescription(Utils.getDescriptionFromContent(blogItem.getContent(),
                     Constants.BLOG_DESCRIPTION_SIZE));
         }
+    }
+
+    public static void addBlogAndTagsToModel(Model model, Collection<BlogTag> blogTags, Collection<BlogItem> blogItems) {
+        model.addAttribute("blogTags", blogTags);
+        model.addAttribute("blogItems", blogItems);
     }
 }
