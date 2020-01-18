@@ -11,7 +11,7 @@
     <%--@elvariable id="contactForm" type="com.prashantchaubey.entities.ContactForm"--%>
 <div class="row ">
     <div class="col-sm-12 mt-3 col-md-4 p-1">
-        <sf:form method="post" commandName="contactForm">
+        <sf:form method="post" modelAttribute="contactForm">
             <c:if test="${success}">
                 Details submitted successfully!
             </c:if>
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="col-12 text-center">
-                <p class="text-right">I live here <i class="fa fa-hand-o-up"></i></p>
+                <h3 class="text-right">I live here <i class="fa fa-hand-o-up"></i></h3>
             </div>
         </div>
 

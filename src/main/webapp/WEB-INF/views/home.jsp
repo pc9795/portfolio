@@ -14,13 +14,13 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">What I am good at?</h4>
+                    <h4 class="card-title">What I am good at? <i class="fa fa-superpowers" aria-hidden="true"></i>
+                    </h4>
                     <p class="card-text">
-                        Currently, I am pursuing my Masters in Computer Science from University College Dublin with
-                        Artificial Intelligence and Distributed Computing as my focus areas. A language agnostic
-                        software engineer in the past who developed everything from an application's front-end to the
-                        back-end and everything between. I built web and desktop applications, delivered distributed RPA
-                        systems and worked on areas like automatic code generation and text classification.
+                        A language agnostic software engineer who developed everything from an application's front-end
+                        to the back-end and everything between. I built web and desktop applications, delivered
+                        distributed RPA systems and worked on areas like automatic code generation and text
+                        classification.
                     </p>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Reading List</h4>
+                    <h4 class="card-title">Reading List <i class="fa fa-book" aria-hidden="true"></i></h4>
                     <p class="card-text">I prefer traditional way of learning through books and like to maintain a
                         list.</p>
                 </div>
@@ -40,7 +40,7 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Video-games</h4>
+                    <h4 class="card-title">Video-games <i class="fa fa-gamepad" aria-hidden="true"></i></h4>
                     <p class="card-text">Care to check which games I play :p</p>
                 </div>
                 <div class="card-footer">
@@ -51,7 +51,9 @@
     </div>
     <hr>
     <div class="row my-3">
-        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles</h3></div>
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles <i class="fa fa-rocket"
+                                                                                   aria-hidden="true"></i>
+        </h3></div>
         <div class="col-4 col-xs-12"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
     </div>
     <div class="row card-deck">
@@ -71,7 +73,8 @@
     </div>
     <hr>
     <div class="row my-3">
-        <div class="col-8 col-xs-12"><h3 style="display: inline">Work Samples/Personal Projects</h3></div>
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Personal projects <i class="fa fa-code"
+                                                                                      aria-hidden="true"></i></h3></div>
         <div class="col-4 col-xs-12"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
     </div>
     <div class="row card-deck">

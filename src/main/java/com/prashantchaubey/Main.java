@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
@@ -19,6 +20,16 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 public class Main implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    /**
+     * With the help of this setting our application will not handle static resources.
+     *
+     * @param configurer:contains settings for default servlet.
+     */
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
     }
 
     /**
