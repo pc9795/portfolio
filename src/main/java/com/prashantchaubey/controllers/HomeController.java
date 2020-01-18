@@ -43,8 +43,8 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model) {
-        List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByTimestampDesc();
-        List<WorkItem> workItems = workItemRepository.findTop2ByOrderByTimestampDesc();
+        List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByCreatedAtDesc();
+        List<WorkItem> workItems = workItemRepository.findTop2ByOrderByCreatedAtDesc();
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogItems", blogItems);
         model.addAttribute("workItems", workItems);

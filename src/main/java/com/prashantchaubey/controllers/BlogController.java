@@ -5,8 +5,6 @@ import com.prashantchaubey.entities.BlogTag;
 import com.prashantchaubey.repositories.BlogItemRepository;
 import com.prashantchaubey.repositories.BlogTagRepository;
 import com.prashantchaubey.utils.Utils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +28,6 @@ import static com.prashantchaubey.utils.Utils.addBlogAndTagsToModel;
 public class BlogController {
     private BlogTagRepository blogTagRepository;
     private BlogItemRepository blogItemRepository;
-    private static final Logger LOGGER = LoggerFactory.getLogger(BlogController.class);
 
     @Autowired
     public BlogController(BlogItemRepository blogItemRepository, BlogTagRepository blogTagRepository) {
@@ -40,16 +37,14 @@ public class BlogController {
 
     @GetMapping
     public String blog(Model model) {
-        List<BlogItem> blogItems = blogItemRepository.findBlogItemsByOrderByTimestampDesc();
+        List<BlogItem> blogItems = blogItemRepository.findBlogItemsByOrderByCreatedAtDesc();
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
-        LOGGER.debug("Blog items:" + blogItems.size());
         addBlogAndTagsToModel(model, getAllTags(), blogItems);
         return "blog";
     }
 
     @GetMapping(value = "/month/{month_year}")
     public String blogByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
-        LOGGER.debug("Getting blog for:" + monthYear);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByMonthsAndYear(monthYear);
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         addBlogAndTagsToModel(model, getAllTags(), blogItems);
@@ -58,7 +53,6 @@ public class BlogController {
 
     @GetMapping(value = "/year/{year}")
     public String blogByYear(@PathVariable(value = "year") String year, Model model) {
-        LOGGER.debug("Getting blog for:" + year);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByYear(year);
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         addBlogAndTagsToModel(model, getAllTags(), blogItems);
@@ -67,7 +61,6 @@ public class BlogController {
 
     @GetMapping(value = "/tag/{tag_id}")
     public String blogByTag(@PathVariable(value = "tag_id") String tagId, Model model) {
-        LOGGER.debug("Getting blog for:" + tagId);
         BlogTag blogTag = blogTagRepository.findBlogTagById(Long.parseLong(tagId));
         Set<BlogItem> blogItems = blogTag.getBlogItems();
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
@@ -78,7 +71,6 @@ public class BlogController {
 
     @GetMapping(value = "/search/")
     public String blogBySearchText(@RequestParam("search_text") String searchText, Model model) {
-        LOGGER.debug("Getting blogs for:" + searchText);
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByHeadingContaining(searchText);
         blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         addBlogAndTagsToModel(model, getAllTags(), blogItems);
@@ -87,7 +79,6 @@ public class BlogController {
 
     @GetMapping(value = "/single/{blog_id}")
     public String singleBlog(@PathVariable("blog_id") String blogId, Model model) {
-        LOGGER.debug("Getting blog for id:" + blogId);
         BlogItem blogItem = blogItemRepository.findBlogItemById(Long.parseLong(blogId));
         Utils.checkAndFillDescriptionIfNot(blogItem);
         model.addAttribute("blogItem", blogItem);
@@ -95,8 +86,6 @@ public class BlogController {
     }
 
     private List<BlogTag> getAllTags() {
-        List<BlogTag> blogTags = blogTagRepository.findAll();
-        LOGGER.debug("blogTags:" + blogTags.size());
-        return blogTags;
+        return blogTagRepository.findAll();
     }
 }

@@ -3,7 +3,6 @@ package com.prashantchaubey.controllers;
 import com.prashantchaubey.entities.WorkItem;
 import com.prashantchaubey.repositories.WorkItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +27,7 @@ public class WorkController {
 
     @GetMapping
     public String work(Model model) {
-        Sort descendingOrder = new Sort(Sort.Direction.DESC, "timestamp");
-        List<WorkItem> workItems = workItemRepository.findAll(descendingOrder);
+        List<WorkItem> workItems = workItemRepository.findByOrderByCreatedAtDesc();
         model.addAttribute("workItems", workItems);
         return "work";
     }

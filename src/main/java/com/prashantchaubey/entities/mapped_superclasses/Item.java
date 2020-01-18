@@ -1,18 +1,21 @@
-package com.prashantchaubey.entities;
+package com.prashantchaubey.entities.mapped_superclasses;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * Created By: Prashant Chaubey
  * Created On: 08-09-2018 04:18
  **/
 @MappedSuperclass
+@ToString
 public class Item {
     @Setter
     @Getter
@@ -27,15 +30,9 @@ public class Item {
     private String content;
     @Setter
     @Getter
-    private Timestamp timestamp;
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "heading='" + heading + '\'' +
-                ", description='" + description + '\'' +
-                ", content='" + content + '\'' +
-                ", timestamp=" + timestamp +
-                '}';
-    }
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @Setter
+    @Getter
+    private String createdBy;
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
-    List<BlogItem> findBlogItemsByOrderByTimestampDesc();
+    List<BlogItem> findBlogItemsByOrderByCreatedAtDesc();
 
     @Query(value = "select * from blogitem where to_char(timestamp,'MON_YYYY')=:monthYear", nativeQuery = true)
     List<BlogItem> findBlogItemsByMonthsAndYear(@Param("monthYear") String monthYear);
@@ -20,6 +20,6 @@ public interface BlogItemRepository extends JpaRepository<BlogItem, Long> {
 
     BlogItem findBlogItemById(long id);
 
-    List<BlogItem> findTop3BlogItemsByOrderByTimestampDesc();
+    List<BlogItem> findTop3BlogItemsByOrderByCreatedAtDesc();
 
 }

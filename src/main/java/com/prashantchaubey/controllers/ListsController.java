@@ -2,8 +2,6 @@ package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.ListItem;
 import com.prashantchaubey.repositories.ListItemRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +21,6 @@ import java.util.List;
 public class ListsController {
 
     private ListItemRepository repository;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ListsController.class);
 
     @Autowired
     public ListsController(ListItemRepository listItemRepository) {
@@ -33,11 +30,8 @@ public class ListsController {
     @GetMapping
     public String lists(Model model) {
         List<ListItem> casualReadingList = repository.findListItemsByType(ListItem.Type.CASUAL);
-        LOGGER.debug("Casual:" + casualReadingList.size());
         List<ListItem> technicalReadingList = repository.findListItemsByType(ListItem.Type.TECHNICAL);
-        LOGGER.debug("Technical:" + technicalReadingList.size());
         List<ListItem> gamingReadingList = repository.findListItemsByType(ListItem.Type.GAMING);
-        LOGGER.debug("Gaming:" + gamingReadingList.size());
         model.addAttribute("casualReadingList", casualReadingList);
         model.addAttribute("technicalReadingList", technicalReadingList);
         model.addAttribute("gamingReadingList", gamingReadingList);

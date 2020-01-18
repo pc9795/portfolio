@@ -2,10 +2,12 @@ package com.prashantchaubey.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  * Each value represent items from different lists which i am maintaining i.e.,
@@ -15,6 +17,7 @@ import java.sql.Date;
  **/
 
 @Entity
+@ToString
 public class ListItem implements Serializable {
     public enum Type {
         GAMING, CASUAL, TECHNICAL
@@ -32,17 +35,8 @@ public class ListItem implements Serializable {
     @Setter
     @Enumerated(EnumType.STRING)
     private Type type;
-    @Getter
     @Setter
-    private Date date;
-
-    @Override
-    public String toString() {
-        return "ListItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", date=" + date +
-                '}';
-    }
+    @Getter
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

@@ -1,5 +1,6 @@
 package com.prashantchaubey.entities;
 
+import com.prashantchaubey.entities.mapped_superclasses.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,6 @@ import java.util.Set;
  **/
 @Entity
 public class BlogItem extends Item {
-
     @Id
     @GeneratedValue
     @Getter
@@ -23,12 +23,4 @@ public class BlogItem extends Item {
     @Getter
     @Setter
     private Set<BlogTag> blogTags = new HashSet<>();
-
-    @Override
-    public String toString() {
-        return "BlogItem{" +
-                "id=" + id +
-                ", blogTags=" + BlogTag.toStringWithoutBlogItems(blogTags) +
-                "} " + super.toString();
-    }
 }

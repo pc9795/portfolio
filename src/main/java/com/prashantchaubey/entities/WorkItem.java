@@ -1,7 +1,9 @@
 package com.prashantchaubey.entities;
 
+import com.prashantchaubey.entities.mapped_superclasses.Item;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
  * Created On: 08-09-2018 15:21
  **/
 @Entity
+@ToString
 public class WorkItem extends Item {
 
     @Id
@@ -22,12 +25,4 @@ public class WorkItem extends Item {
     @Getter
     @Setter
     private String link;
-
-    @Override
-    public String toString() {
-        return "WorkItem{" +
-                "id=" + id +
-                ", link='" + link + '\'' +
-                "} " + super.toString();
-    }
 }

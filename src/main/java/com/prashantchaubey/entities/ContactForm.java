@@ -3,6 +3,8 @@ package com.prashantchaubey.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Entity carrying data of contact me page form
@@ -17,6 +20,7 @@ import java.io.Serializable;
  * Created On: 01-09-2018 01:09
  **/
 @Entity
+@ToString
 public class ContactForm implements Serializable {
     @Id
     @GeneratedValue
@@ -37,15 +41,8 @@ public class ContactForm implements Serializable {
     @Getter
     @Setter
     private String purpose;
-
-    @Override
-    public String toString() {
-        return "ContactForm{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", contact='" + contact + '\'' +
-                ", email='" + email + '\'' +
-                ", purpose='" + purpose + '\'' +
-                '}';
-    }
+    @Setter
+    @Getter
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

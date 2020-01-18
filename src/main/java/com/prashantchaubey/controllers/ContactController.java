@@ -41,12 +41,10 @@ public class ContactController {
 
     @PostMapping
     public String postContactForm(@Valid ContactForm contactForm, Errors errors, Model model) {
-        LOGGER.debug("Form details:" + contactForm);
         LOGGER.warn("Errors:" + errors);
         if (!errors.hasErrors()) {
             model.addAttribute("success", true);
             repository.save(contactForm);
-            LOGGER.debug("Details saved Successfully!");
         }
         return "contact";
     }
