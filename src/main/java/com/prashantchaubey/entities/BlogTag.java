@@ -1,6 +1,7 @@
 package com.prashantchaubey.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prashantchaubey.entities.mapped_superclasses.Tag;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class BlogTag extends Tag {
     @GeneratedValue
     @Getter
     @Setter
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long id;
 
     @ManyToMany
@@ -29,5 +31,4 @@ public class BlogTag extends Tag {
     @Setter
     @JsonIgnore
     private Set<BlogItem> blogItems = new HashSet<>();
-
 }
