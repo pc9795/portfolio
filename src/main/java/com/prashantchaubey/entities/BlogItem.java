@@ -1,5 +1,6 @@
 package com.prashantchaubey.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prashantchaubey.entities.mapped_superclasses.Item;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class BlogItem extends Item {
     @ManyToMany(mappedBy = "blogItems", fetch = FetchType.EAGER)
     @Getter
     @Setter
+    @JsonIgnore
     private Set<BlogTag> blogTags = new HashSet<>();
 }

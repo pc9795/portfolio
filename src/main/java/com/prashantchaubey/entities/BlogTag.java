@@ -1,5 +1,6 @@
 package com.prashantchaubey.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prashantchaubey.entities.mapped_superclasses.Tag;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class BlogTag extends Tag {
     @ManyToMany
     @Getter
     @Setter
+    @JsonIgnore
     private Set<BlogItem> blogItems = new HashSet<>();
 
 }

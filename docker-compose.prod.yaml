@@ -8,6 +8,8 @@ services:
     build: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - "postgres_data:/var/lib/postgresl/data/"
     networks:
       my_net:
         aliases:
@@ -31,6 +33,8 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    volumes:
+      - 'es_data:/usr/share/elasticsearch/data'
     networks:
       my_net:
         aliases:
@@ -67,3 +71,6 @@ services:
       my_net:
         aliases:
           - "kibana"
+  volumes:
+    postgres_data:
+    es_data:

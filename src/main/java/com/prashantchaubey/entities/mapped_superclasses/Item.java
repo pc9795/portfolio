@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 public class Item {
     @Setter
     @Getter
+    @NotNull
     private String heading;
     @Setter
     @Getter
@@ -27,6 +29,7 @@ public class Item {
     @Type(type = "org.hibernate.type.TextType")
     @Setter
     @Getter
+    @NotNull
     private String content;
     @Setter
     @Getter
