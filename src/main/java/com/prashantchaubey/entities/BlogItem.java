@@ -21,7 +21,7 @@ public class BlogItem extends Item {
     @Getter
     @Setter
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
     @ManyToMany(mappedBy = "blogItems", fetch = FetchType.EAGER)
     @Getter
     @Setter
@@ -30,12 +30,16 @@ public class BlogItem extends Item {
 
     public void addBlogTag(BlogTag tag) {
         blogTags.add(tag);
+        tag.addBlogItem(this);
     }
 
     public void removeBlogTag(BlogTag tag) {
+        if (tag.getId() == null) {
+            throw new RuntimeException("Give a valid entity with a valid id");
+        }
         BlogTag tagToBeRemoved = null;
         for (BlogTag currTag : blogTags) {
-            if (currTag.getName().equals(tag.getName())) {
+            if (currTag.getId().equals(tag.getId())) {
                 tagToBeRemoved = currTag;
                 break;
             }
@@ -45,5 +49,6 @@ public class BlogItem extends Item {
             return;
         }
         blogTags.remove(tagToBeRemoved);
+        tagToBeRemoved.removeBlogItem(this);
     }
 }

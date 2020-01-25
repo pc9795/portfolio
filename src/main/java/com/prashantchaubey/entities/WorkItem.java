@@ -21,7 +21,7 @@ public class WorkItem extends Item {
     @GeneratedValue
     @Getter
     @Setter
-    private long id;
+    private Long id;
     @Getter
     @Setter
     private String link;

@@ -3,7 +3,7 @@
   Date: 02-09-2018
   Time: 04:20
 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url value="/blogs/month/" var="blog_by_month"/>
 <c:url value="/blogs/tag/" var="blog_by_tag"/>
@@ -19,8 +19,7 @@
                             <div class="card-body">
                                 <h3>${blog_item.heading}</h3>
                                 <p class="font-italic">
-                                    Created on: <fmt:formatDate type="date"
-                                                                value="${blog_item.createdAt}"/>
+                                    Created on: <javatime:format value="${blog_item.createdAt}" style="MS" />
                                     <c:forEach items="${blog_item.blogTags}" var="blog_tag">
                                         <a href="${blog_by_tag}${blog_tag.id}"
                                            class="badge badge-secondary pull-right mx-1">${blog_tag.name}</a>

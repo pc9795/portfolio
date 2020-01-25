@@ -24,11 +24,34 @@ public class BlogTag extends Tag {
     @Getter
     @Setter
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
 
     @ManyToMany
     @Getter
     @Setter
     @JsonIgnore
     private Set<BlogItem> blogItems = new HashSet<>();
+
+    void addBlogItem(BlogItem item) {
+        blogItems.add(item);
+    }
+
+    //NOTE: can be made efficient by creating a composite class for storing keys. Can be done in future.
+    void removeBlogItem(BlogItem item) {
+        if (item.getId() == null) {
+            throw new RuntimeException("Give a valid entity with a valid id");
+        }
+        BlogItem toBeRemoved = null;
+        for (BlogItem currBlogItem : blogItems) {
+            if (currBlogItem.getId().equals(item.getId())) {
+                toBeRemoved = currBlogItem;
+                break;
+            }
+        }
+        // Right now not handling the case when tag is not present
+        if (toBeRemoved == null) {
+            return;
+        }
+        blogItems.remove(toBeRemoved);
+    }
 }

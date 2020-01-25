@@ -49,7 +49,7 @@ public class BlogItemResource {
             dbTag.setCreatedBy(principal.getName());
             dbTag = blogTagRepository.save(dbTag);
         }
-        blogItem.addBlogTag(blogTag);
+        blogItem.addBlogTag(dbTag);
         return blogItemRepository.save(blogItem);
     }
 
