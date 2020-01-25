@@ -27,6 +27,12 @@ public class ListsController {
         this.repository = listItemRepository;
     }
 
+    /**
+     * Get the lists page
+     *
+     * @param model model to send to JSP
+     * @return the view name
+     */
     @GetMapping
     public String lists(Model model) {
         List<ListItem> casualReadingList = repository.findListItemsByType(ListItem.Type.CASUAL);

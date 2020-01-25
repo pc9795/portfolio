@@ -33,12 +33,26 @@ public class ContactController {
         this.repository = contactFormRepository;
     }
 
+    /**
+     * Get contact page
+     *
+     * @param model model to pass to JSP
+     * @return the view name
+     */
     @GetMapping
     public String contact(Model model) {
         model.addAttribute("contactForm", new ContactForm());
         return "contact";
     }
 
+    /**
+     * Get the contact form
+     *
+     * @param contactForm contact data
+     * @param errors      validation errors
+     * @param model       model to pass to JSP
+     * @return the view name
+     */
     @PostMapping
     public String postContactForm(@Valid ContactForm contactForm, Errors errors, Model model) {
         LOGGER.warn("Errors:" + errors);

@@ -3,7 +3,7 @@ package com.prashantchaubey.utils;
 /**
  * Created By: Prashant Chaubey
  * Created On: 18-05-2019 14:08
- * Purpose: TODO:
+ * Purpose: Constants for this project
  **/
 public final class Constants {
     private Constants() {
@@ -23,6 +23,9 @@ public final class Constants {
     }
 
 
+    /**
+     * Resource URLs
+     */
     public class Resource {
         private Resource() {
         }

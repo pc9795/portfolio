@@ -4,7 +4,6 @@ import com.prashantchaubey.entities.BlogItem;
 import com.prashantchaubey.entities.BlogTag;
 import com.prashantchaubey.repositories.BlogItemRepository;
 import com.prashantchaubey.repositories.BlogTagRepository;
-import com.prashantchaubey.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +32,13 @@ public class BlogController {
         this.blogTagRepository = blogTagRepository;
     }
 
+    /**
+     * Get all blogs
+     *
+     * @param search search string
+     * @param model  model to pass to JSP
+     * @return the view name
+     */
     @GetMapping
     public String getBlogs(@RequestParam(value = "search", required = false) String search, Model model) {
         List<BlogItem> blogItems;
@@ -41,44 +47,68 @@ public class BlogController {
         } else {
             blogItems = blogItemRepository.findBlogItemsByOrderByCreatedAtDesc();
         }
-        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogTags", blogTagRepository.findAll());
         model.addAttribute("blogItems", blogItems);
         return "blog";
     }
 
+    /**
+     * Get blogs by month and year
+     *
+     * @param monthYear month in uppercase 3 letters and year in 4 letters separated by hypon(_)
+     * @param model     model to pass to JSP
+     * @return the view name
+     */
     @GetMapping(value = "/month/{month_year}")
     public String blogByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByMonthsAndYear(monthYear);
-        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogTags", blogTagRepository.findAll());
         model.addAttribute("blogItems", blogItems);
         return "blog";
     }
 
+    /**
+     * Get blogs by year
+     *
+     * @param year  year in 4 letters
+     * @param model model to pass to JSP
+     * @return the view name
+     */
     @GetMapping(value = "/year/{year}")
     public String blogByYear(@PathVariable(value = "year") String year, Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByYear(year);
-        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogTags", blogTagRepository.findAll());
         model.addAttribute("blogItems", blogItems);
         return "blog";
     }
 
+    /**
+     * Get blogs by tag
+     *
+     * @param tagId id of the tag
+     * @param model model to pass to JSP
+     * @return the view name
+     */
     @GetMapping(value = "/tag/{tag_id}")
     public String blogByTag(@PathVariable(value = "tag_id") Long tagId, Model model) {
         BlogTag blogTag = blogTagRepository.findBlogTagById(tagId);
         Set<BlogItem> blogItems = blogTag.getBlogItems();
-        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogTags", blogTagRepository.findAll());
         model.addAttribute("blogItems", blogItems);
         return "blog";
     }
 
+
+    /**
+     * Get blogs by id
+     *
+     * @param blogId id of the blog item
+     * @param model  model to pass to JSP
+     * @return the view name
+     */
     @GetMapping(value = "/{blog_id}")
     public String singleBlog(@PathVariable("blog_id") Long blogId, Model model) {
         BlogItem blogItem = blogItemRepository.findBlogItemById(blogId);
-        Utils.checkAndFillDescriptionIfNot(blogItem);
         model.addAttribute("blogItem", blogItem);
         return "blog_single";
     }

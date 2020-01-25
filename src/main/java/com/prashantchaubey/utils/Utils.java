@@ -46,6 +46,12 @@ public final class Utils {
         response.getWriter().write(Utils.createErrorJSON(errorCode, errorMessage));
     }
 
+    /**
+     * Generate a description from the content.
+     *
+     * @param content content
+     * @return description
+     */
     private static String getDescriptionFromContent(String content) {
         if (content == null || content.length() == 0) {
             return "...";

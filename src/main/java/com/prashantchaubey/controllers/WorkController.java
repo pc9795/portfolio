@@ -25,6 +25,12 @@ public class WorkController {
         this.workItemRepository = repository;
     }
 
+    /**
+     * Get the work page
+     *
+     * @param model model to pass to JSP
+     * @return the view name
+     */
     @GetMapping
     public String work(Model model) {
         List<WorkItem> workItems = workItemRepository.findByOrderByCreatedAtDesc();

@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sunshine")
 public class SunshineController {
 
+    /**
+     * Get the page
+     *
+     * @return the view name
+     */
     @GetMapping
     public String home() {
         return "sunshine";

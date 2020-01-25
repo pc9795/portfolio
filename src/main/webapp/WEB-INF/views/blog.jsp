@@ -5,6 +5,7 @@
 --%>
 <%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url value="/resources/img/logo-elastic-search-color-64.svg" var="elastic_logo"/>
 <c:url value="/blogs/month/" var="blog_by_month"/>
 <c:url value="/blogs/tag/" var="blog_by_tag"/>
 <c:url value="/blogs/year/" var="blog_by_year"/>
@@ -19,7 +20,7 @@
                             <div class="card-body">
                                 <h3>${blog_item.heading}</h3>
                                 <p class="font-italic">
-                                    Created on: <javatime:format value="${blog_item.createdAt}" style="MS" />
+                                    Created on: <javatime:format value="${blog_item.createdAt}" style="MS"/>
                                     <c:forEach items="${blog_item.blogTags}" var="blog_tag">
                                         <a href="${blog_by_tag}${blog_tag.id}"
                                            class="badge badge-secondary pull-right mx-1">${blog_tag.name}</a>
@@ -40,6 +41,16 @@
                 <div class="col-12 mt-3">
                     <form action="${blog}">
                         <div class="form row">
+                            <div class="col-12">
+                                <p><span class="text-muted">Powered by</span>
+                                    <img src="${elastic_logo}"
+                                         class="img-fluid"
+                                         alt="elastic search logo"
+                                         height="25"
+                                         width="25"
+                                    />
+                                </p>
+                            </div>
                             <div class="col-8">
                                 <label>
                                     <input name="search" class="form-control" type="text"/>
@@ -69,13 +80,6 @@
                         <li><a class="text-secondary" href="${blog_by_month}MAR_2019">March 2019</a></li>
                         <li><a class="text-secondary" href="${blog_by_month}APR_2019">April 2019</a></li>
                         <li><a class="text-secondary" href="${blog_by_month}MAY_2019">May 2019</a></li>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}JUN_2019">June 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}JUL_2019">July 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}AUG_2019">Auguest 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}SEP_2019">September 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}OCT_2019">October 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}NOV_2019">September 2018</a></li>--%>
-                        <%--<li><a class="text-secondary" href="${blog_by_month}DEC_2019">September 2018</a></li>--%>
                     </ul>
                 </div>
 

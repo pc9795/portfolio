@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -41,28 +42,38 @@ public class HomeController {
         this.workItemRepository = workItemRepository;
     }
 
+    /**
+     * Home page
+     *
+     * @param model model to pass to JSP
+     * @return the view name
+     */
     @GetMapping
     public String home(Model model) {
         List<BlogItem> blogItems = blogItemRepository.findTop3BlogItemsByOrderByCreatedAtDesc();
         List<WorkItem> workItems = workItemRepository.findTop2ByOrderByCreatedAtDesc();
-        blogItems.forEach(Utils::checkAndFillDescriptionIfNot);
         model.addAttribute("blogItems", blogItems);
         model.addAttribute("workItems", workItems);
         return "home";
     }
 
+    /**
+     * Get the resume
+     *
+     * @param response response object
+     * @param request  request object
+     */
     @GetMapping(value = "resume")
-    public void resume(HttpServletResponse response, HttpServletRequest request) {
+    public void resume(HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "inline; filename=" + RESUME_FILE_NAME);
-        FileInputStream pdfFileStream = null;
-        OutputStream responseStream;
-        try {
-            String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/" + RESUME_FILE_NAME);
-            LOGGER.debug("Resume file path:" + resumeFilePath);
-            pdfFileStream = new FileInputStream(new File(resumeFilePath));
+
+        String resumeFilePath = request.getSession().getServletContext().getRealPath("/resources/" + RESUME_FILE_NAME);
+        LOGGER.debug("Resume file path:" + resumeFilePath);
+
+        try (FileInputStream pdfFileStream = new FileInputStream(new File(resumeFilePath))) {
             int readData;
-            responseStream = response.getOutputStream();
+            OutputStream responseStream = response.getOutputStream();
             for (; (readData = pdfFileStream.read()) != -1; ) {
                 responseStream.write(readData);
             }
@@ -70,14 +81,7 @@ public class HomeController {
 
         } catch (Exception ex) {
             LOGGER.error("Error in getting resume:", ex);
-        } finally {
-            if (pdfFileStream != null) {
-                try {
-                    pdfFileStream.close();
-                } catch (Exception exc) {
-                    LOGGER.error("Error in closing pdf stream");
-                }
-            }
+            throw ex;
         }
     }
 }
