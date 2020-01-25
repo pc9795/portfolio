@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="base" template="/WEB-INF/layout/page.jsp">
+        <put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+    </definition>
+    <definition name="home" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Home"/>
+    </definition>
+    <definition name="work" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/work.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Work"/>
+    </definition>
+    <definition name="blog" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/blog.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Blog"/>
+    </definition>
+    <definition name="blog_single" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/blog_single.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Blog"/>
+    </definition>
+    <definition name="lists" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/lists.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Lists"/>
+    </definition>
+    <definition name="contact" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/contact.jsp"/>
+        <put-attribute name="title" value="Prashant Chaubey - Contact"/>
+    </definition>
+    <definition name="sunshine" template="/WEB-INF/views/sunshine.jsp"/>
+</tiles-definitions>
