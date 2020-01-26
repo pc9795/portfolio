@@ -15,16 +15,16 @@ services:
     environment:
       POSTGRES_PASSWORD: "password"
 
-  website:
-    depends_on:
-      - postgres
-    build: .
-    ports:
-      - "8080:8080"
-    networks:
-      my_net:
-        aliases:
-          - "website"
+#  website:
+#    depends_on:
+#      - postgres
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      my_net:
+#        aliases:
+#          - "website"
 
   elasticsearch:
     build: elastic-search

@@ -1,6 +1,5 @@
 package com.prashantchaubey.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prashantchaubey.entities.mapped_superclasses.Item;
 import lombok.Getter;

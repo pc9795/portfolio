@@ -1,7 +1,7 @@
 package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.WorkItem;
-import com.prashantchaubey.repositories.WorkItemRepository;
+import com.prashantchaubey.repositories.jpa.WorkItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

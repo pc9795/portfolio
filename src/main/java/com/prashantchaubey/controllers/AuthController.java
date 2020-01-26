@@ -2,22 +2,18 @@ package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.dto.auth.LoginRequest;
 import com.prashantchaubey.entities.User;
-import com.prashantchaubey.repositories.UserRepository;
+import com.prashantchaubey.repositories.jpa.UserRepository;
 import com.prashantchaubey.utils.Constants;
-import com.prashantchaubey.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
 
 /**
  * Purpose: Controller for authentication
@@ -62,16 +58,5 @@ public class AuthController {
         //Create a session with the help of ServletAPI.
         request.login(loginRequest.getUsername(), loginRequest.getPassword());
         return user;
-    }
-
-    /**
-     * Handles 404. We can't handle 404 without enable web mvc in controller advice.
-     *
-     * @param response response object
-     * @throws IOException if not able to update the response object.
-     */
-    @GetMapping("/error")
-    public void handle404(HttpServletResponse response) throws IOException {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_NOT_FOUND, Constants.ErrorMsg.NOT_FOUND, response);
     }
 }

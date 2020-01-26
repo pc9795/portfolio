@@ -1,4 +1,4 @@
-package com.prashantchaubey.repositories;
+package com.prashantchaubey.repositories.jpa;
 
 import com.prashantchaubey.entities.ContactForm;
 import org.springframework.data.jpa.repository.JpaRepository;

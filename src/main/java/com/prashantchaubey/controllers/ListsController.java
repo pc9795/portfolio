@@ -1,7 +1,7 @@
 package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.ListItem;
-import com.prashantchaubey.repositories.ListItemRepository;
+import com.prashantchaubey.repositories.jpa.ListItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -21,11 +21,17 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--JSTL support for java.time.*(Java 8 Date time API) START-->
+        <dependency>
             <groupId>net.sargue</groupId>
             <artifactId>java-time-jsptags</artifactId>
             <version>1.1.4</version>
         </dependency>
-
+        <!--JSTL support for java.time.*(Java 8 Date time API) END-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

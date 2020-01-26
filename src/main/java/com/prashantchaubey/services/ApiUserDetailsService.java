@@ -1,7 +1,7 @@
 package com.prashantchaubey.services;
 
 import com.prashantchaubey.entities.User;
-import com.prashantchaubey.repositories.UserRepository;
+import com.prashantchaubey.repositories.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
