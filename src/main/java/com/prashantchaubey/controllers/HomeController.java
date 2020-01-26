@@ -2,9 +2,8 @@ package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.BlogItem;
 import com.prashantchaubey.entities.WorkItem;
-import com.prashantchaubey.repositories.BlogItemRepository;
-import com.prashantchaubey.repositories.WorkItemRepository;
-import com.prashantchaubey.utils.Utils;
+import com.prashantchaubey.repositories.jpa.BlogItemRepository;
+import com.prashantchaubey.repositories.jpa.WorkItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

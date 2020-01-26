@@ -30,5 +30,9 @@
         <put-attribute name="body" value="/WEB-INF/views/contact.jsp"/>
         <put-attribute name="title" value="Prashant Chaubey - Contact"/>
     </definition>
+    <definition name="search" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/search.jsp"/>
+        <put-attribute name="title" value="Search Results"/>
+    </definition>
     <definition name="sunshine" template="/WEB-INF/views/sunshine.jsp"/>
 </tiles-definitions>

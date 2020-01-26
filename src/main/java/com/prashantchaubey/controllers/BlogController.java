@@ -2,8 +2,9 @@ package com.prashantchaubey.controllers;
 
 import com.prashantchaubey.entities.BlogItem;
 import com.prashantchaubey.entities.BlogTag;
-import com.prashantchaubey.repositories.BlogItemRepository;
-import com.prashantchaubey.repositories.BlogTagRepository;
+import com.prashantchaubey.repositories.jpa.BlogItemRepository;
+import com.prashantchaubey.repositories.jpa.BlogTagRepository;
+import com.prashantchaubey.repositories.elastic_search.BlogItemESRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +26,13 @@ import java.util.Set;
 public class BlogController {
     private BlogTagRepository blogTagRepository;
     private BlogItemRepository blogItemRepository;
+    private final BlogItemESRepository blogItemESRepository;
 
     @Autowired
-    public BlogController(BlogItemRepository blogItemRepository, BlogTagRepository blogTagRepository) {
+    public BlogController(BlogItemRepository blogItemRepository, BlogTagRepository blogTagRepository, BlogItemESRepository blogItemESRepository) {
         this.blogItemRepository = blogItemRepository;
         this.blogTagRepository = blogTagRepository;
+        this.blogItemESRepository = blogItemESRepository;
     }
 
     /**
@@ -41,12 +44,13 @@ public class BlogController {
      */
     @GetMapping
     public String getBlogs(@RequestParam(value = "search", required = false) String search, Model model) {
-        List<BlogItem> blogItems;
         if (search != null) {
-            blogItems = blogItemRepository.findBlogItemsByHeadingContaining(search);
-        } else {
-            blogItems = blogItemRepository.findBlogItemsByOrderByCreatedAtDesc();
+            //Use elastic search
+            model.addAttribute("blogItems", blogItemESRepository.findSearchResults(search));
+            model.addAttribute("search", search);
+            return "search";
         }
+        List<BlogItem> blogItems = blogItemRepository.findBlogItemsByOrderByCreatedAtDesc();
         model.addAttribute("blogTags", blogTagRepository.findAll());
         model.addAttribute("blogItems", blogItems);
         return "blog";
