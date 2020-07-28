@@ -63,7 +63,7 @@ public class BlogController {
      * @param model     model to pass to JSP
      * @return the view name
      */
-    @GetMapping(value = "/month/{month_year}")
+    @GetMapping("/month/{month_year}")
     public String blogByMonthAndYear(@PathVariable(value = "month_year") String monthYear, Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByMonthsAndYear(monthYear);
         model.addAttribute("blogTags", blogTagRepository.findAll());
@@ -78,7 +78,7 @@ public class BlogController {
      * @param model model to pass to JSP
      * @return the view name
      */
-    @GetMapping(value = "/year/{year}")
+    @GetMapping("/year/{year}")
     public String blogByYear(@PathVariable(value = "year") String year, Model model) {
         List<BlogItem> blogItems = blogItemRepository.findBlogItemsByYear(year);
         model.addAttribute("blogTags", blogTagRepository.findAll());
@@ -93,7 +93,7 @@ public class BlogController {
      * @param model model to pass to JSP
      * @return the view name
      */
-    @GetMapping(value = "/tag/{tag_id}")
+    @GetMapping("/tag/{tag_id}")
     public String blogByTag(@PathVariable(value = "tag_id") Long tagId, Model model) {
         BlogTag blogTag = blogTagRepository.findBlogTagById(tagId);
         Set<BlogItem> blogItems = blogTag.getBlogItems();
@@ -110,7 +110,7 @@ public class BlogController {
      * @param model  model to pass to JSP
      * @return the view name
      */
-    @GetMapping(value = "/{blog_id}")
+    @GetMapping("/{blog_id}")
     public String singleBlog(@PathVariable("blog_id") Long blogId, Model model) {
         BlogItem blogItem = blogItemRepository.findBlogItemById(blogId);
         model.addAttribute("blogItem", blogItem);
