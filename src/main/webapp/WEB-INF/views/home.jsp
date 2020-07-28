@@ -13,7 +13,7 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">What I am good at? <i class="fa fa-superpowers" aria-hidden="true"></i>
+                    <h4 class="card-title">What I am good at? <i class="fa fa-superpowers"></i>
                     </h4>
                     <p class="card-text">
                         A language agnostic software engineer who developed everything from an application's front-end
@@ -27,7 +27,7 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Reading List <i class="fa fa-book" aria-hidden="true"></i></h4>
+                    <h4 class="card-title">Reading List <i class="fa fa-book"></i></h4>
                     <p class="card-text">I prefer traditional way of learning through books and like to maintain a
                         list.</p>
                 </div>
@@ -39,7 +39,7 @@
         <div class="col-md-4 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Video-games <i class="fa fa-gamepad" aria-hidden="true"></i></h4>
+                    <h4 class="card-title">Video-games <i class="fa fa-gamepad"></i></h4>
                     <p class="card-text">Care to check which games I play :p</p>
                 </div>
                 <div class="card-footer">
@@ -50,8 +50,7 @@
     </div>
     <hr>
     <div class="row my-3">
-        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles <i class="fa fa-rocket"
-                                                                                   aria-hidden="true"></i>
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Recent articles <i class="fa fa-rocket"></i>
         </h3></div>
         <div class="col-4 col-xs-12"><a href="${blog}" class="text-secondary pull-right">All articles</a></div>
     </div>
@@ -72,8 +71,7 @@
     </div>
     <hr>
     <div class="row my-3">
-        <div class="col-8 col-xs-12"><h3 style="display: inline">Personal projects <i class="fa fa-code"
-                                                                                      aria-hidden="true"></i></h3></div>
+        <div class="col-8 col-xs-12"><h3 style="display: inline">Personal projects <i class="fa fa-code"></i></h3></div>
         <div class="col-4 col-xs-12"><a href="${work}" class="text-secondary pull-right">See more of my work</a></div>
     </div>
     <div class="row card-deck">

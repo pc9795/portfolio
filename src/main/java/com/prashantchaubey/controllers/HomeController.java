@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +28,7 @@ import static com.prashantchaubey.utils.Constants.RESUME_FILE_NAME;
  * Created On: 01-09-2018 02:20
  **/
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping
 public class HomeController {
     private static Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
     private BlogItemRepository blogItemRepository;
@@ -62,7 +61,7 @@ public class HomeController {
      * @param response response object
      * @param request  request object
      */
-    @GetMapping(value = "resume")
+    @GetMapping("/resume")
     public void resume(HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setContentType("application/pdf");
         response.addHeader("Content-Disposition", "inline; filename=" + RESUME_FILE_NAME);
