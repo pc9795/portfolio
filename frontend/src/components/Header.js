@@ -1,19 +1,22 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import Home from "./Home";
 import Blog from "./Blog";
 import Work from "./Work";
 import Lists from "./Lists";
 import Contact from "./Contact";
+import Sunshine from "./Sunshine";
 
-const headerDivStyle = {
-    padding: '0 !important'
+const styles = {
+    headerDiv: {
+        padding: '0 !important'
+    }
 };
 
 export default class Header extends React.Component {
     render() {
         return <Router>
-            <div style={headerDivStyle} className="container">
+            <div style={styles.headerDiv} className="container">
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                     <Link className="navbar-brand" to="/">Prashant Chaubey</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"

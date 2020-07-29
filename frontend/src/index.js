@@ -7,13 +7,11 @@ import 'jquery/dist/jquery.min'
 import 'bootstrap/dist/js/bootstrap.min'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Header/>
-        <Footer/>
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );

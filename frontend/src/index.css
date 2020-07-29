@@ -1,9 +1,13 @@
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  position: relative;
-  min-height: 100%;
-  padding-bottom: 80px;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 80px;
+}
+
+.display-linebreak {
+    white-space: pre-line;
 }
