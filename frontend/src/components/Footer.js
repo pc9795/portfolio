@@ -10,7 +10,6 @@ const footerStyle = {
 const footerDivStyle = {
     padding: '0 !important'
 };
-
 const footerDivPStyle = {
     marginBottom: '0 !important'
 };
@@ -41,5 +40,5 @@ export default class Footer extends React.Component {
                 <p className="text-center pb-3">Copyright @2020 Prashant Chaubey</p>
             </div>
         </footer>
-    }
+    };
 }

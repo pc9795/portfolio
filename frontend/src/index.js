@@ -8,13 +8,11 @@ import 'bootstrap/dist/js/bootstrap.min'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Header from "./components/Header";
-import Home from "./components/Home";
 import Footer from "./components/Footer";
 
 ReactDOM.render(
     <React.StrictMode>
         <Header/>
-        <Home/>
         <Footer/>
     </React.StrictMode>,
     document.getElementById('root')
