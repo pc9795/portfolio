@@ -1,6 +1,6 @@
 import React from "react";
 import {Helmet} from "react-helmet";
-import {FaviconConstants, ImageConstants} from "../utils/constants";
+import {ImageConstants, FaviconConstants} from "../../utils/constants";
 
 const styles = {
     mainContainer: {
@@ -25,8 +25,11 @@ const styles = {
 
 
 export default class Sunshine extends React.Component {
-    static START_BTN_TEXT = "This is what I feel for you.\nI don't know whether\nI can pen it down properly\nor not, " +
-        "but I want to try\n\nPRESS IT!!!";
+    static START_BTN_TEXT = "This is what I feel for you.\n" +
+        "I don't know whether\n" +
+        "I can pen it down properly\n" +
+        "or not, but I want to try\n\n" +
+        "PRESS IT!!!";
 
     constructor(props) {
         super(props);
@@ -48,8 +51,7 @@ export default class Sunshine extends React.Component {
             </div>
             <div className="row mt-5 b">
                 <div className="col-12 col-sm-3 b mt-3">
-                    <img alt="It should be a cake" className="img-fluid b"
-                         src={ImageConstants.CAKE}/>
+                    <img alt="It should be a cake" className="img-fluid b" src={ImageConstants.CAKE}/>
                 </div>
                 <div className="col-12 col-sm-6 b text-center mt-3">
                     {this.getStartBtn()}

@@ -1,6 +1,6 @@
 import React from "react";
 import {Helmet} from "react-helmet";
-import {FaviconConstants} from "../utils/constants";
+import {FaviconConstants} from "../../utils/constants";
 
 export default class Blog extends React.Component {
     render() {

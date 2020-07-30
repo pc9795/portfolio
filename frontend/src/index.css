@@ -11,3 +11,8 @@ body {
 .display-linebreak {
     white-space: pre-line;
 }
+
+.card {
+    min-height: 250px;
+    margin: 0 !important;
+}

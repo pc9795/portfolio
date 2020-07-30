@@ -1,11 +1,11 @@
 import React from "react";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
-import Home from "./Home";
-import Blog from "./Blog";
-import Work from "./Work";
-import Lists from "./Lists";
-import Contact from "./Contact";
-import Sunshine from "./Sunshine";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import Work from "./pages/Work";
+import Lists from "./pages/Lists";
+import Contact from "./pages/Contact";
+import Sunshine from "./pages/Sunshine";
 
 const styles = {
     headerDiv: {
