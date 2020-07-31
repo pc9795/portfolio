@@ -6,6 +6,7 @@ import Work from "./pages/Work";
 import Lists from "./pages/Lists";
 import Contact from "./pages/Contact";
 import Sunshine from "./pages/Sunshine";
+import {ReactRoutes} from "../utils/constants";
 
 const styles = {
     headerDiv: {
@@ -18,7 +19,7 @@ export default class Header extends React.Component {
         return <Router>
             <div style={styles.headerDiv} className="container">
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                    <Link className="navbar-brand" to="/">Prashant Chaubey</Link>
+                    <Link className="navbar-brand" to={ReactRoutes.HOME}>Prashant Chaubey</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent">
                         <span className="navbar-toggler-icon"/>
@@ -27,16 +28,16 @@ export default class Header extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/blog">Blog</Link>
+                                <Link className="nav-link" to={ReactRoutes.BLOG}>Blog</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/work">Work</Link>
+                                <Link className="nav-link" to={ReactRoutes.WORK}>Work</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/lists">Lists</Link>
+                                <Link className="nav-link" to={ReactRoutes.LISTS}>Lists</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/contact">Contact</Link>
+                                <Link className="nav-link" to={ReactRoutes.CONTACT}>Contact</Link>
                             </li>
                         </ul>
                     </div>
@@ -44,19 +45,19 @@ export default class Header extends React.Component {
             </div>
 
             <Switch>
-                <Route exact path="/">
+                <Route exact path={ReactRoutes.HOME}>
                     <Home/>
                 </Route>
-                <Route exact path="/blog">
+                <Route exact path={ReactRoutes.BLOG}>
                     <Blog/>
                 </Route>
-                <Route exact path="/work">
+                <Route exact path={ReactRoutes.WORK}>
                     <Work/>
                 </Route>
-                <Route exact path="/lists">
+                <Route exact path={ReactRoutes.LISTS}>
                     <Lists/>
                 </Route>
-                <Route exact path="/contact">
+                <Route exact path={ReactRoutes.CONTACT}>
                     <Contact/>
                 </Route>
             </Switch>

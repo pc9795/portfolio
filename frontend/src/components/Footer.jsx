@@ -33,17 +33,17 @@ export default class Footer extends React.Component {
                     <span>Follow me on </span>
                     <span>
                         <a href="https://www.linkedin.com/in/pc9795/">
-                            <i style={styles.linkedinIcon} className="fa fa-linkedin"/>
+                            &nbsp;<i style={styles.linkedinIcon} className="fa fa-linkedin"/>
                         </a>
                     </span>
                     <span>
                         <a href="https://github.com/pc9795">
-                            <i style={styles.githubIcon} className="fa fa-github"/>
+                            &nbsp;<i style={styles.githubIcon} className="fa fa-github"/>
                         </a>
                     </span>
                     <span>
                         <a href="https://stackoverflow.com/users/5366276/prashant-chaubey">
-                            <i style={styles.stackOverflowIcon} className="fa fa-stack-overflow"/>
+                            &nbsp;<i style={styles.stackOverflowIcon} className="fa fa-stack-overflow"/>
                         </a>
                     </span>
                 </p>
