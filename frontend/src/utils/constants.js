@@ -6,6 +6,7 @@ export class FaviconConstants {
 export class ImageConstants {
     static CAKE = process.env.PUBLIC_URL + "img/cake.png";
     static TWENTY_FIVE = process.env.PUBLIC_URL + "img/25.png";
+    static PROFILE_PICTURE = process.env.PUBLIC_URL + "img/profile.jpg";
 }
 
 export class AppRoutes {
@@ -15,3 +16,5 @@ export class AppRoutes {
     static CONTACT = "/contact";
     static WORK = "/work";
 }
+
+export const RESUME_URL = process.env.PUBLIC_URL + "/PrashantChaubey_resume.pdf";

@@ -44,4 +44,59 @@ export class StaticData {
             Powered by React and Spring-boot.
         </span>
     }
+
+    static getProfileSideBarInfo() {
+        return <div>
+            <p>
+                <span className="font-weight-bold">Languages of Choice: </span>
+                <i style={{color: "red"}} className="fa fa-heart"/> Java, Python
+            </p>
+            <p>
+                <span className="font-weight-bold">Areas of interest: </span>
+                Distributed Computing, Micro-services, Multi-agent systems, and Machine learning
+            </p>
+        </div>
+    }
+
+    static getProfileInfo() {
+        return <div>
+            <h4>Education <i className="fa fa-university"/></h4>
+            <ul>
+                <li>University College Dublin, M.S. Computer Science, 2020, 4.09/4.2</li>
+                <li>Jaypee Institute of Information Technology, B.Tech ECE, 2016, 8.9/10</li>
+            </ul>
+            <h4>Work Ex <i className="fa fa-road"/></h4>
+            <ul>
+                <li>Software Engineer, HubSpot, (June 2020 - Present)</li>
+                <li>Software Engineer, Soroco, (May 2019 - Aug 2019)</li>
+                <li>Java Developer, Wipro technologies, (Aug 2016 - April 2018)</li>
+            </ul>
+        </div>
+    }
+
+    static getGameTrailerVideos() {
+        const iframeWidth = 350;
+        const iframeHeight = 200;
+
+        const bitNightmareTrailer = <iframe title="Bit nightmare game trailer"
+                                            width={iframeWidth} height={iframeHeight}
+                                            src="https://www.youtube.com/embed/uUo7J69Sr_w"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen/>;
+        const bumperFuryTrailer = <iframe title="Bumper fury game trailer"
+                                          width={iframeWidth} height={iframeHeight}
+                                          src="https://www.youtube.com/embed/0y7qBGYuIDE"
+                                          frameBorder="0"
+                                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                          allowFullScreen/>;
+
+        const gameTrailers = [bitNightmareTrailer, bumperFuryTrailer].map(trailer => {
+            return <div className="mx-1 col-12 col-sm-4">{trailer}</div>
+        });
+
+        return <div className="row">
+            {gameTrailers}
+        </div>;
+    }
 }

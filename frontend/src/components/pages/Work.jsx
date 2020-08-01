@@ -1,11 +1,17 @@
 import React from "react";
 import {Helmet} from "react-helmet";
-import {FaviconConstants} from "../../utils/constants";
+import {FaviconConstants, ImageConstants, RESUME_URL} from "../../utils/constants";
+import DummyData from "../../dummy_data";
+import {StaticData} from "../../static_data";
 
 function Work() {
-    return <div className="container">
+    return <div className="container mb-3">
         {getHead()}
-        <h1>Work</h1>
+        {getProfileSummary()}
+        {getResumeLink()}
+        {getWorkCards()}
+        {getGameTrailersHeading()}
+        {StaticData.getGameTrailerVideos()}
     </div>;
 }
 
@@ -14,6 +20,48 @@ function getHead() {
         <title>Prashant Chaubey - Work</title>
         <link rel="icon" type="image/png" href={FaviconConstants.URL} sizes="16x16"/>
     </Helmet>;
+}
+
+function getResumeLink() {
+    return <div className="row">
+        <div className="col-12 mt-3">
+            <a className="btn btn-info" href={RESUME_URL}>Resume</a>
+        </div>
+    </div>;
+}
+
+function getWorkCards() {
+    return <div className="row card-deck mt-3">
+        {DummyData.getProjectCardsForWorkPage()}
+    </div>
+}
+
+function getGameTrailersHeading() {
+    return <div className="row my-3">
+        <div className="col-8 col-xs-12"><h3>Game Trailers <i className="fa fa-gamepad"/></h3></div>
+    </div>;
+}
+
+function getProfileSummary() {
+    return <div className="row">
+        <div className="col-md-4 bg-light col-sm-12">
+            {getProfileSideBar()}
+        </div>
+        <div className="col-md-8 col-sm-12 mt-3">
+            {StaticData.getProfileInfo()}
+        </div>
+    </div>
+}
+
+function getProfileSideBar() {
+    return <div>
+        <div className="text-center">
+            <img src={ImageConstants.PROFILE_PICTURE} className="mt-3 text-center img-fluid" alt="profile"/>
+        </div>
+        <div className="mt-3">
+            {StaticData.getProfileSideBarInfo()}
+        </div>
+    </div>
 }
 
 export default Work;

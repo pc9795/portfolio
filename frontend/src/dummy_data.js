@@ -25,6 +25,17 @@ export default class DummyData {
         });
     }
 
+    static getBlogPostsForBlogPage() {
+        const cardNos = [1, 2, 3, 4, 5];
+        return cardNos.map(cardNo => {
+            return <div className="row mt-3">
+                <div className="col-12">
+                    <Card title={"Blog heading " + cardNo} text={DummyData._getBlogPostText(cardNo)}/>
+                </div>
+            </div>
+        });
+    }
+
     static _getBlogPostText(index) {
         return <span>
             <p className="font-italic">
@@ -38,25 +49,14 @@ export default class DummyData {
         </span>
     }
 
-    static getBlogPosts() {
-        const cardNos = [1, 2, 3, 4, 5];
-        return cardNos.map(cardNo => {
-            return <div className="row mt-3">
-                <div className="col-12">
-                    <Card title={"Blog heading " + cardNo} text={DummyData._getBlogPostText(cardNo)}/>
-                </div>
-            </div>
-        });
-    }
-
-    static getBlogTags() {
+    static getBlogTagsForBlogPage() {
         const tags = [1, 2, 3, 4, 5];
         return tags.map(tag => {
             return <a href="#" className="badge badge-secondary mx-1">{"Tag " + tag}</a>
         });
     }
 
-    static getBlogPost() {
+    static getBlogPostForBlogPostPage() {
         return <div className="row">
             <div className="col-12 mt-3">
                 <h1>Blog Post Heading</h1>
@@ -71,5 +71,15 @@ export default class DummyData {
                 Content
             </div>
         </div>;
+    }
+
+    static getProjectCardsForWorkPage() {
+        const cardNos = [1, 2, 3];
+        return cardNos.map(cardNo => {
+            return <div className="col-md-4 col-sm-12">
+                <Card title={"Work Heading " + cardNo} text="Description"
+                      footer={<a href='#' className="text-secondary">Github Link</a>}/>
+            </div>
+        });
     }
 }

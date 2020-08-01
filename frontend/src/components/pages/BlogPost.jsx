@@ -21,7 +21,7 @@ function getHead(title) {
 
 function getBlogPost() {
     return <div className="container">
-        {DummyData.getBlogPost()}
+        {DummyData.getBlogPostForBlogPostPage()}
     </div>;
 }
 

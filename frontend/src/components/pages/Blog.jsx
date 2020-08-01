@@ -34,7 +34,7 @@ function getHead() {
 
 //todo handle when there are no blog posts
 function getBlogPosts() {
-    return DummyData.getBlogPosts();
+    return DummyData.getBlogPostsForBlogPage();
 }
 
 //todo handle search button click
@@ -55,7 +55,7 @@ function getSearchArea() {
 function getBlogTags() {
     return <div className="col-12 mt-3">
         <h2>Tags</h2>
-        {DummyData.getBlogTags()}
+        {DummyData.getBlogTagsForBlogPage()}
     </div>
 }
 
