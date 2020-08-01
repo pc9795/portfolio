@@ -8,7 +8,7 @@ const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
 ];
 
 function Blog() {
-    return <div className="container mb-3">
+    return <div className="container my-3">
         {getHead()}
         <div className="row">
             <div className="col-md-8 col-sm-12">

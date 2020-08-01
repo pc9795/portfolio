@@ -4,7 +4,7 @@ import {FaviconConstants} from "../../utils/constants";
 import DummyData from "../../dummyData";
 
 function Lists() {
-    return <div className="container">
+    return <div className="container my-3">
         {getHead()}
         <div className="row mt-3">
             <div className="col-md-6 col-sm-12">

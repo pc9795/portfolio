@@ -28,7 +28,7 @@ export default class DummyData {
     static getBlogPostsForBlogPage() {
         const cardNos = [1, 2, 3, 4, 5];
         return cardNos.map(cardNo => {
-            return <div className="row mt-3">
+            return <div className="row">
                 <div className="col-12">
                     <Card title={"Blog heading " + cardNo} text={DummyData._getBlogPostText(cardNo)}/>
                 </div>
@@ -58,7 +58,7 @@ export default class DummyData {
 
     static getBlogPostForBlogPostPage() {
         return <div className="row">
-            <div className="col-12 mt-3">
+            <div className="col-12">
                 <h1>Blog Post Heading</h1>
             </div>
             <div className="col-12 mt-3">

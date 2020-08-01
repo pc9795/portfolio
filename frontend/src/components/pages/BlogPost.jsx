@@ -6,7 +6,7 @@ import DummyData from "../../dummyData";
 function BlogPost(props) {
     const {blogPostName} = props.match.params.name;
 
-    return <div className="container">
+    return <div className="container my-3">
         {getHead(blogPostName)}
         {getBlogPost()}
     </div>;

@@ -7,7 +7,7 @@ import Card from "../gui/Card";
 import {StaticData} from "../../staticData";
 
 function Home() {
-    return <div className="container mt-3 mb-3">
+    return <div className="container my-3">
         {getHead()}
         {getInfoCards()}
         <hr/>

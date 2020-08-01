@@ -12,7 +12,7 @@ const styles = {
 function Contact() {
     return <div className="container">
         {getHead()}
-        <div className="row ">
+        <div className="row">
             <div className="col-sm-12 mt-3 col-md-4 p-1">
                 {getContactForm()}
                 <div className="row mt-3">

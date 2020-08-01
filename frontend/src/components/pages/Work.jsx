@@ -5,7 +5,7 @@ import DummyData from "../../dummyData";
 import {StaticData} from "../../staticData";
 
 function Work() {
-    return <div className="container mb-3">
+    return <div className="container my-3">
         {getHead()}
         {getProfileSummary()}
         {getResumeLink()}
