@@ -8,7 +8,7 @@ export class ImageConstants {
     static TWENTY_FIVE = process.env.PUBLIC_URL + "img/25.png";
 }
 
-export class ReactRoutes {
+export class AppRoutes {
     static LISTS = "/lists";
     static HOME = "/";
     static BLOG = "/blog";

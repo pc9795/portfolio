@@ -9,9 +9,7 @@ export default class App extends React.Component {
     render() {
         return <Router>
             <Switch>
-                <Route exact path="/sunshine">
-                    <Sunshine/>
-                </Route>
+                <Route exact path="/sunshine" component={Sunshine}/>
                 <Route path="/">
                     <Header/>
                     <Footer/>

@@ -1,6 +1,6 @@
 import React from "react";
 import {Helmet} from "react-helmet";
-import {FaviconConstants, ReactRoutes} from "../../utils/constants";
+import {FaviconConstants, AppRoutes} from "../../utils/constants";
 import {Link} from "react-router-dom";
 import DummyData from "../../dummy_data";
 import Card from "../gui/Card";
@@ -49,14 +49,14 @@ export default class Home extends React.Component {
 
     static getInterestsCard() {
         const title = <span>Interests <i className="fa fa-gamepad"/></span>;
-        const footer = <Link className="text-secondary" to={ReactRoutes.LISTS}>Gaming List</Link>;
+        const footer = <Link className="text-secondary" to={AppRoutes.LISTS}>Gaming List</Link>;
 
         return <Card title={title} text={StaticData.getInterests()} footer={footer}/>;
     }
 
     static getReadingsCard() {
         const title = <span>Reading List <i className="fa fa-book"/></span>;
-        const footer = <Link className="text-secondary" to={ReactRoutes.LISTS}>Reading List</Link>;
+        const footer = <Link className="text-secondary" to={AppRoutes.LISTS}>Reading List</Link>;
 
         return <Card title={title} text={StaticData.getReadingsListDesc()} footer={footer}/>;
     }
@@ -65,7 +65,7 @@ export default class Home extends React.Component {
         return <div className="row my-3">
             <div className="col-8 col-xs-12"><h3>Articles <i className="fa fa-rocket"/></h3></div>
             <div className="col-4 col-xs-12">
-                <Link className="text-secondary pull-right" to={ReactRoutes.BLOG}>All articles</Link>
+                <Link className="text-secondary pull-right" to={AppRoutes.BLOG}>All articles</Link>
             </div>
         </div>;
     }
@@ -80,7 +80,7 @@ export default class Home extends React.Component {
         return <div className="row my-3">
             <div className="col-8 col-xs-12"><h3>Projects <i className="fa fa-code"/></h3></div>
             <div className="col-4 col-xs-12">
-                <Link className="text-secondary pull-right" to={ReactRoutes.WORK}>See more of my work</Link>
+                <Link className="text-secondary pull-right" to={AppRoutes.WORK}>See more of my work</Link>
             </div>
         </div>
     }
