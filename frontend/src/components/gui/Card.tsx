@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
-function Card(props) {
+function Card(props: any) {
     return <div className="card">
         <div className="card-body">
             <h4 className="card-title">{props.title}</h4>
@@ -13,7 +13,7 @@ function Card(props) {
     </div>;
 }
 
-function getFooter(footer) {
+function getFooter(footer: ReactElement) {
     if (footer) {
         return <div className="card-footer">
             {footer}
@@ -24,8 +24,8 @@ function getFooter(footer) {
 }
 
 Card.propTypes = {
-    title: PropTypes.element.isRequired,
-    text: PropTypes.element.isRequired,
+    title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
+    text: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     footer: PropTypes.element
 };
 

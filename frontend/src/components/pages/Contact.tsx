@@ -63,7 +63,7 @@ function getContactForm() {
         </div>
         <div className="form-group row">
             <div className="col-12">
-                <textarea rows="3" className="form-control" placeholder="Purpose"/>
+                <textarea rows={3} className="form-control" placeholder="Purpose"/>
                 <small className="form-text text-muted">
                     How can I help you <i className="fa fa-question"/>
                 </small>
@@ -81,7 +81,7 @@ function getCurrentLocationMap() {
                 <div className="gmap_canvas">
                     <iframe title="Current location" style={styles.gmap} width="600" height="500" id="gmap_canvas"
                             src="https://maps.google.com/maps?q=Dublin%20&t=&z=11&ie=UTF8&iwloc=&output=embed"
-                            frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0">
+                            frameBorder="0" scrolling="no" marginHeight={0} marginWidth={0}>
                     </iframe>
                 </div>
             </div>

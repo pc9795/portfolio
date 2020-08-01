@@ -36,7 +36,7 @@ export default class DummyData {
         });
     }
 
-    static _getBlogPostText(index) {
+    static _getBlogPostText(index: number) {
         return <span>
             <p className="font-italic">
                 Created on: 31-07-2020

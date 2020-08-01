@@ -3,7 +3,7 @@ import {FaviconConstants} from "../../utils/constants";
 import {Helmet} from "react-helmet";
 import DummyData from "../../dummyData";
 
-function BlogPost(props) {
+function BlogPost(props: any) {
     const {blogPostName} = props.match.params.name;
 
     return <div className="container my-3">
@@ -12,7 +12,7 @@ function BlogPost(props) {
     </div>;
 }
 
-function getHead(title) {
+function getHead(title: string) {
     return <Helmet>
         <title>{title}</title>
         <link rel="icon" type="image/png" href={FaviconConstants.URL} sizes="16x16"/>

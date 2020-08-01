@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 
 const styles = {
     footer: {
@@ -7,19 +7,19 @@ const styles = {
         right: '0',
         bottom: '0',
         left: '0'
-    },
+    } as CSSProperties,
     footerDivP: {
         marginBottom: '0 !important'
-    },
+    }as CSSProperties,
     githubIcon: {
         color: '#373C40'
-    },
+    }as CSSProperties,
     linkedinIcon: {
         color: '#0090C1'
-    },
+    }as CSSProperties,
     stackOverflowIcon: {
         color: '#F48024'
-    }
+    }as CSSProperties
 };
 
 function Footer() {

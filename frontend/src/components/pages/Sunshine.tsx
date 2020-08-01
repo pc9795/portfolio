@@ -23,7 +23,6 @@ const styles = {
     }
 };
 
-
 function Sunshine() {
     const [poemShown, setPoemShown] = useState(false);
     const [secretShown, setSecretShown] = useState(false);
@@ -60,7 +59,7 @@ function getHead() {
     </Helmet>;
 }
 
-function getStartBtn(poemShown, setPoemShown, setShowBtnShown) {
+function getStartBtn(poemShown: boolean, setPoemShown: BooleanSetter, setShowBtnShown: BooleanSetter) {
     if (poemShown) {
         return null;
     }
@@ -78,12 +77,12 @@ function getStartBtn(poemShown, setPoemShown, setShowBtnShown) {
     </button>;
 }
 
-function handleStartBtnClick(setPoemShown, setShowBtnShown) {
+function handleStartBtnClick(setPoemShown: BooleanSetter, setShowBtnShown: BooleanSetter) {
     setPoemShown(true);
     setShowBtnShown(true);
 }
 
-function getPoem(poemShown, secretShown) {
+function getPoem(poemShown: boolean, secretShown: boolean) {
     if (!poemShown) {
         return null;
     }
@@ -118,13 +117,13 @@ function getPoemText() {
         "My sunshine :)  "
 }
 
-function renderSecretInPoem(poemText) {
+function renderSecretInPoem(poemText: string) {
     return poemText.toString().split("\n").map((line, index) => {
         return getSpanWithFirstWordInRed(line, index)
     });
 }
 
-function getSpanWithFirstWordInRed(line, index) {
+function getSpanWithFirstWordInRed(line: string, index: number) {
     if (!line) {
         return null;
     }
@@ -136,7 +135,8 @@ function getSpanWithFirstWordInRed(line, index) {
                 </span>
 }
 
-function getShowBtn(showBtnShown, showBtnClickCount, setShowBtnClickCount, setShowBtnShown, setSecretShown) {
+function getShowBtn(showBtnShown: boolean, showBtnClickCount: number, setShowBtnClickCount: NumberSetter,
+                    setShowBtnShown: BooleanSetter, setSecretShown: BooleanSetter) {
     if (!showBtnShown) {
         return null;
     }
@@ -148,7 +148,8 @@ function getShowBtn(showBtnShown, showBtnClickCount, setShowBtnClickCount, setSh
     </button>;
 }
 
-function handleShowBtnClick(showBtnClickCount, setShowBtnClickCount, setShowBtnShown, setSecretShown) {
+function handleShowBtnClick(showBtnClickCount: number, setShowBtnClickCount: NumberSetter, setShowBtnShown: BooleanSetter,
+                            setSecretShown: BooleanSetter) {
     if (showBtnClickCount <= 3) {
         setShowBtnClickCount(showBtnClickCount + 1);
     } else {
@@ -157,7 +158,7 @@ function handleShowBtnClick(showBtnClickCount, setShowBtnClickCount, setShowBtnS
     }
 }
 
-function getShowBtnText(showBtnClickCount) {
+function getShowBtnText(showBtnClickCount: number) {
     switch (showBtnClickCount) {
         case 0:
             return "If you read it\n PRESS IT!!!";
