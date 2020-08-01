@@ -24,8 +24,8 @@ export class StaticData {
             <span className="badge badge-secondary">Videogames</span>
             &nbsp;. I mostly play for story or campaigns, not much multi-player. If you are into Counter-Strike
                     (1.6/GO) or Age of empires 3 just tell me the time and place and I will be there. If you are a chess
-                    aficionado you can find me on
-                    <a href="https://lichess.org/@/pc9795"> Lichess</a>. I took up cooking seriously
+                    aficionado you can find me on&nbsp;
+            <a href="https://lichess.org/@/pc9795"><u>Lichess</u></a>. I took up cooking seriously
                     last year. I love Trap music.
                     <br/>
                     Care to check which games I play <i className="fa fa-smile-o"/>

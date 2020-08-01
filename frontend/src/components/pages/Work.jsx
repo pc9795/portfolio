@@ -1,8 +1,8 @@
 import React from "react";
 import {Helmet} from "react-helmet";
 import {FaviconConstants, ImageConstants, RESUME_URL} from "../../utils/constants";
-import DummyData from "../../dummy_data";
-import {StaticData} from "../../static_data";
+import DummyData from "../../dummyData";
+import {StaticData} from "../../staticData";
 
 function Work() {
     return <div className="container mb-3">
@@ -11,7 +11,7 @@ function Work() {
         {getResumeLink()}
         {getWorkCards()}
         {getGameTrailersHeading()}
-        {StaticData.getGameTrailerVideos()}
+        {getGameTrailerVideos()}
     </div>;
 }
 
@@ -40,6 +40,10 @@ function getGameTrailersHeading() {
     return <div className="row my-3">
         <div className="col-8 col-xs-12"><h3>Game Trailers <i className="fa fa-gamepad"/></h3></div>
     </div>;
+}
+
+function getGameTrailerVideos() {
+    return StaticData.getGameTrailerVideos()
 }
 
 function getProfileSummary() {

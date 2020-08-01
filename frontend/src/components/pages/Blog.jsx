@@ -1,7 +1,7 @@
 import React from "react";
 import {Helmet} from "react-helmet";
 import {FaviconConstants} from "../../utils/constants";
-import DummyData from "../../dummy_data";
+import DummyData from "../../dummyData";
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"

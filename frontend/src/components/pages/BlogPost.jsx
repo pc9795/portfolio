@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaviconConstants} from "../../utils/constants";
 import {Helmet} from "react-helmet";
-import DummyData from "../../dummy_data";
+import DummyData from "../../dummyData";
 
 function BlogPost(props) {
     const {blogPostName} = props.match.params.name;

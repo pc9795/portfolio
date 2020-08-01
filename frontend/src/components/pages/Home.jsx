@@ -2,9 +2,9 @@ import React from "react";
 import {Helmet} from "react-helmet";
 import {AppRoutes, FaviconConstants} from "../../utils/constants";
 import {Link} from "react-router-dom";
-import DummyData from "../../dummy_data";
+import DummyData from "../../dummyData";
 import Card from "../gui/Card";
-import {StaticData} from "../../static_data";
+import {StaticData} from "../../staticData";
 
 function Home() {
     return <div className="container mt-3 mb-3">
