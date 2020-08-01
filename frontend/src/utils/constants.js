@@ -18,3 +18,4 @@ export class AppRoutes {
 }
 
 export const RESUME_URL = process.env.PUBLIC_URL + "/PrashantChaubey_resume.pdf";
+export const RECAPTCHA_KEY = "6LeWD7kZAAAAADuHZHoxZ8gcJ-Fzxkbugddnms60";
