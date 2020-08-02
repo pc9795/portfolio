@@ -1,5 +1,7 @@
 package com.prashantchaubey.caches;
 
+import com.prashantchaubey.caches.core.CacheKey;
+import com.prashantchaubey.caches.core.SimpleMapCache;
 import com.prashantchaubey.entities.BlogPost;
 import com.prashantchaubey.repositories.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BlogPostCache {
+public class BlogPostCache extends SimpleMapCache<BlogPost> {
     private BlogPostRepository blogPostRepository;
 
     @Autowired
@@ -34,5 +36,10 @@ public class BlogPostCache {
 
     public BlogPost findByName(String name) {
         return blogPostRepository.findByName(name);
+    }
+
+    @Override
+    public BlogPost load(CacheKey key) {
+        return null;
     }
 }
