@@ -1,17 +1,9 @@
 package com.prashantchaubey.utils;
 
-/**
- * Created By: Prashant Chaubey
- * Created On: 18-05-2019 14:08
- * Purpose: Constants for this project
- **/
 public final class Constants {
     private Constants() {
     }
 
-    /**
-     * API constraints
-     */
     public static final class Constraints {
         private Constraints() {
         }
@@ -23,20 +15,17 @@ public final class Constants {
     }
 
 
-    /**
-     * Resource URLs
-     */
     public class Resource {
         private Resource() {
         }
 
-        private static final String PREFIX = "/api/v1/";
-        public static final String BLOG_ITEM = PREFIX + "blog_items";
+        private static final String V1_PREFIX = "/api/v1/";
+        public static final String BLOG_POSTS_V1 = V1_PREFIX + "blog-posts";
+        public static final String PROJECTS_V1 = V1_PREFIX + "projects";
+        public static final String LISTS_V1 = V1_PREFIX + "lists";
+        public static final String CONTACTS_V1 = V1_PREFIX + "contacts";
     }
 
-    /**
-     * Error messages for error codes.
-     */
     public static final class ErrorMsg {
         private ErrorMsg() {
         }
@@ -51,6 +40,5 @@ public final class Constants {
         public static final String TAG_NOT_FOUND = "Tag doesn't exist : %s";
     }
 
-    public static final String RESUME_FILE_NAME = "PrashantChaubey_resume.pdf";
     public static final int BLOG_DESCRIPTION_SIZE = 250;
 }

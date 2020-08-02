@@ -6,17 +6,13 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @ToString
 @Builder
-@Table(name = "list_items", indexes = {@Index(columnList = "type", name = "typeIdx")})
-public class ListItem implements Serializable {
-    public enum Type {
-        GAMING, TECHNICAL
-    }
+@Table(name = "projects", indexes = {@Index(columnList = "createdAt", name = "createdAtIdx")})
+public class Project {
 
     @Id
     @GeneratedValue
@@ -24,13 +20,23 @@ public class ListItem implements Serializable {
     private Long id;
 
     @Getter
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Getter
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    @Column(nullable = false)
+    private String heading;
+
+    @Getter
+    private String description;
 
     @Getter
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Getter
+    private String createdBy;
+
+    @Getter
+    private String link;
 }

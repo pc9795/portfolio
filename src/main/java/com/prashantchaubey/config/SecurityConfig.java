@@ -1,6 +1,6 @@
 package com.prashantchaubey.config;
 
-import com.prashantchaubey.entities.User;
+import com.prashantchaubey.entities.Role;
 import com.prashantchaubey.services.ApiUserDetailsService;
 import com.prashantchaubey.utils.Constants;
 import com.prashantchaubey.utils.Utils;
@@ -17,9 +17,6 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-/**
- * Purpose: Spring security configuration.
- **/
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -32,59 +29,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.service = service;
     }
 
-    /**
-     * Enabling jdbc authentication.
-     *
-     * @param auth configuration object
-     * @throws Exception if something goes wrong
-     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // We could have used 'defaultSchema' but it won't work with postgresql.
         auth.userDetailsService(service).passwordEncoder(encoder()).
                 and().
                 jdbcAuthentication().dataSource(dataSource);
     }
 
-    /**
-     * Configure http url access.
-     *
-     * @param http configuration object
-     * @throws Exception if something goes wrong
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(
                 (httpServletRequest, httpServletResponse, e) ->
-                        // Custom handling on authentication failures
                         Utils.createJSONErrorResponse(HttpServletResponse.SC_UNAUTHORIZED, Constants.ErrorMsg.UNAUTHORIZED,
                                 httpServletResponse)
         ).accessDeniedHandler(
-                // Custom handling of access denied.
-                (request, response, accessDeniedException) -> {
-                    Utils.createJSONErrorResponse(HttpServletResponse.SC_FORBIDDEN,
-                            Constants.ErrorMsg.FORBIDDEN_RESOURCE, response);
-                })
+                (request, response, accessDeniedException) ->
+                        Utils.createJSONErrorResponse(HttpServletResponse.SC_FORBIDDEN,
+                                Constants.ErrorMsg.FORBIDDEN_RESOURCE, response))
                 .and()
                 .authorizeRequests()
-                //Authorization
-                .antMatchers(Constants.Resource.BLOG_ITEM + "/**")
-                .hasAnyRole(User.Role.Desc.ADMIN.replace("ROLE_", ""))
+                .antMatchers(Constants.Resource.BLOG_POSTS_V1 + "/**")
+                .hasAnyRole(Role.Desc.ADMIN.replace("ROLE_", ""))
                 .and()
                 .logout().permitAll()
                 .logoutSuccessHandler(
-                        //Add logout functionality given by spring security
                         ((request, response, authentication) -> new HttpStatusReturningLogoutSuccessHandler())
                 );
-
     }
 
-    /**
-     * Password encoder to encode user passwords.
-     *
-     * @return password encoder
-     */
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
