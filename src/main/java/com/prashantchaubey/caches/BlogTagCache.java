@@ -14,11 +14,7 @@ public class BlogTagCache {
         this.blogTagRepository = blogTagRepository;
     }
 
-    public BlogTag findBlogTagById(long id) {
-        return blogTagRepository.findBlogTagById(id);
-    }
-
-    public BlogTag findBlogTagByName(String name) {
-        return blogTagRepository.findBlogTagByName(name);
+    public BlogTag findByName(String name) {
+        return blogTagRepository.findByName(name);
     }
 }

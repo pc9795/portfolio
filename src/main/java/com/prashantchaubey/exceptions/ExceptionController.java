@@ -28,7 +28,7 @@ public class ExceptionController {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public void handleResourceNotFound(Exception e, HttpServletResponse response) {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_NOT_FOUND, String.format(Constants.ErrorMsg.NOT_FOUND,
+        Utils.updateErrorInResponse(HttpServletResponse.SC_NOT_FOUND, String.format(Constants.ErrorMsg.NOT_FOUND,
                 e.getMessage()), response);
     }
 
@@ -41,36 +41,35 @@ public class ExceptionController {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_BAD_REQUEST, errors.toString(), response);
+        Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, errors.toString(), response);
     }
 
     @ExceptionHandler({ForbiddenResourceException.class, AccessDeniedException.class})
     public void handleForbiddenResourceException(HttpServletResponse response) {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_FORBIDDEN, Constants.ErrorMsg.FORBIDDEN_RESOURCE, response);
+        Utils.updateErrorInResponse(HttpServletResponse.SC_FORBIDDEN, Constants.ErrorMsg.FORBIDDEN_RESOURCE, response);
     }
 
     @ExceptionHandler({HttpMessageNotReadableException.class, HttpMediaTypeNotSupportedException.class,
             MethodArgumentTypeMismatchException.class})
-    public void handleInvalidClientRequests(Exception e, HttpServletResponse response) {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_BAD_REQUEST, Constants.ErrorMsg.BAD_REQUEST, response);
+    public void handleInvalidClientRequests(HttpServletResponse response) {
+        Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, Constants.ErrorMsg.BAD_REQUEST, response);
     }
 
 
     @ExceptionHandler({BadDataException.class, MissingServletRequestParameterException.class,
-            HttpRequestMethodNotSupportedException.class, UserAlreadyExistException.class, ServletException.class
-            , FilteringQueryException.class})
+            HttpRequestMethodNotSupportedException.class, UserAlreadyExistException.class, ServletException.class})
     public void handleInvalidClientRequestsWithExcMessages(Exception e, HttpServletResponse response) {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
+        Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public void handleBadCredentials(Exception e, HttpServletResponse response) {
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage(), response);
+        Utils.updateErrorInResponse(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage(), response);
     }
 
     @ExceptionHandler(Exception.class)
     public void handleAll(Exception e, HttpServletResponse response) {
         LOGGER.error(String.format("Something bad happened:%s", e.getMessage()), e);
-        Utils.createJSONErrorResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Constants.ErrorMsg.INTERNAL_SERVER_ERROR, response);
+        Utils.updateErrorInResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Constants.ErrorMsg.INTERNAL_SERVER_ERROR, response);
     }
 }

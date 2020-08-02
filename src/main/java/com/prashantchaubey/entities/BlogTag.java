@@ -6,15 +6,14 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Builder
 @ToString
+@Table(name = "blog_tags")
 public class BlogTag {
     @Id
     @GeneratedValue
@@ -32,4 +31,8 @@ public class BlogTag {
 
     @Getter
     private String createdBy;
+
+    @Getter
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "blogTags")
+    private Set<BlogPost> blogPosts;
 }

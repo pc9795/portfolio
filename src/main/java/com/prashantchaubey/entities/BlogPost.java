@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -42,4 +43,13 @@ public class BlogPost {
     @Getter
     @Column(nullable = false)
     private String content;
+
+    @Getter
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "blog_posts_to_blog_tags",
+            joinColumns = @JoinColumn(name = "blog_post_id"),
+            inverseJoinColumns = @JoinColumn(name = "blog_tag_id"),
+            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Set<BlogTag> blogTags;
 }

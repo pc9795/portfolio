@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ListItemRepository extends JpaRepository<ListItem, Long> {
 
-    Page<ListItem> findListItemsByType(ListItem.Type type, Pageable pageable);
+    Page<ListItem> findByType(ListItem.Type type, Pageable pageable);
 }

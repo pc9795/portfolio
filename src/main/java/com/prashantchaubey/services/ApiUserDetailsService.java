@@ -20,7 +20,7 @@ public class ApiUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userCache.findUserByUsername(username);
+        User user = userCache.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

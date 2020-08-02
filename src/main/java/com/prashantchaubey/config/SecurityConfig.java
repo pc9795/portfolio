@@ -41,11 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(
                 (httpServletRequest, httpServletResponse, e) ->
-                        Utils.createJSONErrorResponse(HttpServletResponse.SC_UNAUTHORIZED, Constants.ErrorMsg.UNAUTHORIZED,
+                        Utils.updateErrorInResponse(HttpServletResponse.SC_UNAUTHORIZED, Constants.ErrorMsg.UNAUTHORIZED,
                                 httpServletResponse)
         ).accessDeniedHandler(
                 (request, response, accessDeniedException) ->
-                        Utils.createJSONErrorResponse(HttpServletResponse.SC_FORBIDDEN,
+                        Utils.updateErrorInResponse(HttpServletResponse.SC_FORBIDDEN,
                                 Constants.ErrorMsg.FORBIDDEN_RESOURCE, response))
                 .and()
                 .authorizeRequests()

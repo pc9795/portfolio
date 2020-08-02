@@ -19,7 +19,7 @@ public final class Utils {
         return root.toString();
     }
 
-    public static void createJSONErrorResponse(int errorCode, String errorMessage, HttpServletResponse response) {
+    public static void updateErrorInResponse(int errorCode, String errorMessage, HttpServletResponse response) {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(errorCode);
 

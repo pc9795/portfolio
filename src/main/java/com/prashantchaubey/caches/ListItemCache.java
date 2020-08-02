@@ -16,7 +16,7 @@ public class ListItemCache {
         this.listItemRepository = listItemRepository;
     }
 
-    public Page<ListItem> findListItemsByType(ListItem.Type type, Pageable pageable) {
-        return listItemRepository.findListItemsByType(type, pageable);
+    public Page<ListItem> findByType(ListItem.Type type, Pageable pageable) {
+        return listItemRepository.findByType(type, pageable);
     }
 }

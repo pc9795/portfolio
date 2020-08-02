@@ -16,23 +16,23 @@ public class BlogPostCache {
         this.blogPostRepository = blogPostRepository;
     }
 
-    public Page<BlogPost> findBlogItemsByOrderByCreatedAtDesc(Pageable pageable) {
-        return blogPostRepository.findBlogItemsByOrderByCreatedAtDesc(pageable);
+    public Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable) {
+        return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByMonthsAndYear(String monthYear, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByMonthsAndYear(monthYear, pageable);
+    public Page<BlogPost> findByMonthsAndYear(String monthYear, Pageable pageable) {
+        return blogPostRepository.findByMonthsAndYear(monthYear, pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByYear(String year, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByYear(year, pageable);
+    public Page<BlogPost> findByYear(String year, Pageable pageable) {
+        return blogPostRepository.findByYear(year, pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByHeadingContaining(String searchText, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByHeadingContaining(searchText, pageable);
+    public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
+        return blogPostRepository.findByHeadingContaining(searchText, pageable);
     }
 
-    public BlogPost findBlogItemById(long id) {
-        return blogPostRepository.findBlogItemById(id);
+    public BlogPost findByName(String name) {
+        return blogPostRepository.findByName(name);
     }
 }
