@@ -15,16 +15,22 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @ControllerAdvice
 public class ExceptionController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandler.class);
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public void handleNoHandlerFound(Exception e, HttpServletResponse response) {
+        Utils.updateErrorInResponse(HttpServletResponse.SC_NOT_FOUND, String.format(Constants.ErrorMsg.NOT_FOUND,
+                e.getMessage()), response);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public void handleResourceNotFound(Exception e, HttpServletResponse response) {

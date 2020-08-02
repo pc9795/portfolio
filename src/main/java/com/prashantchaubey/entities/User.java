@@ -1,8 +1,6 @@
 package com.prashantchaubey.entities;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,15 +8,17 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
-@ToString
-@Entity
 @Builder
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
+@Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    @Getter
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -28,32 +28,25 @@ public class User implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    @Getter
     private String email;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @Getter
     private Role role;
 
     @Column(nullable = false, unique = true)
-    @Getter
     private String activationKey;
 
     @Column(nullable = false)
-    @Getter
     private Boolean activated;
 
     @Column(nullable = false)
-    @Getter
     private Boolean locked;
 
     @Column(nullable = false)
-    @Getter
     private Integer failedAttempts;
 
     @Column(nullable = false)
-    @Getter
     private Boolean invited;
 
     @Override

@@ -1,8 +1,7 @@
 package com.prashantchaubey.entities;
 
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -13,7 +12,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Builder
-@Value
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
 @Entity
 @Table(name = "contacts")
 public class Contact implements Serializable {

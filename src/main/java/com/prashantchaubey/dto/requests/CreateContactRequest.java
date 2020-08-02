@@ -23,6 +23,7 @@ public class CreateContactRequest {
 
     private String purpose;
 
+    // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
     @JsonPOJOBuilder(withPrefix = "")
     public static class CreateContactRequestBuilder {
 

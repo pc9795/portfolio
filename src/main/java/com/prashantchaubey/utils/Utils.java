@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public final class Utils {
 
-    private static String createErrorJSON(int errorCode, String errorMessage) {
+    public static String createErrorJSON(int errorCode, String errorMessage) {
         ObjectNode errorNode = JsonNodeFactory.instance.objectNode();
         errorNode.put("code", errorCode);
         errorNode.put("message", errorMessage);
