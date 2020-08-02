@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @ToString
 @Builder
-@Table(name = "projects", indexes = {@Index(columnList = "createdAt", name = "createdAtIdx")})
+@Table(name = "projects", indexes = {@Index(columnList = "createdAt", name = "projects_created_at_idx")})
 public class Project {
 
     @Id

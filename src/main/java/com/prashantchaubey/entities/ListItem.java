@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @ToString
 @Builder
-@Table(name = "list_items", indexes = {@Index(columnList = "type", name = "typeIdx")})
+@Table(name = "list_items", indexes = {@Index(columnList = "type", name = "list_items_type_idx")})
 public class ListItem implements Serializable {
     public enum Type {
         GAMING, TECHNICAL

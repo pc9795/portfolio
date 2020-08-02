@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Builder
 @ToString
-@Table(name = "blog_posts", indexes = {@Index(columnList = "createdAt", name = "createdAtIdx")})
+@Table(name = "blog_posts", indexes = {@Index(columnList = "createdAt", name = "blog_posts_created_at_idx")})
 public class BlogPost {
     @Id
     @GeneratedValue

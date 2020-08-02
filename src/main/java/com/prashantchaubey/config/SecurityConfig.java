@@ -1,6 +1,5 @@
 package com.prashantchaubey.config;
 
-import com.prashantchaubey.entities.Role;
 import com.prashantchaubey.services.ApiUserDetailsService;
 import com.prashantchaubey.utils.Constants;
 import com.prashantchaubey.utils.Utils;
@@ -49,8 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 Constants.ErrorMsg.FORBIDDEN_RESOURCE, response))
                 .and()
                 .authorizeRequests()
-                .antMatchers(Constants.Resource.BLOG_POSTS_V1 + "/**")
-                .hasAnyRole(Role.Desc.ADMIN.replace("ROLE_", ""))
                 .and()
                 .logout().permitAll()
                 .logoutSuccessHandler(

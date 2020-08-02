@@ -1,4 +1,4 @@
-package com.prashantchaubey.dto;
+package com.prashantchaubey.dto.requests;
 
 import static com.prashantchaubey.utils.Constants.*;
 
