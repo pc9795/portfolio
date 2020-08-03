@@ -2,6 +2,8 @@ package com.prashantchaubey.entities;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -38,7 +40,7 @@ public class BlogPost {
     @Column(nullable = false)
     private String content;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "blog_posts_to_blog_tags",
             joinColumns = @JoinColumn(name = "blog_post_id"),
             inverseJoinColumns = @JoinColumn(name = "blog_tag_id"),

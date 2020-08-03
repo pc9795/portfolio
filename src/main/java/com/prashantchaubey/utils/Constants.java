@@ -19,6 +19,7 @@ public final class Constants {
         }
 
         private static final String V1_PREFIX = "/api/v1/";
+        public static final String BLOG_TAGS_V1 = V1_PREFIX + "blog-tags";
         public static final String BLOG_POSTS_V1 = V1_PREFIX + "blog-posts";
         public static final String PROJECTS_V1 = V1_PREFIX + "projects";
         public static final String LISTS_V1 = V1_PREFIX + "lists";
@@ -34,6 +35,15 @@ public final class Constants {
         public static final String FORBIDDEN_RESOURCE = "Forbidden Resource";
         public static final String INTERNAL_SERVER_ERROR = "Something bad happened";
         public static final String BAD_REQUEST = "Bad request";
+    }
+
+    public static final class EntityGraphName {
+        private EntityGraphName() {
+        }
+
+        public static final String BLOG_TAG_WITH_BLOG_POSTS_LOADED_WITH_BLOG_TAGS =
+                "blog-tag-entity-graph-with-blog-posts-loaded-with-blog-tags";
+        public static final String BLOG_POST_WITH_BLOG_TAGS = "blog-post-entity-graph-with-blog-tags";
     }
 
     public static final int BLOG_DESCRIPTION_SIZE = 250;

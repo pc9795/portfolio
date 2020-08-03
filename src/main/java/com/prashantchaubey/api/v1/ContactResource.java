@@ -7,10 +7,8 @@ import com.prashantchaubey.entities.Contact;
 import com.prashantchaubey.repositories.ContactRepository;
 import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,6 +26,7 @@ public class ContactResource {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public CreateContactResponse create(@Valid @RequestBody CreateContactRequest request) {
         Contact contact = contactMapper.from(request);
         contactRepository.save(contact);

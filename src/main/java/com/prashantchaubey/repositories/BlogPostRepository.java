@@ -10,10 +10,10 @@ import org.springframework.data.repository.query.Param;
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
     Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable);
 
-    @Query(value = "select * from blogitem where to_char(timestamp,'MON_YYYY')=:monthYear", nativeQuery = true)
+    @Query(value = "select * from blog_posts where to_char(created_at,'MON_YYYY')=:monthYear", nativeQuery = true)
     Page<BlogPost> findByMonthsAndYear(@Param("monthYear") String monthYear, Pageable pageable);
 
-    @Query(value = "select * from blogitem where to_char(timestamp,'YYYY')=:year", nativeQuery = true)
+    @Query(value = "select * from blog_posts where to_char(created_at,'YYYY')=:year", nativeQuery = true)
     Page<BlogPost> findByYear(@Param("year") String year, Pageable pageable);
 
     Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable);
