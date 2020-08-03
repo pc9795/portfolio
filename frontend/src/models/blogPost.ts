@@ -1,4 +1,6 @@
-class BlogPost {
+import BlogTag from './blogTag'
+
+export default class BlogPost {
     constructor(public name: string,
                 public heading: string,
                 public description: string,

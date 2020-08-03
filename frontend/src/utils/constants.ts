@@ -20,6 +20,6 @@ export class AppRoutes {
 export const RESUME_URL = process.env.PUBLIC_URL + "/PrashantChaubey_resume.pdf";
 export const RECAPTCHA_KEY = "6LeWD7kZAAAAADuHZHoxZ8gcJ-Fzxkbugddnms60";
 
-const DEV_API_URL = "http://localhost:8080";
+const DEV_API_URL = "http://localhost:8080/api/v1/";
 const PROD_API_URL = "";
 export const API_URL = process.env.NODE_ENV === "development" ? DEV_API_URL : PROD_API_URL;

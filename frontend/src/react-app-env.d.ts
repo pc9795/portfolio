@@ -2,6 +2,6 @@
 type BooleanSetter = (x: boolean) => void
 type NumberSetter = (x: number) => void
 
-interface Pageable<T> {
+interface Page<T> {
     content: T[]
 }
