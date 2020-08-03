@@ -1,35 +1,41 @@
 package com.prashantchaubey.entities;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.prashantchaubey.utils.Constants;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
-@Entity
 @Builder
-@ToString
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
+@NamedEntityGraph(name = Constants.EntityGraphName.BLOG_TAG_WITH_BLOG_POSTS_LOADED_WITH_BLOG_TAGS,
+        attributeNodes = {
+                @NamedAttributeNode(value = "blogPosts",
+                        subgraph = Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)},
+        subgraphs = {
+                @NamedSubgraph(name = Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS,
+                        attributeNodes = {@NamedAttributeNode("blogTags")})
+        })
+@Entity
+@Table(name = "blog_tags")
 public class BlogTag {
     @Id
     @GeneratedValue
-    @Getter
     private Long id;
 
-    @Getter
-    @Setter
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Getter
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Getter
     private String createdBy;
+
+    @ManyToMany(mappedBy = "blogTags")
+    private Set<BlogPost> blogPosts;
 }

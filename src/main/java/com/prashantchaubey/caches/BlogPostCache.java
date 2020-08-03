@@ -1,5 +1,7 @@
 package com.prashantchaubey.caches;
 
+import com.prashantchaubey.caches.core.CacheKey;
+import com.prashantchaubey.caches.core.SimpleMapCache;
 import com.prashantchaubey.entities.BlogPost;
 import com.prashantchaubey.repositories.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
-public class BlogPostCache {
+public class BlogPostCache extends SimpleMapCache<BlogPost> {
     private BlogPostRepository blogPostRepository;
 
     @Autowired
@@ -16,23 +20,24 @@ public class BlogPostCache {
         this.blogPostRepository = blogPostRepository;
     }
 
-    public Page<BlogPost> findBlogItemsByOrderByCreatedAtDesc(Pageable pageable) {
-        return blogPostRepository.findBlogItemsByOrderByCreatedAtDesc(pageable);
+    public Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable) {
+        return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByMonthsAndYear(String monthYear, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByMonthsAndYear(monthYear, pageable);
+    public Page<BlogPost> findByYearCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable) {
+        return blogPostRepository.findByCreatedAtBetween(from, to, pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByYear(String year, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByYear(year, pageable);
+    public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
+        return blogPostRepository.findByHeadingContaining(searchText, pageable);
     }
 
-    public Page<BlogPost> findBlogItemsByHeadingContaining(String searchText, Pageable pageable) {
-        return blogPostRepository.findBlogItemsByHeadingContaining(searchText, pageable);
+    public BlogPost findByName(String name) {
+        return blogPostRepository.findByName(name);
     }
 
-    public BlogPost findBlogItemById(long id) {
-        return blogPostRepository.findBlogItemById(id);
+    @Override
+    public BlogPost load(CacheKey key) {
+        return null;
     }
 }

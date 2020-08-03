@@ -19,7 +19,7 @@ public final class Utils {
         return root.toString();
     }
 
-    public static void createJSONErrorResponse(int errorCode, String errorMessage, HttpServletResponse response) {
+    public static void updateErrorInResponse(int errorCode, String errorMessage, HttpServletResponse response) {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(errorCode);
 
@@ -30,19 +30,4 @@ public final class Utils {
         }
     }
 
-    private static String getDescriptionFromContent(String content) {
-        if (content == null || content.length() == 0) {
-            return "...";
-        }
-        if (content.length() > Constants.BLOG_DESCRIPTION_SIZE) {
-            content = content.substring(0, Constants.BLOG_DESCRIPTION_SIZE);
-        }
-
-        int i = content.lastIndexOf(' ');
-        if (i == -1) {
-            return "...";
-        }
-
-        return content.substring(0, i) + "...";
-    }
 }
