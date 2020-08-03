@@ -17,5 +17,7 @@ public class BlogPostWithContentResponse {
 
     private LocalDateTime createdAt;
 
+    private String content;
+
     private Set<BlogTagResponse> blogTags;
 }
