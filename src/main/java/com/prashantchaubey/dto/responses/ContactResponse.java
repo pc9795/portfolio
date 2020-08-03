@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Builder
 @Value
-public class CreateContactResponse {
+public class ContactResponse {
     private String name;
 
     private String contact;

@@ -1,7 +1,8 @@
 package com.prashantchaubey.dto.mappers;
 
-import com.prashantchaubey.dto.responses.GetBlogPostResponse;
-import com.prashantchaubey.dto.responses.GetBlogTagResponse;
+import com.prashantchaubey.dto.responses.BlogPostResponse;
+import com.prashantchaubey.dto.responses.BlogPostWithContentResponse;
+import com.prashantchaubey.dto.responses.BlogTagResponse;
 import com.prashantchaubey.entities.BlogPost;
 import com.prashantchaubey.entities.BlogTag;
 import org.mapstruct.Mapper;
@@ -18,10 +19,13 @@ public abstract class BlogPostMapper {
     private BlogTagMapper blogTagMapper;
 
     @Mapping(source = "blogTags", target = "blogTags", qualifiedByName = "blogTagToGetBlogTagResponse")
-    public abstract GetBlogPostResponse to(BlogPost blogPost);
+    public abstract BlogPostResponse toBlogPostResponse(BlogPost blogPost);
+
+    @Mapping(source = "blogTags", target = "blogTags", qualifiedByName = "blogTagToGetBlogTagResponse")
+    public abstract BlogPostWithContentResponse toBlogPostWithContentResponse(BlogPost blogPost);
 
     @Named("blogTagToGetBlogTagResponse")
-    Set<GetBlogTagResponse> blogTagToGetBlogTagResponse(Set<BlogTag> blogTags) {
+    Set<BlogTagResponse> blogTagToGetBlogTagResponse(Set<BlogTag> blogTags) {
         return blogTags.stream().map(blogTagMapper::to).collect(Collectors.toSet());
     }
 }

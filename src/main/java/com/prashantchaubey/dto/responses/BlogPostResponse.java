@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Builder
 @Value
-public class GetBlogPostResponse {
+public class BlogPostResponse {
     private String name;
 
     private String heading;
@@ -17,5 +17,5 @@ public class GetBlogPostResponse {
 
     private LocalDateTime createdAt;
 
-    private Set<GetBlogTagResponse> blogTags;
+    private Set<BlogTagResponse> blogTags;
 }

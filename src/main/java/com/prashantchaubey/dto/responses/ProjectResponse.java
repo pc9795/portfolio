@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 
 @Builder
 @Value
-public class GetProjectResponse {
+public class ProjectResponse {
     private String name;
 
     private String heading;
 
     private String description;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     private String link;
 }

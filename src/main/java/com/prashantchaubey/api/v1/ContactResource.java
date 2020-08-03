@@ -1,8 +1,8 @@
 package com.prashantchaubey.api.v1;
 
 import com.prashantchaubey.dto.mappers.ContactMapper;
-import com.prashantchaubey.dto.requests.CreateContactRequest;
-import com.prashantchaubey.dto.responses.CreateContactResponse;
+import com.prashantchaubey.dto.requests.ContactCreateRequest;
+import com.prashantchaubey.dto.responses.ContactResponse;
 import com.prashantchaubey.entities.Contact;
 import com.prashantchaubey.repositories.ContactRepository;
 import com.prashantchaubey.utils.Constants;
@@ -27,7 +27,7 @@ public class ContactResource {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateContactResponse create(@Valid @RequestBody CreateContactRequest request) {
+    public ContactResponse create(@Valid @RequestBody ContactCreateRequest request) {
         Contact contact = contactMapper.from(request);
         contactRepository.save(contact);
 

@@ -5,6 +5,6 @@ import lombok.Value;
 
 @Value
 @Builder
-public class GetBlogTagResponse {
+public class BlogTagResponse {
     private String name;
 }

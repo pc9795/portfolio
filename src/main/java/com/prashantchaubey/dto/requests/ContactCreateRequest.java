@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @Builder
 @Value
-@JsonDeserialize(builder = CreateContactRequest.CreateContactRequestBuilder.class)
-public class CreateContactRequest {
+@JsonDeserialize(builder = ContactCreateRequest.CreateContactRequestBuilder.class)
+public class ContactCreateRequest {
     @NotNull
     private String name;
 
@@ -25,7 +25,7 @@ public class CreateContactRequest {
 
     // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
     @JsonPOJOBuilder(withPrefix = "")
-    public static class CreateContactRequestBuilder {
+    static class CreateContactRequestBuilder {
 
     }
 }

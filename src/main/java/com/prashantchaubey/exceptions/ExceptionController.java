@@ -5,8 +5,6 @@ import com.prashantchaubey.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -50,11 +48,6 @@ public class ExceptionController {
         Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, errors.toString(), response);
     }
 
-    @ExceptionHandler({ForbiddenResourceException.class, AccessDeniedException.class})
-    public void handleForbiddenResourceException(HttpServletResponse response) {
-        Utils.updateErrorInResponse(HttpServletResponse.SC_FORBIDDEN, Constants.ErrorMsg.FORBIDDEN_RESOURCE, response);
-    }
-
     @ExceptionHandler({HttpMessageNotReadableException.class, HttpMediaTypeNotSupportedException.class,
             MethodArgumentTypeMismatchException.class})
     public void handleInvalidClientRequests(HttpServletResponse response) {
@@ -63,14 +56,9 @@ public class ExceptionController {
 
 
     @ExceptionHandler({BadDataException.class, MissingServletRequestParameterException.class,
-            HttpRequestMethodNotSupportedException.class, UserAlreadyExistException.class, ServletException.class})
+            HttpRequestMethodNotSupportedException.class, ServletException.class})
     public void handleInvalidClientRequestsWithExcMessages(Exception e, HttpServletResponse response) {
         Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
-    }
-
-    @ExceptionHandler(BadCredentialsException.class)
-    public void handleBadCredentials(Exception e, HttpServletResponse response) {
-        Utils.updateErrorInResponse(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage(), response);
     }
 
     @ExceptionHandler(Exception.class)

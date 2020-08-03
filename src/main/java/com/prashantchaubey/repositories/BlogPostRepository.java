@@ -1,22 +1,24 @@
 package com.prashantchaubey.repositories;
 
 import com.prashantchaubey.entities.BlogPost;
+import com.prashantchaubey.utils.Constants;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
+import java.time.LocalDateTime;
 
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
+    @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
     Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable);
 
-    @Query(value = "select * from blog_posts where to_char(created_at,'MON_YYYY')=:monthYear", nativeQuery = true)
-    Page<BlogPost> findByMonthsAndYear(@Param("monthYear") String monthYear, Pageable pageable);
+    @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
+    Page<BlogPost> findByCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable);
 
-    @Query(value = "select * from blog_posts where to_char(created_at,'YYYY')=:year", nativeQuery = true)
-    Page<BlogPost> findByYear(@Param("year") String year, Pageable pageable);
-
+    @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
     Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable);
 
+    @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
     BlogPost findByName(String name);
 }

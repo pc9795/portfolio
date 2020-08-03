@@ -3,8 +3,8 @@ package com.prashantchaubey.api.v1;
 import com.prashantchaubey.caches.BlogTagCache;
 import com.prashantchaubey.dto.mappers.BlogPostMapper;
 import com.prashantchaubey.dto.mappers.BlogTagMapper;
-import com.prashantchaubey.dto.responses.GetBlogPostResponse;
-import com.prashantchaubey.dto.responses.GetBlogTagResponse;
+import com.prashantchaubey.dto.responses.BlogPostResponse;
+import com.prashantchaubey.dto.responses.BlogTagResponse;
 import com.prashantchaubey.entities.BlogTag;
 import com.prashantchaubey.exceptions.ResourceNotFoundException;
 import com.prashantchaubey.utils.Constants;
@@ -34,17 +34,17 @@ public class BlogTagResource {
     }
 
     @GetMapping
-    public Page<GetBlogTagResponse> getAll(Pageable pageable) {
+    public Page<BlogTagResponse> getAll(Pageable pageable) {
         return blogTagCache.findAll(pageable).map(blogTagMapper::to);
     }
 
     @GetMapping("/{blogTagName}/blog-posts")
-    public List<GetBlogPostResponse> getByTag(@PathVariable("blogTagName") String blogTagName) {
+    public List<BlogPostResponse> getByTag(@PathVariable("blogTagName") String blogTagName) {
         BlogTag blogTag = blogTagCache.findByName(blogTagName);
         if (blogTag == null) {
             throw new ResourceNotFoundException(String.format("No blog tag found with name:%s", blogTagName));
         }
 
-        return blogTag.getBlogPosts().stream().map(blogPostMapper::to).collect(Collectors.toList());
+        return blogTag.getBlogPosts().stream().map(blogPostMapper::toBlogPostResponse).collect(Collectors.toList());
     }
 }

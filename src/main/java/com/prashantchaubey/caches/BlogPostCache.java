@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class BlogPostCache extends SimpleMapCache<BlogPost> {
     private BlogPostRepository blogPostRepository;
@@ -22,12 +24,8 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
         return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
     }
 
-    public Page<BlogPost> findByMonthsAndYear(String monthYear, Pageable pageable) {
-        return blogPostRepository.findByMonthsAndYear(monthYear, pageable);
-    }
-
-    public Page<BlogPost> findByYear(String year, Pageable pageable) {
-        return blogPostRepository.findByYear(year, pageable);
+    public Page<BlogPost> findByYearCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable) {
+        return blogPostRepository.findByCreatedAtBetween(from, to, pageable);
     }
 
     public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {

@@ -2,7 +2,7 @@ package com.prashantchaubey.api.v1;
 
 import com.prashantchaubey.caches.ListItemCache;
 import com.prashantchaubey.dto.mappers.ListItemMapper;
-import com.prashantchaubey.dto.responses.GetListItemResponse;
+import com.prashantchaubey.dto.responses.ListItemResponse;
 import com.prashantchaubey.entities.ListItem;
 import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ public class ListsResource {
     }
 
     @GetMapping("/technical")
-    public Page<GetListItemResponse> getTechnicalLists(Pageable pageable) {
+    public Page<ListItemResponse> getTechnicalLists(Pageable pageable) {
         return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::to);
     }
 
     @GetMapping("/gaming")
-    public Page<GetListItemResponse> getGamingList(Pageable pageable) {
+    public Page<ListItemResponse> getGamingList(Pageable pageable) {
         return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::to);
     }
 }

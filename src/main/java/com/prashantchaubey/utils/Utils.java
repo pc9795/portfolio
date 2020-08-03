@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public final class Utils {
 
-    public static String createErrorJSON(int errorCode, String errorMessage) {
+    private static String createErrorJSON(int errorCode, String errorMessage) {
         ObjectNode errorNode = JsonNodeFactory.instance.objectNode();
         errorNode.put("code", errorCode);
         errorNode.put("message", errorMessage);
@@ -30,19 +30,4 @@ public final class Utils {
         }
     }
 
-    private static String getDescriptionFromContent(String content) {
-        if (content == null || content.length() == 0) {
-            return "...";
-        }
-        if (content.length() > Constants.BLOG_DESCRIPTION_SIZE) {
-            content = content.substring(0, Constants.BLOG_DESCRIPTION_SIZE);
-        }
-
-        int i = content.lastIndexOf(' ');
-        if (i == -1) {
-            return "...";
-        }
-
-        return content.substring(0, i) + "...";
-    }
 }

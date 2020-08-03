@@ -2,7 +2,7 @@ package com.prashantchaubey.api.v1;
 
 import com.prashantchaubey.caches.ProjectCache;
 import com.prashantchaubey.dto.mappers.ProjectMapper;
-import com.prashantchaubey.dto.responses.GetProjectResponse;
+import com.prashantchaubey.dto.responses.ProjectResponse;
 import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,7 +26,7 @@ public class ProjectResource {
     }
 
     @GetMapping
-    public Page<GetProjectResponse> getAll(Pageable pageable) {
+    public Page<ProjectResponse> getAll(Pageable pageable) {
         return projectCache.findByOrderByCreatedAtDesc(pageable).map(projectMapper::to);
     }
 }

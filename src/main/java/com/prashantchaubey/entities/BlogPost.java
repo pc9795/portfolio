@@ -1,9 +1,8 @@
 package com.prashantchaubey.entities;
 
+import com.prashantchaubey.utils.Constants;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -15,6 +14,8 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Setter(value = AccessLevel.PACKAGE)
 @Getter
+@NamedEntityGraph(name = Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS,
+        attributeNodes = @NamedAttributeNode("blogTags"))
 @Entity
 @Table(name = "blog_posts", indexes = {@Index(columnList = "createdAt", name = "blog_posts_created_at_idx")})
 public class BlogPost {

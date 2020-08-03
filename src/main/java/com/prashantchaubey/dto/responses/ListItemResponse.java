@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @Value
-public class GetListItemResponse {
+public class ListItemResponse {
     private String name;
 
     private ListItem.Type type;
