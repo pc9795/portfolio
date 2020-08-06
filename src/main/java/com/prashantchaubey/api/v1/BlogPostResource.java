@@ -102,6 +102,11 @@ public class BlogPostResource {
         return blogPostMapper.toBlogPostWithContentResponse(blogPost);
     }
 
+    @GetMapping("/blog-tags/{blogTagName}")
+    public Page<BlogPostResponse> getByTagName(@PathVariable("blogTagName") String blogTagName, Pageable pageable) {
+        return blogPostCache.findByTagName(blogTagName, pageable).map(blogPostMapper::toBlogPostResponse);
+    }
+
     private Optional<Integer> getYear(String yearStr) {
         if (yearStr.length() != 4) {
             return Optional.empty();

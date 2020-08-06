@@ -29,8 +29,6 @@ public final class Constants {
         private EntityGraphName() {
         }
 
-        public static final String BLOG_TAG_WITH_BLOG_POSTS_LOADED_WITH_BLOG_TAGS =
-                "blog-tag-entity-graph-with-blog-posts-loaded-with-blog-tags";
         public static final String BLOG_POST_WITH_BLOG_TAGS = "blog-post-entity-graph-with-blog-tags";
     }
 }
