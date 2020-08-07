@@ -9,61 +9,64 @@ import BlogPostsClient from "../../data/blogPostsClient";
 import Project from "../../models/project";
 import ProjectsClient from "../../data/projectsClient";
 
+const HOME_PAGE_BLOG_POSTS_COUNT = 3;
+const HOME_PAGE_PROJECTS_COUNT = 2;
+
 function HomePage() {
     const [blogPosts, setBlogPosts] = useState([] as BlogPost[]);
     const [projects, setProjects] = useState([] as Project[]);
 
     useEffect(() => {
-        BlogPostsClient.getAll(0, 3).then((data: Page<BlogPost>) => {
+        BlogPostsClient.getAll(0, HOME_PAGE_BLOG_POSTS_COUNT).then((data: Page<BlogPost>) => {
             setBlogPosts(data.content);
         });
-        ProjectsClient.getAll(0, 2).then((data: Page<Project>) => {
+        ProjectsClient.getAll(0, HOME_PAGE_PROJECTS_COUNT).then((data: Page<Project>) => {
             setProjects(data.content);
         });
     }, []);
 
-    const getHead = () => {
+    const renderHead = () => {
         return <Helmet>
             <title>Prashant Chaubey - Home</title>
             <link rel="icon" type="image/png" href={FaviconConstants.URL} sizes="16x16"/>
         </Helmet>;
     };
 
-    const getInfoCards = () => {
+    const renderInfoCards = () => {
         return <div className="row card-deck">
             <div className="col-md-4 col-xs-12">
-                {getAboutMeCard()}
+                {renderAboutMeCard()}
             </div>
             <div className="col-md-4 col-xs-12">
-                {getInterestsCard()}
+                {renderInterestsCard()}
             </div>
             <div className="col-md-4 col-xs-12">
-                {getReadingsCard()}
+                {renderReadingsCard()}
             </div>
         </div>;
     };
 
-    const getAboutMeCard = () => {
+    const renderAboutMeCard = () => {
         const title = <span>About me <i className="fa fa-superpowers"/></span>;
 
         return <Card title={title} text={StaticData.getAboutMe()}/>;
     };
 
-    const getInterestsCard = () => {
+    const renderInterestsCard = () => {
         const title = <span>Interests <i className="fa fa-gamepad"/></span>;
         const footer = <Link className="text-secondary" to={AppRoutes.LISTS}>Gaming List</Link>;
 
         return <Card title={title} text={StaticData.getInterests()} footer={footer}/>;
     };
 
-    const getReadingsCard = () => {
+    const renderReadingsCard = () => {
         const title = <span>Reading List <i className="fa fa-book"/></span>;
         const footer = <Link className="text-secondary" to={AppRoutes.LISTS}>Reading List</Link>;
 
         return <Card title={title} text={StaticData.getReadingsListDesc()} footer={footer}/>;
     };
 
-    const getBlogPostsHeading = () => {
+    const renderBlogPostsHeading = () => {
         return <div className="row my-3">
             <div className="col-8 col-xs-12"><h3>Articles <i className="fa fa-rocket"/></h3></div>
             <div className="col-4 col-xs-12">
@@ -72,13 +75,13 @@ function HomePage() {
         </div>;
     };
 
-    const getBlogPostCards = () => {
+    const renderBlogPostCards = () => {
         return <div className="row card-deck">
-            {blogPosts.map(blogPost => getBlogPostCard(blogPost))}
+            {blogPosts.map(blogPost => renderBlogPostCard(blogPost))}
         </div>
     };
 
-    const getBlogPostCard = (blogPost: BlogPost) => {
+    const renderBlogPostCard = (blogPost: BlogPost) => {
         const footer = <a href={AppRoutes.BLOG + "/" + blogPost.name} className="text-secondary">Read More</a>;
 
         return <div key={blogPost.name} className="col-md-4 col-sm-12">
@@ -86,7 +89,7 @@ function HomePage() {
         </div>
     };
 
-    const getProjectsHeading = () => {
+    const renderProjectsHeading = () => {
         return <div className="row my-3">
             <div className="col-8 col-xs-12"><h3>Projects <i className="fa fa-code"/></h3></div>
             <div className="col-4 col-xs-12">
@@ -95,16 +98,16 @@ function HomePage() {
         </div>
     };
 
-    const getProjectCards = () => {
+    const renderProjectCards = () => {
         return <div className="row card-deck">
             <div className="col-md-4 col-sm-12">
                 <Card title={"Portfolio website"} text={StaticData.getPortfolioDesc()}/>
             </div>
-            {projects.map(project => getProjectCard(project))}
+            {projects.map(project => renderProjectCard(project))}
         </div>;
     };
 
-    const getProjectCard = (project: Project) => {
+    const renderProjectCard = (project: Project) => {
         const footer = <a href={project.link} className="text-secondary">Project Repo</a>;
 
         return <div key={project.name} className="col-md-4 col-sm-12">
@@ -112,14 +115,14 @@ function HomePage() {
         </div>
     };
     return <div className="container my-3">
-        {getHead()}
-        {getInfoCards()}
+        {renderHead()}
+        {renderInfoCards()}
         <hr/>
-        {getBlogPostsHeading()}
-        {getBlogPostCards()}
+        {renderBlogPostsHeading()}
+        {renderBlogPostCards()}
         <hr/>
-        {getProjectsHeading()}
-        {getProjectCards()}
+        {renderProjectsHeading()}
+        {renderProjectCards()}
     </div>;
 }
 
