@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import {AppRoutes, FaviconConstants} from "../../utils/constants";
 import {Link} from "react-router-dom";
 import Card from "../gui/Card";
-import {StaticData} from "../../staticData";
+import {StaticData} from "../../data/staticData";
 import BlogPost from "../../models/blogPost";
 import BlogPostsClient from "../../data/blogPostsClient";
 import Project from "../../models/project";

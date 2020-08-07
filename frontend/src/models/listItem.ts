@@ -1,6 +1,6 @@
 export default class ListItem {
-    public constructor(name: string,
-                       type: string,
-                       createdAt: string) {
+    public constructor(public name: string,
+                       public type: string,
+                       public createdAt: string) {
     }
 }

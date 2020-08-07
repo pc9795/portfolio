@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
 import {FaviconConstants, ImageConstants, RESUME_URL} from "../../utils/constants";
-import {StaticData} from "../../staticData";
+import {StaticData} from "../../data/staticData";
 import Project from "../../models/project";
 import ProjectsClient from "../../data/projectsClient";
 import Card from "../gui/Card";
