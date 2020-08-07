@@ -14,31 +14,34 @@ export default class BlogPostsClient {
     }
 
     static async getByYear(year: string, page?: number, size?: number): Promise<Page<BlogPost>> {
-        const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL + `/year/${year}`), page, size);
+        const url = ApiClientUtils.getPageableURL(new URL(`${RESOURCE_URL}/year/${year}`), page, size);
         const res = await axios.get(url.href);
 
         return res.data;
     }
 
     static async getByMonthYear(year: string, month: string, page?: number, size?: number): Promise<Page<BlogPost>> {
-        const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL + `/year/${year}/month/${month}`), page, size);
+        const url = ApiClientUtils.getPageableURL(new URL(`${RESOURCE_URL}/year/${year}/month/${month}`), page, size);
         const res = await axios.get(url.href);
 
         return res.data;
     }
 
     static async search(searchText: string, page?: number, size?: number): Promise<Page<BlogPost>> {
-        const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL + `/search/${searchText}`), page, size);
+        const url = ApiClientUtils.getPageableURL(new URL(`${RESOURCE_URL}/search/${searchText}`), page, size);
         const res = await axios.get(url.href);
 
         return res.data;
     }
 
-    static getByName(blogPostName: string) {
+    static async getByName(blogPostName: string): Promise<BlogPost> {
+        const res = await axios.get(`${RESOURCE_URL}/${blogPostName}`);
+
+        return res.data;
     }
 
     static async getByTagName(blogTagName: string, page?: number, size?: number): Promise<Page<BlogPost>> {
-        const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL + `/blog-tags/${blogTagName}`), page, size);
+        const url = ApiClientUtils.getPageableURL(new URL(`${RESOURCE_URL}/blog-tags/${blogTagName}`), page, size);
         const res = await axios.get(url.href);
 
         return res.data;

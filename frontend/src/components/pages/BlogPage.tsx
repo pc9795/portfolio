@@ -22,12 +22,8 @@ function BlogPage() {
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
-        BlogPostsClient.getAll().then((data: Page<BlogPost>) => {
-            setBlogPosts(data.content);
-        });
-        BlogTagsClient.getAll().then((data: Page<BlogTag>) => {
-            setBlogTags(data.content);
-        });
+        BlogPostsClient.getAll().then((data: Page<BlogPost>) => setBlogPosts(data.content));
+        BlogTagsClient.getAll().then((data: Page<BlogTag>) => setBlogTags(data.content));
     }, []);
 
     const renderHead = () => {
@@ -64,9 +60,7 @@ function BlogPage() {
         (document.activeElement as HTMLElement).blur();
         setNavigationPerformed(false);
         setSearchPeformed(false);
-        BlogPostsClient.getAll().then((data: Page<BlogPost>) => {
-            setBlogPosts(data.content);
-        });
+        BlogPostsClient.getAll().then((data: Page<BlogPost>) => setBlogPosts(data.content));
     };
 
     const renderBlogPosts = () => {
@@ -196,17 +190,15 @@ function BlogPage() {
     const handleYearArchiveListItemClick = (year: number) => {
         (document.activeElement as HTMLElement).blur();
         setNavigationPerformed(true);
-        BlogPostsClient.getByYear(year.toString()).then((data: Page<BlogPost>) => {
-            setBlogPosts(data.content);
-        });
+        BlogPostsClient.getByYear(year.toString()).then((data: Page<BlogPost>) => setBlogPosts(data.content));
     };
 
     const handleMonthYearArchiveListItemClick = (year: number, month: number) => {
         (document.activeElement as HTMLElement).blur();
         setNavigationPerformed(true);
-        BlogPostsClient.getByMonthYear(year.toString(), MONTH_THREE_LETTER_NAMES[month]).then((data: Page<BlogPost>) => {
-            setBlogPosts(data.content);
-        });
+        BlogPostsClient.getByMonthYear(year.toString(), MONTH_THREE_LETTER_NAMES[month]).then(
+            (data: Page<BlogPost>) => setBlogPosts(data.content)
+        );
     };
 
     return <div className="container my-3">
