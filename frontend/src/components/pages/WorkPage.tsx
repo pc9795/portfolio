@@ -1,18 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
 import {FaviconConstants, ImageConstants, RESUME_URL} from "../../utils/constants";
-import DummyData from "../../dummyData";
 import {StaticData} from "../../staticData";
+import Project from "../../models/project";
+import ProjectsClient from "../../data/projectsClient";
+import Card from "../gui/Card";
 
 function WorkPage() {
-    const getHead = () => {
+    const [projects, setProjects] = useState([] as Project[]);
+
+    useEffect(() => {
+        ProjectsClient.getAll().then((data: Page<Project>) => setProjects(data.content));
+    }, []);
+
+    const renderHead = () => {
         return <Helmet>
             <title>Prashant Chaubey - Work</title>
             <link rel="icon" type="image/png" href={FaviconConstants.URL} sizes="16x16"/>
         </Helmet>;
     };
 
-    const getResumeLink = () => {
+    const renderResumeLink = () => {
         return <div className="row">
             <div className="col-12 mt-3">
                 <a className="btn btn-info" href={RESUME_URL}>Resume</a>
@@ -20,26 +28,33 @@ function WorkPage() {
         </div>;
     };
 
-    const getWorkCards = () => {
+    const renderProjectCards = () => {
         return <div className="row card-deck mt-3">
-            {DummyData.getProjectCardsForWorkPage()}
+            {projects.map(project => renderProjectCard(project))}
         </div>
     };
 
-    const getGameTrailersHeading = () => {
+    const renderProjectCard = (project: Project) => {
+        return <div className="col-md-4 col-sm-12">
+            <Card title={project.heading} text={project.description}
+                  footer={<a href={project.link} className="text-secondary">Github Link</a>}/>
+        </div>
+    };
+
+    const renderGameTrailersHeading = () => {
         return <div className="row my-3">
             <div className="col-8 col-xs-12"><h3>Game Trailers <i className="fa fa-gamepad"/></h3></div>
         </div>;
     };
 
-    const getGameTrailerVideos = () => {
+    const renderGameTrailerVideos = () => {
         return StaticData.getGameTrailerVideos()
     };
 
-    const getProfileSummary = () => {
+    const renderProfileSummary = () => {
         return <div className="row">
             <div className="col-md-4 bg-light col-sm-12">
-                {getProfileSideBar()}
+                {renderProfileSideBar()}
             </div>
             <div className="col-md-8 col-sm-12 mt-3">
                 {StaticData.getProfileInfo()}
@@ -47,7 +62,7 @@ function WorkPage() {
         </div>
     };
 
-    const getProfileSideBar = () => {
+    const renderProfileSideBar = () => {
         return <div>
             <div className="text-center">
                 <img src={ImageConstants.PROFILE_PICTURE} className="mt-3 text-center img-fluid" alt="profile"/>
@@ -59,12 +74,12 @@ function WorkPage() {
     };
 
     return <div className="container my-3">
-        {getHead()}
-        {getProfileSummary()}
-        {getResumeLink()}
-        {getWorkCards()}
-        {getGameTrailersHeading()}
-        {getGameTrailerVideos()}
+        {renderHead()}
+        {renderProfileSummary()}
+        {renderResumeLink()}
+        {renderProjectCards()}
+        {renderGameTrailersHeading()}
+        {renderGameTrailerVideos()}
     </div>;
 }
 

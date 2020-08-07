@@ -12,14 +12,14 @@ function BlogPostPage(props: any) {
         BlogPostsClient.getByName(props.match.params.name).then((data: BlogPost) => setBlogPost(data));
     }, []);
 
-    const getHead = () => {
+    const renderHead = () => {
         return <Helmet>
             <title>{blogPostName}</title>
             <link rel="icon" type="image/png" href={FaviconConstants.URL} sizes="16x16"/>
         </Helmet>
     };
 
-    const getBlogPost = (blogPost: null | BlogPost) => {
+    const renderBlogPost = (blogPost: null | BlogPost) => {
         if (blogPost == null) {
             return null;
         }
@@ -47,8 +47,8 @@ function BlogPostPage(props: any) {
     };
 
     return <div className="container my-3">
-        {getHead()}
-        {getBlogPost(blogPost)}
+        {renderHead()}
+        {renderBlogPost(blogPost)}
     </div>;
 }
 

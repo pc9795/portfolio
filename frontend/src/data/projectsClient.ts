@@ -6,7 +6,7 @@ import Project from "../models/project";
 const RESOURCE_URL = API_URL + "/projects";
 
 export default class ProjectsClient {
-    static async getAll(page: number, size: number): Promise<Page<Project>> {
+    static async getAll(page?: number, size?: number): Promise<Page<Project>> {
         const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL), page, size);
         const res = await axios.get(url.href);
 

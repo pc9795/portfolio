@@ -1,34 +1,6 @@
 import React from 'react'
-import Card from "./components/gui/Card";
 
 export default class DummyData {
-    static getBlogPostForBlogPostPage() {
-        return <div className="row">
-            <div className="col-12">
-                <h1>Blog Post Heading</h1>
-            </div>
-            <div className="col-12 mt-3">
-                <p className="font-italic">
-                    Created on: Created on: 31-07-2020
-                    <a href="#" className="badge badge-secondary pull-right mx-1">Blog tag</a>
-                </p>
-            </div>
-            <div className="col-12 text-justify">
-                Content
-            </div>
-        </div>;
-    }
-
-    static getProjectCardsForWorkPage() {
-        const cardNos = [1, 2, 3];
-        return cardNos.map(cardNo => {
-            return <div className="col-md-4 col-sm-12">
-                <Card title={"Work Heading " + cardNo} text="Description"
-                      footer={<a href='#' className="text-secondary">Github Link</a>}/>
-            </div>
-        });
-    }
-
     static getTechnicalBooksListForListsPage() {
         const listNos = [1, 2, 3, 4, 5];
 
