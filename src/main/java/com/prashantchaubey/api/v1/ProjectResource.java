@@ -27,6 +27,6 @@ public class ProjectResource {
 
     @GetMapping
     public Page<ProjectResponse> getAll(Pageable pageable) {
-        return projectCache.findByOrderByCreatedAtDesc(pageable).map(projectMapper::to);
+        return projectCache.findAll(pageable).map(projectMapper::to);
     }
 }

@@ -52,7 +52,7 @@ public class BlogPostResource {
 
     @GetMapping
     public Page<BlogPostResponse> getAll(Pageable pageable) {
-        return blogPostCache.findByOrderByCreatedAtDesc(pageable).map(blogPostMapper::toBlogPostResponse);
+        return blogPostCache.findAll(pageable).map(blogPostMapper::toBlogPostResponse);
     }
 
     @GetMapping("/year/{year}")

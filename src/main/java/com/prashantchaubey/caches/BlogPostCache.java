@@ -20,16 +20,16 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
         this.blogPostRepository = blogPostRepository;
     }
 
-    public Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable) {
+    public Page<BlogPost> findAll(Pageable pageable) {
         return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
     }
 
     public Page<BlogPost> findByYearCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable) {
-        return blogPostRepository.findByCreatedAtBetween(from, to, pageable);
+        return blogPostRepository.findByCreatedAtBetweenOrderByCreatedAtDesc(from, to, pageable);
     }
 
     public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
-        return blogPostRepository.findByHeadingContaining(searchText, pageable);
+        return blogPostRepository.findByHeadingContainingOrderByCreatedAtDesc(searchText, pageable);
     }
 
     public BlogPost findByName(String name) {
@@ -37,7 +37,7 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
     }
 
     public Page<BlogPost> findByTagName(String blogTagName, Pageable pageable) {
-        return blogPostRepository.findByBlogTagsName(blogTagName, pageable);
+        return blogPostRepository.findByBlogTagsNameOrderByCreatedAtDesc(blogTagName, pageable);
     }
 
     @Override
