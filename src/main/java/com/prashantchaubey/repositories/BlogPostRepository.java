@@ -14,14 +14,14 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
     Page<BlogPost> findByOrderByCreatedAtDesc(Pageable pageable);
 
     @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
-    Page<BlogPost> findByCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable);
+    Page<BlogPost> findByCreatedAtBetweenOrderByCreatedAtDesc(LocalDateTime from, LocalDateTime to, Pageable pageable);
 
     @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
-    Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable);
+    Page<BlogPost> findByHeadingContainingOrderByCreatedAtDesc(String searchText, Pageable pageable);
 
     @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
     BlogPost findByName(String name);
 
     @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
-    Page<BlogPost> findByBlogTagsName(String name, Pageable pageable);
+    Page<BlogPost> findByBlogTagsNameOrderByCreatedAtDesc(String name, Pageable pageable);
 }

@@ -18,7 +18,7 @@ public class ProjectCache extends SimpleMapCache<Project> {
         this.projectRepository = projectRepository;
     }
 
-    public Page<Project> findByOrderByCreatedAtDesc(Pageable pageable) {
+    public Page<Project> findAll(Pageable pageable) {
         return projectRepository.findByOrderByCreatedAtDesc(pageable);
     }
 

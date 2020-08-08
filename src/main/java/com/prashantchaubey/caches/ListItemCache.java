@@ -19,7 +19,7 @@ public class ListItemCache extends SimpleMapCache<ListItem> {
     }
 
     public Page<ListItem> findByType(ListItem.Type type, Pageable pageable) {
-        return listItemRepository.findByType(type, pageable);
+        return listItemRepository.findByTypeOrderByCreatedAtDesc(type, pageable);
     }
 
     @Override
