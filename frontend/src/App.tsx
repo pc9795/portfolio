@@ -1,13 +1,13 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Sunshine from "./components/pages/Sunshine";
+import SunshinePage from "./components/pages/SunshinePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
     return <Router>
         <Switch>
-            <Route exact path="/sunshine" component={Sunshine}/>
+            <Route exact path="/sunshine" component={SunshinePage}/>
             <Route path="/">
                 <Header/>
                 <Footer/>

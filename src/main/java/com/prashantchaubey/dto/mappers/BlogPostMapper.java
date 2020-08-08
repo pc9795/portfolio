@@ -22,6 +22,7 @@ public abstract class BlogPostMapper {
     public abstract BlogPostResponse toBlogPostResponse(BlogPost blogPost);
 
     @Mapping(source = "blogTags", target = "blogTags", qualifiedByName = "blogTagToGetBlogTagResponse")
+    @Mapping(source = "content", target = "content") // Map struct was not mapping this column automatically
     public abstract BlogPostWithContentResponse toBlogPostWithContentResponse(BlogPost blogPost);
 
     @Named("blogTagToGetBlogTagResponse")

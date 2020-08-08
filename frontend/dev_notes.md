@@ -7,3 +7,5 @@ lifecycle. Hence, it is preferred to use npx to install and run it in a single s
 support
 * Webpack: A bundler for javascript
 * `create-react-app` will automatically setup babel and webpack for you.
+* The value of `NODE_ENV` is set automatically to development (when using `npm start`), test (when using `npm test`) or 
+production (when using `npm build`).

@@ -1,12 +1,12 @@
 import React from "react";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import Work from "./pages/Work";
-import Lists from "./pages/Lists";
-import Contact from "./pages/Contact";
+import HomePage from "./pages/HomePage";
+import BlogPage from "./pages/BlogPage";
+import WorkPage from "./pages/WorkPage";
+import ListsPage from "./pages/ListsPage";
+import ContactPage from "./pages/ContactPage";
 import {AppRoutes} from "../utils/constants";
-import BlogPost from './pages/BlogPost';
+import BlogPostPage from './pages/BlogPostPage';
 
 function Header() {
     return <Router>
@@ -36,12 +36,12 @@ function Header() {
         </nav>
 
         <Switch>
-            <Route exact path={AppRoutes.HOME} component={Home}/>
-            <Route exact path={AppRoutes.BLOG} component={Blog}/>
-            <Route exact path={AppRoutes.WORK} component={Work}/>
-            <Route exact path={AppRoutes.LISTS} component={Lists}/>
-            <Route exact path={AppRoutes.CONTACT} component={Contact}/>
-            <Route exact path={AppRoutes.BLOG + "/:name"} component={BlogPost}/>
+            <Route exact path={AppRoutes.HOME} component={HomePage}/>
+            <Route exact path={AppRoutes.BLOG} component={BlogPage}/>
+            <Route exact path={AppRoutes.WORK} component={WorkPage}/>
+            <Route exact path={AppRoutes.LISTS} component={ListsPage}/>
+            <Route exact path={AppRoutes.CONTACT} component={ContactPage}/>
+            <Route exact path={AppRoutes.BLOG + "/:name"} component={BlogPostPage}/>
         </Switch>
     </Router>;
 }

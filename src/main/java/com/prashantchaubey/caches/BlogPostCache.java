@@ -36,6 +36,10 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
         return blogPostRepository.findByName(name);
     }
 
+    public Page<BlogPost> findByTagName(String blogTagName, Pageable pageable) {
+        return blogPostRepository.findByBlogTagsName(blogTagName, pageable);
+    }
+
     @Override
     public BlogPost load(CacheKey key) {
         return null;

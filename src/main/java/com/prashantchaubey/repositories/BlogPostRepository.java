@@ -21,4 +21,7 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
 
     @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
     BlogPost findByName(String name);
+
+    @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
+    Page<BlogPost> findByBlogTagsName(String name, Pageable pageable);
 }

@@ -19,10 +19,6 @@ public class BlogTagCache extends SimpleMapCache<BlogTag> {
         this.blogTagRepository = blogTagRepository;
     }
 
-    public BlogTag findByName(String name) {
-        return blogTagRepository.findByName(name);
-    }
-
     public Page<BlogTag> findAll(Pageable pageable) {
         return blogTagRepository.findAll(pageable);
     }

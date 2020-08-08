@@ -5,9 +5,9 @@ function Card(props: any) {
     return <div className="card">
         <div className="card-body">
             <h4 className="card-title">{props.title}</h4>
-            <p className="card-text text-justify">
+            <div className="card-text text-justify">
                 {props.text}
-            </p>
+            </div>
         </div>
         {getFooter(props.footer)}
     </div>;
