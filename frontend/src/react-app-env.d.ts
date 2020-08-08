@@ -3,3 +3,12 @@
 interface Page<T> {
     content: T[]
 }
+
+interface ServerError {
+    error: ServerErrorInfo
+}
+
+interface ServerErrorInfo {
+    code: string,
+    message: string
+}

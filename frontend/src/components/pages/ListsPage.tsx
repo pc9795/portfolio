@@ -22,14 +22,16 @@ function ListsPage() {
 
     const renderTechnicalList = () => {
         return technicalList.map(technicalListItem => {
-            return <li>{technicalListItem.name} <span className="text-secondary">{technicalListItem.createdAt}</span>
+            return <li key={technicalListItem.name}>{technicalListItem.name} <span
+                className="text-secondary">{technicalListItem.createdAt}</span>
             </li>
         })
     };
 
     const renderVideoGameList = () => {
         return gamingList.map(gamingListItem => {
-            return <li>{gamingListItem.name} <span className="text-secondary">{gamingListItem.createdAt}</span>
+            return <li key={gamingListItem.name}>{gamingListItem.name} <span
+                className="text-secondary">{gamingListItem.createdAt}</span>
             </li>
         })
     };
