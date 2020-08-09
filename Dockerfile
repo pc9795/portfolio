@@ -4,5 +4,5 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 FROM openjdk:11.0.8-jre-slim
-COPY target/*.jar portfolio-api.jar
+COPY --from=build target/*.jar portfolio-api.jar
 ENTRYPOINT ["java","-jar","/portfolio-api.jar"]
