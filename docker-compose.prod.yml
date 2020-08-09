@@ -23,8 +23,7 @@ services:
       - .env
     depends_on:
       - postgres
-
-   portfolio-frontend:
+    portfolio-frontend:
      build:
        context: frontend
        args:
