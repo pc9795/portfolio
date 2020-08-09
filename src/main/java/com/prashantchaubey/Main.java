@@ -16,7 +16,6 @@ public class Main {
     }
 
     @Bean
-    @Profile("dev")
     public WebMvcConfigurer corsMvcConfigurer() {
         return new WebMvcConfigurer() {
             @Override
