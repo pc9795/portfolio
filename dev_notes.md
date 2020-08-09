@@ -32,3 +32,9 @@ listen_addresses = '*'
 
 if proxy_pass used without URI (i.e. without path after server:port) nginx will put URI from original request exactly as 
 it was with all double slashes, ../ and so on.
+
+#
+
+```
+select * from pg_stat_activity where pid in (select pid from pg_locks);
+```
