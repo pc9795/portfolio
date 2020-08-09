@@ -8,6 +8,8 @@ services:
     build: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - "~/database_data:/var/lib/postgresql/data"
     networks:
       portfolio:
     env_file:
