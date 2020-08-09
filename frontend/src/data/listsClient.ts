@@ -1,9 +1,8 @@
-import {API_URL} from "../utils/constants";
 import axios from 'axios';
 import ApiClientUtils from "../utils/apiClientUtils";
 import ListItem from "../models/listItem";
 
-const RESOURCE_URL = API_URL + "/lists";
+const RESOURCE_URL = process.env.REACT_APP_API_URL + "/lists";
 
 export class ListsClient {
     static async getTechnicalList(page?: number, size?: number): Promise<Page<ListItem>> {
