@@ -1,8 +1,7 @@
-import {API_URL} from "../utils/constants";
 import axios from 'axios';
 import Contact from "../models/contact";
 
-const RESOURCE_URL = API_URL + "/contacts";
+const RESOURCE_URL = process.env.REACT_APP_API_URL + "/contacts";
 
 export default class ContactsClient {
     static async create(contact: Contact) {

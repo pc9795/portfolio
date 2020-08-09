@@ -1,9 +1,8 @@
-import {API_URL} from "../utils/constants";
 import axios from 'axios';
 import ApiClientUtils from "../utils/apiClientUtils";
 import Project from "../models/project";
 
-const RESOURCE_URL = API_URL + "/projects";
+const RESOURCE_URL = process.env.REACT_APP_API_URL + "/projects";
 
 export default class ProjectsClient {
     static async getAll(page?: number, size?: number): Promise<Page<Project>> {

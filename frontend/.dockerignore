@@ -1,0 +1,5 @@
+.idea
+build
+node_modules
+.dockerignore
+dev_notes.md

@@ -1,12 +1,12 @@
-import {API_URL} from "../utils/constants";
 import axios from 'axios';
 import BlogPost from "../models/blogPost";
 import ApiClientUtils from "../utils/apiClientUtils";
 
-const RESOURCE_URL = API_URL + "/blog-posts";
+const RESOURCE_URL = process.env.REACT_APP_API_URL + "/blog-posts";
 
 export default class BlogPostsClient {
     static async getAll(page?: number, size?: number): Promise<Page<BlogPost>> {
+        console.log(`REACT_APP_API_URL: ${process.env.REACT_APP_API_URL}`);
         const url = ApiClientUtils.getPageableURL(new URL(RESOURCE_URL), page, size);
         const res = await axios.get(url.href);
 

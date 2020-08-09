@@ -1,0 +1,35 @@
+version: '3.1'
+
+networks:
+  portfolio:
+
+services:
+  postgres:
+    build: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      portfolio:
+    env_file:
+      - .env
+
+  portfolio-api:
+    build: .
+    networks:
+      portfolio:
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+   portfolio-frontend:
+     build:
+       context: frontend
+       args:
+       # This configuration is needed during building time so passing as an "arg"
+         REACT_APP_API_URL: "http://prashantchaubey.com/api/v1"
+     ports:
+       - "80:80"
+     networks:
+       portfolio:
+

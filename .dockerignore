@@ -1,0 +1,9 @@
+.idea/
+docker/
+frontend/
+.dockerignore
+.gitignore
+build.sh
+dev_notes.md
+*.iml
+README.md
