@@ -12,24 +12,15 @@ import javax.validation.constraints.NotNull;
 @Builder(builderClassName = "CreateContactRequestBuilder")
 @Value
 public class ContactCreateRequest {
-    @NotNull
-    @NotEmpty
-    private String name;
+  @NotNull @NotEmpty private String name;
 
-    @NotNull
-    @NotEmpty
-    private String contact;
+  @NotNull @NotEmpty private String contact;
 
-    @Email
-    @NotNull
-    @NotEmpty
-    private String email;
+  @Email @NotNull @NotEmpty private String email;
 
-    private String purpose;
+  private String purpose;
 
-    // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
-    @JsonPOJOBuilder(withPrefix = "")
-    public static class CreateContactRequestBuilder {
-
-    }
+  // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
+  @JsonPOJOBuilder(withPrefix = "")
+  static class CreateContactRequestBuilder {}
 }

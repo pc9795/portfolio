@@ -13,35 +13,36 @@ import java.time.LocalDateTime;
 
 @Component
 public class BlogPostCache extends SimpleMapCache<BlogPost> {
-    private BlogPostRepository blogPostRepository;
+  private BlogPostRepository blogPostRepository;
 
-    @Autowired
-    public BlogPostCache(BlogPostRepository blogPostRepository) {
-        this.blogPostRepository = blogPostRepository;
-    }
+  @Autowired
+  public BlogPostCache(BlogPostRepository blogPostRepository) {
+    this.blogPostRepository = blogPostRepository;
+  }
 
-    public Page<BlogPost> findAll(Pageable pageable) {
-        return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
-    }
+  public Page<BlogPost> findAll(Pageable pageable) {
+    return blogPostRepository.findByOrderByCreatedAtDesc(pageable);
+  }
 
-    public Page<BlogPost> findByYearCreatedAtBetween(LocalDateTime from, LocalDateTime to, Pageable pageable) {
-        return blogPostRepository.findByCreatedAtBetweenOrderByCreatedAtDesc(from, to, pageable);
-    }
+  public Page<BlogPost> findByYearCreatedAtBetween(
+      LocalDateTime from, LocalDateTime to, Pageable pageable) {
+    return blogPostRepository.findByCreatedAtBetweenOrderByCreatedAtDesc(from, to, pageable);
+  }
 
-    public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
-        return blogPostRepository.findByHeadingContainingOrderByCreatedAtDesc(searchText, pageable);
-    }
+  public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
+    return blogPostRepository.findByHeadingContainingOrderByCreatedAtDesc(searchText, pageable);
+  }
 
-    public BlogPost findByName(String name) {
-        return blogPostRepository.findByName(name);
-    }
+  public BlogPost findByName(String name) {
+    return blogPostRepository.findByName(name);
+  }
 
-    public Page<BlogPost> findByTagName(String blogTagName, Pageable pageable) {
-        return blogPostRepository.findByBlogTagsNameOrderByCreatedAtDesc(blogTagName, pageable);
-    }
+  public Page<BlogPost> findByTagName(String blogTagName, Pageable pageable) {
+    return blogPostRepository.findByBlogTagsNameOrderByCreatedAtDesc(blogTagName, pageable);
+  }
 
-    @Override
-    public BlogPost load(CacheKey key) {
-        return null;
-    }
+  @Override
+  public BlogPost load(CacheKey key) {
+    return null;
+  }
 }

@@ -9,13 +9,13 @@ import java.util.Set;
 @Builder
 @Value
 public class BlogPostResponse {
-    private String name;
+  private String name;
 
-    private String heading;
+  private String heading;
 
-    private String description;
+  private String description;
 
-    private LocalDateTime createdAt;
+  private LocalDateTime createdAt;
 
-    private Set<BlogTagResponse> blogTags;
+  private Set<BlogTagResponse> blogTags;
 }

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ContactMapper {
-    Contact from(ContactCreateRequest contactRequest);
+  Contact from(ContactCreateRequest contactRequest);
 
-    ContactResponse to(Contact contact);
+  ContactResponse to(Contact contact);
 }

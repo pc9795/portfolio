@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ListItemMapper {
-    ListItemResponse to(ListItem listItem);
+  ListItemResponse to(ListItem listItem);
 }

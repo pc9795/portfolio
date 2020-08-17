@@ -15,18 +15,15 @@ import java.util.Set;
 @Entity
 @Table(name = "blog_tags")
 public class BlogTag {
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name;
+  @Column(unique = true, nullable = false)
+  private String name;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+  @CreationTimestamp private LocalDateTime createdAt;
 
-    private String createdBy;
+  private String createdBy;
 
-    @ManyToMany(mappedBy = "blogTags")
-    private Set<BlogPost> blogPosts;
+  @ManyToMany(mappedBy = "blogTags")
+  private Set<BlogPost> blogPosts;
 }

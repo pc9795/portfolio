@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProjectCache extends SimpleMapCache<Project> {
-    private ProjectRepository projectRepository;
+  private ProjectRepository projectRepository;
 
-    @Autowired
-    public ProjectCache(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
-    }
+  @Autowired
+  public ProjectCache(ProjectRepository projectRepository) {
+    this.projectRepository = projectRepository;
+  }
 
-    public Page<Project> findAll(Pageable pageable) {
-        return projectRepository.findByOrderByCreatedAtDesc(pageable);
-    }
+  public Page<Project> findAll(Pageable pageable) {
+    return projectRepository.findByOrderByCreatedAtDesc(pageable);
+  }
 
-    @Override
-    public Project load(CacheKey key) {
-        return null;
-    }
+  @Override
+  public Project load(CacheKey key) {
+    return null;
+  }
 }

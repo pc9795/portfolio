@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface BlogTagMapper {
-    BlogTagResponse to(BlogTag blogTag);
+  BlogTagResponse to(BlogTag blogTag);
 }

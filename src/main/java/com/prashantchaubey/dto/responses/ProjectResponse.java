@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 @Builder
 @Value
 public class ProjectResponse {
-    private String name;
+  private String name;
 
-    private String heading;
+  private String heading;
 
-    private String description;
+  private String description;
 
-    private LocalDateTime createdAt;
+  private LocalDateTime createdAt;
 
-    private String link;
+  private String link;
 }

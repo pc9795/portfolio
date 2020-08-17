@@ -13,22 +13,24 @@ import java.time.LocalDateTime;
 @Setter(value = AccessLevel.PACKAGE)
 @Getter
 @Entity
-@Table(name = "list_items", indexes = {@Index(columnList = "type", name = "list_items_type_idx"),
-        @Index(columnList = "createdAt", name = "list_items_created_at_idx")})
+@Table(
+    name = "list_items",
+    indexes = {
+      @Index(columnList = "type", name = "list_items_type_idx"),
+      @Index(columnList = "createdAt", name = "list_items_created_at_idx")
+    })
 public class ListItem implements Serializable {
-    public enum Type {
-        GAMING, TECHNICAL
-    }
+  public enum Type {
+    GAMING,
+    TECHNICAL
+  }
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    private String name;
+  private String name;
 
-    @Enumerated(EnumType.STRING)
-    private Type type;
+  @Enumerated(EnumType.STRING)
+  private Type type;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+  @CreationTimestamp private LocalDateTime createdAt;
 }

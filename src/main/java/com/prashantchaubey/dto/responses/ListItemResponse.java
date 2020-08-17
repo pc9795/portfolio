@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Builder
 @Value
 public class ListItemResponse {
-    private String name;
+  private String name;
 
-    private ListItem.Type type;
+  private ListItem.Type type;
 
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime createdAt;
+  @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+  private LocalDateTime createdAt;
 }

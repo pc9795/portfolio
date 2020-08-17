@@ -13,24 +13,24 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = Constants.Resource.CONTACTS_V1)
+@RequestMapping(value = Constants.Endpoint.CONTACTS_V1)
 public class ContactResource {
 
-    private ContactRepository contactRepository;
-    private ContactMapper contactMapper;
+  private ContactRepository contactRepository;
+  private ContactMapper contactMapper;
 
-    @Autowired
-    public ContactResource(ContactRepository contactRepository, ContactMapper contactMapper) {
-        this.contactRepository = contactRepository;
-        this.contactMapper = contactMapper;
-    }
+  @Autowired
+  public ContactResource(ContactRepository contactRepository, ContactMapper contactMapper) {
+    this.contactRepository = contactRepository;
+    this.contactMapper = contactMapper;
+  }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ContactResponse create(@Valid @RequestBody ContactCreateRequest request) {
-        Contact contact = contactMapper.from(request);
-        contactRepository.save(contact);
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public ContactResponse create(@Valid @RequestBody ContactCreateRequest request) {
+    Contact contact = contactMapper.from(request);
+    contactRepository.save(contact);
 
-        return contactMapper.to(contact);
-    }
+    return contactMapper.to(contact);
+  }
 }
