@@ -20,5 +20,5 @@ public class SignupRequest {
 
   // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
   @JsonPOJOBuilder(withPrefix = "")
-  static class SignupRequestBuilder {}
+  public static class SignupRequestBuilder {}
 }
