@@ -10,7 +10,9 @@ import javax.persistence.*;
 @Setter(value = AccessLevel.PACKAGE)
 @Getter
 @Entity
-@Table(name = "users")
+@Table(
+    name = "users",
+    indexes = {@Index(columnList = "email", name = "users_email_idx")})
 public class User {
   public enum AuthProvider {
     GOOGLE("google"),
@@ -30,6 +32,8 @@ public class User {
       switch (value) {
         case "google":
           return GOOGLE;
+        case "local":
+          return LOCAL;
         default:
           throw new RuntimeException(
               String.format("AuthProvider [%s] is not registered yet", value));

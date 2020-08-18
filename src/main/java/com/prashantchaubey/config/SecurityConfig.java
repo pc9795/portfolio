@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
         .and()
         .redirectionEndpoint()
-        .baseUri("/api/oauth2/callback/*")
+        .baseUri("/api/oauth2/callback/*") // '*' represents different registration ids.
         .and()
         .userInfoEndpoint()
         .userService(portfolioOAuth2UserService)
