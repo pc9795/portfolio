@@ -34,8 +34,7 @@ public class HttpCookieOAuth2AuthorizationRequestRepository
       HttpServletRequest request,
       HttpServletResponse response) {
     if (oAuth2AuthorizationRequest == null) {
-      CookieUtils.deleteCookie(request, response, OAUTH2_AUTHORIZATION_REQUEST_COOKIE_ANME);
-      CookieUtils.deleteCookie(request, response, REDIRECT_URI_PARAM_COOKIE_NAME);
+      removeAuthorizationRequestCookies(request, response);
       return;
     }
 
