@@ -30,7 +30,7 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
   }
 
   public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
-    return blogPostRepository.findByHeadingContainingOrderByCreatedAtDesc(searchText, pageable);
+    return blogPostRepository.findByHeadingContainingIgnoreCaseOrderByCreatedAtDesc(searchText, pageable);
   }
 
   public BlogPost findByName(String name) {
