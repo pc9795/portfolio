@@ -1,3 +1,5 @@
+import {ACCESS_TOKEN} from "./constants";
+
 export default class ApiClientUtils {
     static getPageableURL(url: URL, page?: number, size?: number): URL {
         if (page) {
@@ -7,5 +9,15 @@ export default class ApiClientUtils {
             url.searchParams.append('size', size.toString());
         }
         return url;
+    }
+
+    static getConfig() {
+        const accessToken = localStorage.getItem(ACCESS_TOKEN);
+        if (accessToken) {
+            return {
+                headers: {Authorization: `Bearer ${accessToken}`}
+            }
+        }
+        return {};
     }
 }
