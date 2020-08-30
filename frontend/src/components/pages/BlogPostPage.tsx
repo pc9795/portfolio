@@ -35,9 +35,7 @@ function BlogPostPage(props: any) {
                     {renderBlogTagsForBlogPost(blogPost)}
                 </p>
             </div>
-            <div className="col-12 text-justify">
-                {blogPost.content}
-            </div>
+            <div className="col-12 text-justify" dangerouslySetInnerHTML={{__html: blogPost.content as string}}/>
         </div>;
     };
 
