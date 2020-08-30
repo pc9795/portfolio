@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Helmet} from "react-helmet";
 import {AppRoutes, FaviconConstants} from "../../utils/constants";
 import {Link} from "react-router-dom";
@@ -8,6 +8,7 @@ import BlogPost from "../../models/blogPost";
 import BlogPostsClient from "../../data/blogPostsClient";
 import Project from "../../models/project";
 import ProjectsClient from "../../data/projectsClient";
+import {useMountEffect} from "../../utils/hooks";
 
 const HOME_PAGE_BLOG_POSTS_COUNT = 3;
 const HOME_PAGE_PROJECTS_COUNT = 2;
@@ -16,14 +17,14 @@ function HomePage() {
     const [blogPosts, setBlogPosts] = useState([] as BlogPost[]);
     const [projects, setProjects] = useState([] as Project[]);
 
-    useEffect(() => {
+    useMountEffect(() => {
         BlogPostsClient.getAll(0, HOME_PAGE_BLOG_POSTS_COUNT).then((data: Page<BlogPost>) => {
             setBlogPosts(data.content);
         });
         ProjectsClient.getAll(0, HOME_PAGE_PROJECTS_COUNT).then((data: Page<Project>) => {
             setProjects(data.content);
         });
-    }, []);
+    });
 
     const renderHead = () => {
         return <Helmet>

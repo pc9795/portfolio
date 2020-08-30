@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Constants.Resource.BLOG_TAGS_V1)
+@RequestMapping(Constants.Endpoint.BLOG_TAGS_V1)
 public class BlogTagResource {
-    private final BlogTagCache blogTagCache;
-    private final BlogTagMapper blogTagMapper;
+  private final BlogTagCache blogTagCache;
+  private final BlogTagMapper blogTagMapper;
 
-    @Autowired
-    public BlogTagResource(BlogTagCache blogTagCache, BlogTagMapper blogTagMapper) {
-        this.blogTagCache = blogTagCache;
-        this.blogTagMapper = blogTagMapper;
-    }
+  @Autowired
+  public BlogTagResource(BlogTagCache blogTagCache, BlogTagMapper blogTagMapper) {
+    this.blogTagCache = blogTagCache;
+    this.blogTagMapper = blogTagMapper;
+  }
 
-    @GetMapping
-    public Page<BlogTagResponse> getAll(Pageable pageable) {
-        return blogTagCache.findAll(pageable).map(blogTagMapper::to);
-    }
+  @GetMapping
+  public Page<BlogTagResponse> getAll(Pageable pageable) {
+    return blogTagCache.findAll(pageable).map(blogTagMapper::to);
+  }
 }

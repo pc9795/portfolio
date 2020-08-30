@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ListItemCache extends SimpleMapCache<ListItem> {
-    private ListItemRepository listItemRepository;
+  private ListItemRepository listItemRepository;
 
-    @Autowired
-    public ListItemCache(ListItemRepository listItemRepository) {
-        this.listItemRepository = listItemRepository;
-    }
+  @Autowired
+  public ListItemCache(ListItemRepository listItemRepository) {
+    this.listItemRepository = listItemRepository;
+  }
 
-    public Page<ListItem> findByType(ListItem.Type type, Pageable pageable) {
-        return listItemRepository.findByTypeOrderByCreatedAtDesc(type, pageable);
-    }
+  public Page<ListItem> findByType(ListItem.Type type, Pageable pageable) {
+    return listItemRepository.findByTypeOrderByCreatedAtDesc(type, pageable);
+  }
 
-    @Override
-    public ListItem load(CacheKey key) {
-        return null;
-    }
+  @Override
+  public ListItem load(CacheKey key) {
+    return null;
+  }
 }

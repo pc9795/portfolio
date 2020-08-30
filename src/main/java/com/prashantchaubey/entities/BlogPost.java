@@ -14,38 +14,39 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Setter(value = AccessLevel.PACKAGE)
 @Getter
-@NamedEntityGraph(name = Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS,
-        attributeNodes = @NamedAttributeNode("blogTags"))
+@NamedEntityGraph(
+    name = Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS,
+    attributeNodes = @NamedAttributeNode("blogTags"))
 @Entity
-@Table(name = "blog_posts", indexes = {@Index(columnList = "createdAt", name = "blog_posts_created_at_idx")})
+@Table(
+    name = "blog_posts",
+    indexes = {@Index(columnList = "createdAt", name = "blog_posts_created_at_idx")})
 public class BlogPost {
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+  @Column(nullable = false, unique = true)
+  private String name;
 
-    @Column(nullable = false)
-    private String heading;
+  @Column(nullable = false)
+  private String heading;
 
-    private String description;
+  private String description;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+  @CreationTimestamp private LocalDateTime createdAt;
 
-    private String createdBy;
+  private String createdBy;
 
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    @Column(nullable = false)
-    private String content;
+  @Lob
+  @Type(type = "org.hibernate.type.TextType")
+  @Column(nullable = false)
+  private String content;
 
-    @ManyToMany
-    @JoinTable(name = "blog_posts_to_blog_tags",
-            joinColumns = @JoinColumn(name = "blog_post_id"),
-            inverseJoinColumns = @JoinColumn(name = "blog_tag_id"),
-            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),
-            inverseForeignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Set<BlogTag> blogTags;
+  @ManyToMany
+  @JoinTable(
+      name = "blog_posts_to_blog_tags",
+      joinColumns = @JoinColumn(name = "blog_post_id"),
+      inverseJoinColumns = @JoinColumn(name = "blog_tag_id"),
+      foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),
+      inverseForeignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+  private Set<BlogTag> blogTags;
 }

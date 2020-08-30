@@ -1,12 +1,13 @@
 export class FaviconConstants {
-    static URL = process.env.PUBLIC_URL + "favicon-16x16.png";
-    static BIRTHDAY_URL = process.env.PUBLIC_URL + "favicon-brithday-16x16.png";
+    static URL = process.env.REACT_APP_BASE_URL + "/favicon-16x16.png";
+    static BIRTHDAY_URL = process.env.REACT_APP_BASE_URL + "/favicon-brithday-16x16.png";
 }
 
 export class ImageConstants {
-    static CAKE = process.env.PUBLIC_URL + "img/cake.png";
-    static TWENTY_FIVE = process.env.PUBLIC_URL + "img/25.png";
-    static PROFILE_PICTURE = process.env.PUBLIC_URL + "img/profile.jpg";
+    static CAKE = process.env.REACT_APP_BASE_URL + "/img/cake.png";
+    static TWENTY_FIVE = process.env.REACT_APP_BASE_URL + "/img/25.png";
+    static PROFILE_PICTURE = process.env.REACT_APP_BASE_URL + "/img/profile.jpg";
+    static GOOGLE_LOGO = process.env.REACT_APP_BASE_URL + "/img/google-logo.png";
 }
 
 export class AppRoutes {
@@ -15,7 +16,10 @@ export class AppRoutes {
     static BLOG = "/blog";
     static CONTACT = "/contact";
     static WORK = "/work";
+    static OAUTH2_REDIRECT = "/oauth2/redirect";
+    static GOOGLE_AUTH_URL = `${process.env.REACT_APP_API_BASE_URL}/oauth2/authorize/google?redirect_uri=${process.env.REACT_APP_BASE_URL}${AppRoutes.OAUTH2_REDIRECT}`;
 }
 
-export const RESUME_URL = process.env.PUBLIC_URL + "/PrashantChaubey_resume.pdf";
-export const RECAPTCHA_KEY = "6LeWD7kZAAAAADuHZHoxZ8gcJ-Fzxkbugddnms60";
+export const RESUME_URL = process.env.REACT_APP_BASE_URL + "/PrashantChaubey_resume.pdf";
+export const RECAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA_KEY as string;
+export const ACCESS_TOKEN = "accessToken";

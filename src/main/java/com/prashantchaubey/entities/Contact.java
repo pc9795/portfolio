@@ -1,6 +1,5 @@
 package com.prashantchaubey.entities;
 
-
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,18 +18,15 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "contacts")
 public class Contact implements Serializable {
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    private String name;
+  private String name;
 
-    private String contact;
+  private String contact;
 
-    private String email;
+  private String email;
 
-    private String purpose;
+  private String purpose;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+  @CreationTimestamp private LocalDateTime createdAt;
 }

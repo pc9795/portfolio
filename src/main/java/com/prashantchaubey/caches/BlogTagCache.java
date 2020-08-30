@@ -9,22 +9,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class BlogTagCache extends SimpleMapCache<BlogTag> {
-    private BlogTagRepository blogTagRepository;
+  private BlogTagRepository blogTagRepository;
 
-    @Autowired
-    public BlogTagCache(BlogTagRepository blogTagRepository) {
-        this.blogTagRepository = blogTagRepository;
-    }
+  @Autowired
+  public BlogTagCache(BlogTagRepository blogTagRepository) {
+    this.blogTagRepository = blogTagRepository;
+  }
 
-    public Page<BlogTag> findAll(Pageable pageable) {
-        return blogTagRepository.findAll(pageable);
-    }
+  public Page<BlogTag> findAll(Pageable pageable) {
+    return blogTagRepository.findAll(pageable);
+  }
 
-    @Override
-    public BlogTag load(CacheKey key) {
-        return null;
-    }
+  @Override
+  public BlogTag load(CacheKey key) {
+    return null;
+  }
 }

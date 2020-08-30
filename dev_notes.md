@@ -32,3 +32,16 @@ listen_addresses = '*'
 
 if proxy_pass used without URI (i.e. without path after server:port) nginx will put URI from original request exactly as 
 it was with all double slashes, ../ and so on.
+
+#
+
+```
+select * from pg_stat_activity where pid in (select pid from pg_locks);
+```
+Use of `HttpCookieOAuth2AuthorizationRequestRepository`:
+The OAuth2 protocol recommends using a `state` parameter to prevent CSRF attacks. During authentication, the application 
+sends this parameter in the authorization request, and the OAuth2 provider returns this parameter unchanged in the 
+OAuth2 callback. The application compares the value of the `state` parameter returned from the OAuth2 provider with the 
+value that it had sent initially. If they don’t match then it denies the authentication request. To achieve this flow, 
+the application needs to store the `state` parameter somewhere so that it can later compare it with the `state` returned 
+from the OAuth2 provider. We’ll be storing the state as well as the `redirect_uri` in a short-lived cookie.

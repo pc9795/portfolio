@@ -11,22 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-@RequestMapping(Constants.Resource.PROJECTS_V1)
+@RequestMapping(Constants.Endpoint.PROJECTS_V1)
 public class ProjectResource {
 
-    private ProjectCache projectCache;
-    private ProjectMapper projectMapper;
+  private ProjectCache projectCache;
+  private ProjectMapper projectMapper;
 
-    @Autowired
-    public ProjectResource(ProjectCache projectCache, ProjectMapper projectMapper) {
-        this.projectCache = projectCache;
-        this.projectMapper = projectMapper;
-    }
+  @Autowired
+  public ProjectResource(ProjectCache projectCache, ProjectMapper projectMapper) {
+    this.projectCache = projectCache;
+    this.projectMapper = projectMapper;
+  }
 
-    @GetMapping
-    public Page<ProjectResponse> getAll(Pageable pageable) {
-        return projectCache.findAll(pageable).map(projectMapper::to);
-    }
+  @GetMapping
+  public Page<ProjectResponse> getAll(Pageable pageable) {
+    return projectCache.findAll(pageable).map(projectMapper::to);
+  }
 }

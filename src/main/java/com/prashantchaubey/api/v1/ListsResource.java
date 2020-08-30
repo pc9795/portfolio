@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Constants.Resource.LISTS_V1)
+@RequestMapping(Constants.Endpoint.LISTS_V1)
 public class ListsResource {
 
-    private ListItemCache listItemCache;
-    private ListItemMapper listItemMapper;
+  private ListItemCache listItemCache;
+  private ListItemMapper listItemMapper;
 
-    @Autowired
-    public ListsResource(ListItemCache listItemCache, ListItemMapper listItemMapper) {
-        this.listItemCache = listItemCache;
-        this.listItemMapper = listItemMapper;
-    }
+  @Autowired
+  public ListsResource(ListItemCache listItemCache, ListItemMapper listItemMapper) {
+    this.listItemCache = listItemCache;
+    this.listItemMapper = listItemMapper;
+  }
 
-    @GetMapping("/technical")
-    public Page<ListItemResponse> getTechnicalLists(Pageable pageable) {
-        return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::to);
-    }
+  @GetMapping("/technical")
+  public Page<ListItemResponse> getTechnicalLists(Pageable pageable) {
+    return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::to);
+  }
 
-    @GetMapping("/gaming")
-    public Page<ListItemResponse> getGamingList(Pageable pageable) {
-        return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::to);
-    }
+  @GetMapping("/gaming")
+  public Page<ListItemResponse> getGamingList(Pageable pageable) {
+    return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::to);
+  }
 }
