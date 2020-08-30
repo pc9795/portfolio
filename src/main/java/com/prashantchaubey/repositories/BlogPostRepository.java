@@ -18,7 +18,7 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
       LocalDateTime from, LocalDateTime to, Pageable pageable);
 
   @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
-  Page<BlogPost> findByHeadingContainingOrderByCreatedAtDesc(String searchText, Pageable pageable);
+  Page<BlogPost> findByHeadingContainingIgnoreCaseOrderByCreatedAtDesc(String searchText, Pageable pageable);
 
   @EntityGraph(Constants.EntityGraphName.BLOG_POST_WITH_BLOG_TAGS)
   BlogPost findByName(String name);
