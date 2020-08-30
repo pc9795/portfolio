@@ -12,3 +12,8 @@ interface ServerErrorInfo {
     code: string,
     message: string
 }
+
+declare interface AppReducerAction {
+    payload: any,
+    type: ActionType
+}

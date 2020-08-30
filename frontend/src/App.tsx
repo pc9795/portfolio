@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useReducer} from "react";
 import {Route, Switch} from "react-router-dom";
 import SunshinePage from "./components/pages/SunshinePage";
 import Header from "./components/Header";
@@ -12,24 +12,72 @@ import ContactPage from "./components/pages/ContactPage";
 import HomePage from "./components/pages/HomePage";
 import WorkPage from "./components/pages/WorkPage";
 import NotFound from "./components/pages/NotFound";
+import Alarm from "./components/gui/Alarm";
+import {useMountEffect} from "./utils/hooks";
+import TokenManager from "./utils/tokenManager";
+
+export const AppContext = React.createContext(undefined as any);
+
+export enum AppReducerActionType {
+    SET_ALARM = "set_alarm",
+    AUTHENTICATE = "authenticate",
+    LOGOUT = "logout"
+}
+
+const appInitialState = {
+    alarmMessage: "",
+    authenticated: false
+};
+
+function appReducer(state: any, action: AppReducerAction): any {
+    switch (action.type) {
+        case AppReducerActionType.SET_ALARM:
+            return {...state, alarmMessage: action.payload};
+        case AppReducerActionType.AUTHENTICATE:
+            const accessToken = action.payload;
+            TokenManager.setAccessToken(accessToken);
+            return {...state, authenticated: true};
+        case AppReducerActionType.LOGOUT:
+            TokenManager.removeAccessToken();
+            return {...state, authenticated: false};
+        default:
+            return state;
+    }
+}
 
 function App() {
+    const [appState, dispatch] = useReducer(appReducer, appInitialState);
+
+    useMountEffect(() => {
+        console.log("Use effect called:" + localStorage.accessToken);
+    });
+
+    const renderAlarm = () => {
+        if (!appState.alarmMessage) {
+            return;
+        }
+        return <Alarm message={appState.alarmMessage}/>
+    };
+
     return <Switch>
         <Route exact path="/sunshine" component={SunshinePage}/>
-        <Route path="/">
-            <Header/>
-            <Switch>
-                <Route exact path={AppRoutes.HOME} component={HomePage}/>
-                <Route exact path={AppRoutes.BLOG} component={BlogPage}/>
-                <Route exact path={AppRoutes.WORK} component={WorkPage}/>
-                <Route exact path={AppRoutes.LISTS} component={ListsPage}/>
-                <Route exact path={AppRoutes.CONTACT} component={ContactPage}/>
-                <Route exact path={AppRoutes.BLOG + "/:name"} component={BlogPostPage}/>
-                <Route exact path={AppRoutes.OAUTH2_REDIRECT} component={OAuth2RedirectHandler}/>
-                <Route component={NotFound}/>
-            </Switch>
-            <Footer/>
-        </Route>
+        <AppContext.Provider value={{appState, dispatch}}>
+            <Route path="/">
+                <Header/>
+                {renderAlarm()}
+                <Switch>
+                    <Route exact path={AppRoutes.HOME} component={HomePage}/>
+                    <Route exact path={AppRoutes.BLOG} component={BlogPage}/>
+                    <Route exact path={AppRoutes.WORK} component={WorkPage}/>
+                    <Route exact path={AppRoutes.LISTS} component={ListsPage}/>
+                    <Route exact path={AppRoutes.CONTACT} component={ContactPage}/>
+                    <Route exact path={AppRoutes.BLOG + "/:name"} component={BlogPostPage}/>
+                    <Route exact path={AppRoutes.OAUTH2_REDIRECT} component={OAuth2RedirectHandler}/>
+                    <Route component={NotFound}/>
+                </Switch>
+                <Footer/>
+            </Route>
+        </AppContext.Provider>
     </Switch>
 }
 

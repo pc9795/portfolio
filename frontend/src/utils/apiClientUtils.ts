@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN} from "./constants";
+import TokenManager from "./tokenManager";
 
 export default class ApiClientUtils {
     static getPageableURL(url: URL, page?: number, size?: number): URL {
@@ -12,10 +12,9 @@ export default class ApiClientUtils {
     }
 
     static getConfig() {
-        const accessToken = localStorage.getItem(ACCESS_TOKEN);
-        if (accessToken) {
+        if (TokenManager.hasAccessToken()) {
             return {
-                headers: {Authorization: `Bearer ${accessToken}`}
+                headers: {Authorization: `Bearer ${TokenManager.getAccessToken()}`}
             }
         }
         return {};

@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FaviconConstants} from "../../utils/constants";
 import {Helmet} from "react-helmet";
 import BlogPost from "../../models/blogPost";
 import BlogPostsClient from "../../data/blogPostsClient";
+import {useMountEffect} from "../../utils/hooks";
 
 function BlogPostPage(props: any) {
     const {blogPostName} = props.match.params.name;
     const [blogPost, setBlogPost] = useState(null as null | BlogPost);
 
-    useEffect(() => {
+    useMountEffect(() => {
         BlogPostsClient.getByName(props.match.params.name).then((data: BlogPost) => setBlogPost(data));
-    }, []);
+    });
 
     const renderHead = () => {
         return <Helmet>

@@ -29,14 +29,14 @@ function WorkPage() {
     };
 
     const renderProjectCards = () => {
-        return <div className="row card-deck mt-3">
+        return <div className="row card-deck">
             {projects.map(project => renderProjectCard(project))}
         </div>
     };
 
     const renderProjectCard = (project: Project) => {
-        return <div className="col-md-4 col-sm-12">
-            <Card title={project.heading} text={project.description}
+        return <div className="col-md-4 col-sm-12 mt-3">
+            <Card key={project.name} title={project.heading} text={project.description}
                   footer={<a href={project.link} className="text-secondary">Github Link</a>}/>
         </div>
     };
