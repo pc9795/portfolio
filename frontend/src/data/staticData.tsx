@@ -91,8 +91,8 @@ export class StaticData {
                                           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                           allowFullScreen/>;
 
-        const gameTrailers = [bitNightmareTrailer, bumperFuryTrailer].map(trailer => {
-            return <div className="mx-1 col-12 col-sm-4">{trailer}</div>
+        const gameTrailers = [bitNightmareTrailer, bumperFuryTrailer].map((trailer, index) => {
+            return <div key={index} className="mx-1 col-12 col-sm-4">{trailer}</div>
         });
 
         return <div className="row">
