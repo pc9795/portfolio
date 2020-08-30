@@ -1,8 +1,27 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 import {AppRoutes, ImageConstants} from "../utils/constants";
+import {AppContext, AppReducerActionType} from "../App";
 
 function Header() {
+    const {appState, dispatch} = useContext(AppContext);
+
+    const renderUserArea = () => {
+        if (appState.authenticated) {
+            return <div>
+                <button className="btn btn-light" onClick={() => {
+                    dispatch({type: AppReducerActionType.LOGOUT})
+                }}>Logout
+                </button>
+            </div>;
+
+        }
+        return <a href={AppRoutes.GOOGLE_AUTH_URL} className="btn btn-light">
+            <img src={ImageConstants.GOOGLE_LOGO} height="30" width="30" alt="Google"/>
+            Log In
+        </a>
+    };
+
     return <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <Link className="navbar-brand" to={AppRoutes.HOME}>Prashant Chaubey</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -27,10 +46,7 @@ function Header() {
             </ul>
         </div>
         <div>
-            <a href={AppRoutes.GOOGLE_AUTH_URL} className="btn btn-light">
-                <img src={ImageConstants.GOOGLE_LOGO} height="30" width="30" alt="Google"/>
-                Log In
-            </a>
+            {renderUserArea()}
         </div>
     </nav>
 }

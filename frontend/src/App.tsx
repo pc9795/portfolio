@@ -13,7 +13,6 @@ import HomePage from "./components/pages/HomePage";
 import WorkPage from "./components/pages/WorkPage";
 import NotFound from "./components/pages/NotFound";
 import Alarm from "./components/gui/Alarm";
-import {useMountEffect} from "./utils/hooks";
 import TokenManager from "./utils/tokenManager";
 
 export const AppContext = React.createContext(undefined as any);
@@ -26,7 +25,7 @@ export enum AppReducerActionType {
 
 const appInitialState = {
     alarmMessage: "",
-    authenticated: false
+    authenticated: TokenManager.hasAccessToken()
 };
 
 function appReducer(state: any, action: AppReducerAction): any {
@@ -47,10 +46,6 @@ function appReducer(state: any, action: AppReducerAction): any {
 
 function App() {
     const [appState, dispatch] = useReducer(appReducer, appInitialState);
-
-    useMountEffect(() => {
-        console.log("Use effect called:" + localStorage.accessToken);
-    });
 
     const renderAlarm = () => {
         if (!appState.alarmMessage) {
