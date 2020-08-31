@@ -60,7 +60,7 @@ public class AuthController {
   @PostMapping("/register")
   @ResponseStatus(HttpStatus.CREATED)
   public UserResponse register(@Valid @RequestBody SignupRequest signupRequest) {
-    if (userCache.existsByEmail(signupRequest.getEmail())) {
+    if (userCache.findByEmail(signupRequest.getEmail()).isPresent()) {
       throw new BadDataException(
           String.format("Email [%s] already in use", signupRequest.getEmail()));
     }

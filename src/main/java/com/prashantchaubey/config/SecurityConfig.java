@@ -83,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticationEntryPoint(restAuthenticationEntryPoint)
         .and()
         .authorizeRequests()
-        .antMatchers(Constants.Endpoint.USERS_V1 + "/**")
+        .antMatchers(Constants.Endpoint.USERS_V1 + "/**", Constants.Endpoint.COMMENTS_V1 + "/**")
         .authenticated()
         .and()
         .oauth2Login()
