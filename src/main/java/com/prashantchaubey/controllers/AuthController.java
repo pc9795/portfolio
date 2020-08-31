@@ -32,11 +32,11 @@ public class AuthController {
 
   @Autowired
   public AuthController(
-          AuthenticationManager authenticationManager,
-          UserCache userCache,
-          PasswordEncoder passwordEncoder,
-          JWTTokenProvider JWTTokenProvider,
-          UserMapper userMapper) {
+      AuthenticationManager authenticationManager,
+      UserCache userCache,
+      PasswordEncoder passwordEncoder,
+      JWTTokenProvider JWTTokenProvider,
+      UserMapper userMapper) {
     this.authenticationManager = authenticationManager;
     this.userCache = userCache;
     this.passwordEncoder = passwordEncoder;
@@ -69,11 +69,10 @@ public class AuthController {
         SignupRequest.builder()
             .name(signupRequest.getName())
             .email(signupRequest.getEmail())
-            .provider(signupRequest.getProvider())
             .password(passwordEncoder.encode(signupRequest.getPassword()))
             .build();
     User user = userMapper.to(passwordEncryptedSignupRequest);
 
-    return userMapper.from(user);
+    return userMapper.from(userCache.save(user));
   }
 }

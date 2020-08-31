@@ -46,7 +46,7 @@ public class BlogPost {
       name = "blog_posts_to_blog_tags",
       joinColumns = @JoinColumn(name = "blog_post_id"),
       inverseJoinColumns = @JoinColumn(name = "blog_tag_id"),
-      foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),
-      inverseForeignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+      foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT),
+      inverseForeignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
   private Set<BlogTag> blogTags;
 }

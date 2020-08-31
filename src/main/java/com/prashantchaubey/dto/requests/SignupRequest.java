@@ -14,9 +14,12 @@ import javax.validation.constraints.NotBlank;
 @Value
 public class SignupRequest {
   @NotBlank private String name;
+
   @NotBlank @Email private String email;
+
   @NotBlank private String password;
-  private User.AuthProvider provider;
+
+  private User.AuthProvider provider = User.AuthProvider.LOCAL;
 
   // Required for Jackson to work with Lombok Immutable(@Value + @Builder)
   @JsonPOJOBuilder(withPrefix = "")

@@ -5,6 +5,7 @@ import com.prashantchaubey.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -74,6 +75,12 @@ public class ExceptionController {
   public void handleInvalidClientRequestsWithExcMessages(
       Exception e, HttpServletResponse response) {
     Utils.updateErrorInResponse(HttpServletResponse.SC_BAD_REQUEST, e.getMessage(), response);
+  }
+
+  @ExceptionHandler({BadCredentialsException.class})
+  public void handleBadCredentialsException(HttpServletResponse response) {
+    Utils.updateErrorInResponse(
+        HttpServletResponse.SC_UNAUTHORIZED, Constants.ErrorMsg.BAD_CREDENTIALS, response);
   }
 
   @ExceptionHandler(Exception.class)

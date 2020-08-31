@@ -3,6 +3,8 @@ package com.prashantchaubey.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
@@ -59,4 +61,13 @@ public class User {
   private AuthProvider provider;
 
   private String providerId;
+
+  @ManyToMany
+  @JoinTable(
+      name = "user_permissions",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "permission_id"),
+      foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT),
+      inverseForeignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+  private Set<Permission> permissionSet;
 }

@@ -5,7 +5,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
@@ -23,7 +22,4 @@ public class BlogTag {
   @CreationTimestamp private LocalDateTime createdAt;
 
   private String createdBy;
-
-  @ManyToMany(mappedBy = "blogTags")
-  private Set<BlogPost> blogPosts;
 }

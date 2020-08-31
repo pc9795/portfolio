@@ -2,6 +2,7 @@ package com.prashantchaubey.config;
 
 import com.prashantchaubey.services.PortfolioOAuth2UserService;
 import com.prashantchaubey.services.PortfolioUserDetailsService;
+import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -82,9 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticationEntryPoint(restAuthenticationEntryPoint)
         .and()
         .authorizeRequests()
-        .antMatchers("/**")
-        .permitAll()
-        .anyRequest()
+        .antMatchers(Constants.Endpoint.USERS_V1 + "/**")
         .authenticated()
         .and()
         .oauth2Login()
