@@ -11,7 +11,7 @@ spring:
           lob:
             # Workaround for an error with postgres and hibernate
             non_contextual_creation: true
-        format_sql: true
+        format_sql: false
     generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   # Below 2 are required to handle 404 with controller advice
@@ -26,7 +26,7 @@ spring:
           google:
             clientId: ${GOOGLE_OAUTH_CLIENT_ID}
             clientSecret: ${GOOGLE_OAUTH_CLIENT_SECRET}
-            redirectUri: ${GOOGLE_OAUTH_REDIRECT_URI}
+            redirectUri: "{baseUrl}/api/oauth2/callback/{registrationId}"
             scope:
               - email
               - profile
@@ -35,6 +35,33 @@ server:
   servlet:
     session:
       tracking-modes: cookie
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: error
+        type:
+          descriptor:
+            sql:
+              BasicBinder: error
+
+jwt:
+  auth:
+    tokenSecret: ${JWT_TOKEN_SECRET}
+    tokenExpirationMSec: 864000000
+  oauth2:
+    authorizedRedirectUris: ${JWT_AUTHORIZED_REDIRECT_URIS}
+
+---
+
+spring:
+  profiles:
+    dev
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
 
 # Below 2 are for printing sql queries and there parameters
 logging:
@@ -46,10 +73,3 @@ logging:
           descriptor:
             sql:
               BasicBinder: trace
-
-jwt:
-  auth:
-    tokenSecret: ${JWT_TOKEN_SECRET}
-    tokenExpirationMSec: 864000000
-  oauth2:
-    authorizedRedirectUris: ${JWT_AUTHORIZED_REDIRECT_URIS}
