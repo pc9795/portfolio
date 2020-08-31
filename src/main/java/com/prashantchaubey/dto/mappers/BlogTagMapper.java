@@ -7,5 +7,5 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface BlogTagMapper {
-  BlogTagResponse to(BlogTag blogTag);
+  BlogTagResponse toBlogTagResponse(BlogTag blogTag);
 }

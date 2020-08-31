@@ -7,5 +7,5 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ListItemMapper {
-  ListItemResponse to(ListItem listItem);
+  ListItemResponse toListItemResponse(ListItem listItem);
 }

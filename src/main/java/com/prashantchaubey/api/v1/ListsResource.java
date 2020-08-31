@@ -27,11 +27,11 @@ public class ListsResource {
 
   @GetMapping("/technical")
   public Page<ListItemResponse> getTechnicalLists(Pageable pageable) {
-    return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::to);
+    return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::toListItemResponse);
   }
 
   @GetMapping("/gaming")
   public Page<ListItemResponse> getGamingList(Pageable pageable) {
-    return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::to);
+    return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::toListItemResponse);
   }
 }

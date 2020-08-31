@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ContactMapper {
-  Contact from(ContactCreateRequest contactRequest);
+  Contact fromContactCreateRequest(ContactCreateRequest contactRequest);
 
-  ContactResponse to(Contact contact);
+  ContactResponse toContactResponse(Contact contact);
 }

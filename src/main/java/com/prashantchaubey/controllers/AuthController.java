@@ -71,8 +71,8 @@ public class AuthController {
             .email(signupRequest.getEmail())
             .password(passwordEncoder.encode(signupRequest.getPassword()))
             .build();
-    User user = userMapper.to(passwordEncryptedSignupRequest);
+    User user = userMapper.from(passwordEncryptedSignupRequest);
 
-    return userMapper.from(userCache.save(user));
+    return userMapper.toUserResponse(userCache.save(user));
   }
 }

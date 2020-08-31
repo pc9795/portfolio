@@ -35,6 +35,6 @@ public abstract class BlogPostMapper {
 
   @Named("blogTagToGetBlogTagResponse")
   Set<BlogTagResponse> blogTagToGetBlogTagResponse(Set<BlogTag> blogTags) {
-    return blogTags.stream().map(blogTagMapper::to).collect(Collectors.toSet());
+    return blogTags.stream().map(blogTagMapper::toBlogTagResponse).collect(Collectors.toSet());
   }
 }

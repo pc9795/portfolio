@@ -35,6 +35,6 @@ public class UserResource {
           String.format("User with email [%s] not found", userPrincipal.getEmail()));
     }
 
-    return userMapper.from(maybeUser.get());
+    return userMapper.toUserResponse(maybeUser.get());
   }
 }

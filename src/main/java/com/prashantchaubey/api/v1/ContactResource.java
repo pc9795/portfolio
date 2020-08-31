@@ -28,9 +28,9 @@ public class ContactResource {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public ContactResponse create(@Valid @RequestBody ContactCreateRequest request) {
-    Contact contact = contactMapper.from(request);
+    Contact contact = contactMapper.fromContactCreateRequest(request);
     contactRepository.save(contact);
 
-    return contactMapper.to(contact);
+    return contactMapper.toContactResponse(contact);
   }
 }
