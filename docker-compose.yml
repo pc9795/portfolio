@@ -10,20 +10,15 @@ services:
       portfolio:
     ports:
       - "5432:5432"
-    environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: password
+    env_file:
+      - .env.local
 
   portfolio-api:
     build: .
     networks:
       portfolio:
-    environment:
-      DB_HOST: postgres
-      DB_NAME: postgres
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: password
+    env_file:
+      - .env.local
     depends_on:
       - postgres
 
@@ -31,8 +26,8 @@ services:
     build:
       context: frontend
       args:
-        # This configuration is needed during building time so passing as an "arg"
-        REACT_APP_API_URL: "http://192.168.99.100/api/v1"
+        REACT_APP_API_BASE_URL: http://192.168.99.100/api
+        REACT_APP_BASE_URL: http://192.168.99.100
     ports:
       - "80:80"
     networks:

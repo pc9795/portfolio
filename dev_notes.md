@@ -45,3 +45,8 @@ OAuth2 callback. The application compares the value of the `state` parameter ret
 value that it had sent initially. If they don’t match then it denies the authentication request. To achieve this flow, 
 the application needs to store the `state` parameter somewhere so that it can later compare it with the `state` returned 
 from the OAuth2 provider. We’ll be storing the state as well as the `redirect_uri` in a short-lived cookie.
+
+#
+
+Right now not able to test Google OAuth flow locally with docker because Google doesn't accepts IP addresses for redirect
+URLs

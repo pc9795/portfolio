@@ -13,24 +13,26 @@ services:
     networks:
       portfolio:
     env_file:
-      - .env
+      - .env.prod
 
   portfolio-api:
     build: .
     networks:
       portfolio:
     env_file:
-      - .env
+      - .env.prod
     depends_on:
       - postgres
+
   portfolio-frontend:
     build:
       context: frontend
       args:
-        # This configuration is needed during building time so passing as an "arg"
-        REACT_APP_API_URL: "http://prashantchaubey.com/api/v1"
-    ports:
-     - "80:80"
+        REACT_APP_API_BASE_URL: http://prashantchaubey.com/api
+        REACT_APP_BASE_URL: http://prashantchaubey.com
     networks:
       portfolio:
-
+    ports:
+     - "80:80"
+    depends_on:
+      - portfolio-api
