@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(Constants.Endpoint.LISTS_V1)
 public class ListsResource {
-
-  private ListItemCache listItemCache;
-  private ListItemMapper listItemMapper;
+  private final ListItemCache listItemCache;
+  private final ListItemMapper listItemMapper;
 
   @Autowired
   public ListsResource(ListItemCache listItemCache, ListItemMapper listItemMapper) {
@@ -27,11 +26,15 @@ public class ListsResource {
 
   @GetMapping("/technical")
   public Page<ListItemResponse> getTechnicalLists(Pageable pageable) {
-    return listItemCache.findByType(ListItem.Type.TECHNICAL, pageable).map(listItemMapper::toListItemResponse);
+    return listItemCache
+        .findByType(ListItem.Type.TECHNICAL, pageable)
+        .map(listItemMapper::toListItemResponse);
   }
 
   @GetMapping("/gaming")
   public Page<ListItemResponse> getGamingList(Pageable pageable) {
-    return listItemCache.findByType(ListItem.Type.GAMING, pageable).map(listItemMapper::toListItemResponse);
+    return listItemCache
+        .findByType(ListItem.Type.GAMING, pageable)
+        .map(listItemMapper::toListItemResponse);
   }
 }

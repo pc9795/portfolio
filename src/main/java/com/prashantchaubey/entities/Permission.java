@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter(value = AccessLevel.PACKAGE)
 @Getter
 @Entity
-@Table(name = "permission")
+@Table(name = "permissions")
 public class Permission {
 
   public enum Type {}

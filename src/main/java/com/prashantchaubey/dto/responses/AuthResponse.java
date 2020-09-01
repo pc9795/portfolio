@@ -7,5 +7,6 @@ import lombok.Value;
 @Value
 public class AuthResponse {
   private String token;
+
   private String tokenType = "Bearer";
 }

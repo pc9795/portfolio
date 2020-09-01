@@ -9,6 +9,8 @@ import java.util.Set;
 @Builder
 @Value
 public class BlogPostWithContentResponse {
+  private Long id;
+
   private String name;
 
   private String heading;

@@ -18,8 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(Constants.Endpoint.USERS_V1)
 public class UserResource {
-  private UserCache userCache;
-  private UserMapper userMapper;
+  private final UserCache userCache;
+  private final UserMapper userMapper;
 
   @Autowired
   public UserResource(UserCache userCache, UserMapper userMapper) {

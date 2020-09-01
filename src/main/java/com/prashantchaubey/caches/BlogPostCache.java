@@ -39,4 +39,8 @@ public class BlogPostCache {
   public Page<BlogPost> findByTagName(String blogTagName, Pageable pageable) {
     return blogPostRepository.findByBlogTagsNameOrderByCreatedAtDesc(blogTagName, pageable);
   }
+
+  public boolean existsById(Long id) {
+    return blogPostRepository.existsById(id);
+  }
 }

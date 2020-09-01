@@ -15,9 +15,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = Constants.Endpoint.CONTACTS_V1)
 public class ContactResource {
-
-  private ContactRepository contactRepository;
-  private ContactMapper contactMapper;
+  private final ContactRepository contactRepository;
+  private final ContactMapper contactMapper;
 
   @Autowired
   public ContactResource(ContactRepository contactRepository, ContactMapper contactMapper) {

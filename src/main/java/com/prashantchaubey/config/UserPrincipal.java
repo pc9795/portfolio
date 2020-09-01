@@ -9,16 +9,22 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.*;
 
 public class UserPrincipal implements OAuth2User, UserDetails {
+  private Long id;
   private String email;
   private String password;
   private Collection<? extends GrantedAuthority> authorities;
   private Map<String, Object> attributes;
 
   private UserPrincipal(
-      String email, String password, Collection<? extends GrantedAuthority> authorities) {
+      Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    this.id = id;
     this.email = email;
     this.password = password;
     this.authorities = authorities;
+  }
+
+  public Long getId() {
+    return this.id;
   }
 
   public String getEmail() {
@@ -78,7 +84,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     List<GrantedAuthority> authorities =
         Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
-    return new UserPrincipal(user.getEmail(), user.getPassword(), authorities);
+    return new UserPrincipal(user.getId(), user.getEmail(), user.getPassword(), authorities);
   }
 
   public static OAuth2User create(User user, Map<String, Object> attributes) {

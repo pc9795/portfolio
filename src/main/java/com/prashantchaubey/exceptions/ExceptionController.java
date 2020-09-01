@@ -83,6 +83,11 @@ public class ExceptionController {
         HttpServletResponse.SC_UNAUTHORIZED, Constants.ErrorMsg.BAD_CREDENTIALS, response);
   }
 
+  @ExceptionHandler({UnauthorizedAccessException.class})
+  public void handleUnauthorizedAccessException(Exception e, HttpServletResponse response) {
+    Utils.updateErrorInResponse(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage(), response);
+  }
+
   @ExceptionHandler(Exception.class)
   public void handleAll(Exception e, HttpServletResponse response) {
     LOGGER.error(String.format("Something bad happened:%s", e.getMessage()), e);
