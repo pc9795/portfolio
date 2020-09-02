@@ -5,9 +5,11 @@ import com.prashantchaubey.caches.CommentCache;
 import com.prashantchaubey.caches.UserCommentReactionCache;
 import com.prashantchaubey.config.UserPrincipal;
 import com.prashantchaubey.dto.mappers.CommentMapper;
+import com.prashantchaubey.dto.mappers.UserCommentReactionMapper;
 import com.prashantchaubey.dto.requests.CommentCreateRequest;
 import com.prashantchaubey.dto.requests.CommentEditRequest;
 import com.prashantchaubey.dto.responses.CommentResponse;
+import com.prashantchaubey.dto.responses.UserCommentReactionResponse;
 import com.prashantchaubey.entities.Comment;
 import com.prashantchaubey.entities.UserCommentReaction;
 import com.prashantchaubey.entities.UserCommentReactionId;
@@ -37,6 +39,7 @@ public class CommentResource {
   private final BlogPostRepository blogPostRepository;
   private final BlogPostCache blogPostCache;
   private final UserCommentReactionCache userCommentReactionCache;
+  private final UserCommentReactionMapper userCommentReactionMapper;
 
   public CommentResource(
       CommentCache commentCache,
@@ -44,13 +47,15 @@ public class CommentResource {
       UserRepository userRepository,
       BlogPostRepository blogPostRepository,
       BlogPostCache blogPostCache,
-      UserCommentReactionCache userCommentReactionCache) {
+      UserCommentReactionCache userCommentReactionCache,
+      UserCommentReactionMapper userCommentReactionMapper) {
     this.commentCache = commentCache;
     this.commentMapper = commentMapper;
     this.userRepository = userRepository;
     this.blogPostRepository = blogPostRepository;
     this.blogPostCache = blogPostCache;
     this.userCommentReactionCache = userCommentReactionCache;
+    this.userCommentReactionMapper = userCommentReactionMapper;
   }
 
   @GetMapping
@@ -61,10 +66,14 @@ public class CommentResource {
         .collect(Collectors.toSet());
   }
 
-  public Set<UserCommentReaction> getAllReactions(
+  @GetMapping("/reactions")
+  public Set<UserCommentReactionResponse> getAllReactions(
+      @RequestParam("blog_post_id") Long blogPostId,
       @AuthenticationPrincipal UserPrincipal userPrincipal) {
-    // todo implement
-    return null;
+    return userCommentReactionCache.findByUserAndBlogPost(userPrincipal.getId(), blogPostId)
+        .stream()
+        .map(userCommentReactionMapper::toUserCommentReactionResponse)
+        .collect(Collectors.toSet());
   }
 
   @PostMapping
@@ -107,14 +116,7 @@ public class CommentResource {
 
     commentCache.updateMessage(id, request.getMessage());
 
-    return CommentResponse.builder()
-        .id(originalComment.getId())
-        .upVotes(originalComment.getUpVotes())
-        .downVotes(originalComment.getDownVotes())
-        .message(request.getMessage())
-        .commenterImageUrl(originalComment.getUser().getImageUrl())
-        .commenterName(originalComment.getUser().getName())
-        .build();
+    return commentMapper.toCommentResponse(originalComment, request.getMessage());
   }
 
   @PatchMapping("/{id}/up_vote")

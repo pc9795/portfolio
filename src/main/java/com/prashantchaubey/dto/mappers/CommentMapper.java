@@ -20,6 +20,14 @@ public abstract class CommentMapper {
   @Mapping(source = "user", target = "commenterName", qualifiedByName = "userToCommenterName")
   public abstract CommentResponse toCommentResponse(Comment comment);
 
+  @Mapping(
+      source = "comment.user",
+      target = "commenterImageUrl",
+      qualifiedByName = "userToCommenterImageUrl")
+  @Mapping(source = "comment.user", target = "commenterName", qualifiedByName = "userToCommenterName")
+  @Mapping(source = "updatedMessage", target = "message")
+  public abstract CommentResponse toCommentResponse(Comment comment, String updatedMessage);
+
   public Comment from(CommentCreateRequest commentCreateRequest, User user, BlogPost blogPost) {
     return Comment.builder()
         .message(commentCreateRequest.getMessage())
