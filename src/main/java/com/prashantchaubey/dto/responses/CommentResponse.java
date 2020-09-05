@@ -3,6 +3,8 @@ package com.prashantchaubey.dto.responses;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Value
 public class CommentResponse {
@@ -17,4 +19,6 @@ public class CommentResponse {
   private String commenterImageUrl;
 
   private String commenterName;
+
+  private LocalDateTime createdAt;
 }

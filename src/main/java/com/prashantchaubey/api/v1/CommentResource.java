@@ -57,7 +57,7 @@ public class CommentResource {
   @GetMapping
   public Set<CommentResponse> getAll(
       @RequestParam("blog_post_id") Long blogPostId, Pageable pageable) {
-    return commentCache.findAllByBlogPostIdOrderByCreatedAt(blogPostId, pageable).stream()
+    return commentCache.findAllByBlogPostId(blogPostId, pageable).stream()
         .map(commentMapper::toCommentResponse)
         .collect(Collectors.toSet());
   }

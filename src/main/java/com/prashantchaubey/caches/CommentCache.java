@@ -18,7 +18,7 @@ public class CommentCache {
     this.commentRepository = commentRepository;
   }
 
-  public Page<Comment> findAllByBlogPostIdOrderByCreatedAt(Long blogPostId, Pageable pageable) {
+  public Page<Comment> findAllByBlogPostId(Long blogPostId, Pageable pageable) {
     return commentRepository.findAllByBlogPostIdOrderByCreatedAt(blogPostId, pageable);
   }
 
