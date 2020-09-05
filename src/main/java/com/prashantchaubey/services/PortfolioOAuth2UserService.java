@@ -91,7 +91,8 @@ public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
             .emailVerified(existingUser.isEmailVerified())
             .password(existingUser.getPassword())
             .provider(existingUser.getProvider())
-            .providerId(existingUser.getProviderId());
+            .providerId(existingUser.getProviderId())
+            .permissionSet(existingUser.getPermissionSet());
 
     return userCache.save(builder.build());
   }

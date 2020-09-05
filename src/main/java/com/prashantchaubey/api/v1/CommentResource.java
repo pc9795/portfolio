@@ -2,6 +2,7 @@ package com.prashantchaubey.api.v1;
 
 import com.prashantchaubey.caches.BlogPostCache;
 import com.prashantchaubey.caches.CommentCache;
+import com.prashantchaubey.caches.UserCache;
 import com.prashantchaubey.caches.UserCommentReactionCache;
 import com.prashantchaubey.config.UserPrincipal;
 import com.prashantchaubey.dto.mappers.CommentMapper;
@@ -16,8 +17,6 @@ import com.prashantchaubey.entities.UserCommentReactionId;
 import com.prashantchaubey.exceptions.BadDataException;
 import com.prashantchaubey.exceptions.ResourceNotFoundException;
 import com.prashantchaubey.exceptions.UnauthorizedAccessException;
-import com.prashantchaubey.repositories.BlogPostRepository;
-import com.prashantchaubey.repositories.UserRepository;
 import com.prashantchaubey.utils.Constants;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -35,25 +34,22 @@ import java.util.stream.Collectors;
 public class CommentResource {
   private final CommentMapper commentMapper;
   private final CommentCache commentCache;
-  private final UserRepository userRepository;
-  private final BlogPostRepository blogPostRepository;
   private final BlogPostCache blogPostCache;
+  private final UserCache userCache;
   private final UserCommentReactionCache userCommentReactionCache;
   private final UserCommentReactionMapper userCommentReactionMapper;
 
   public CommentResource(
       CommentCache commentCache,
       CommentMapper commentMapper,
-      UserRepository userRepository,
-      BlogPostRepository blogPostRepository,
       BlogPostCache blogPostCache,
+      UserCache userCache,
       UserCommentReactionCache userCommentReactionCache,
       UserCommentReactionMapper userCommentReactionMapper) {
     this.commentCache = commentCache;
     this.commentMapper = commentMapper;
-    this.userRepository = userRepository;
-    this.blogPostRepository = blogPostRepository;
     this.blogPostCache = blogPostCache;
+    this.userCache = userCache;
     this.userCommentReactionCache = userCommentReactionCache;
     this.userCommentReactionMapper = userCommentReactionMapper;
   }
@@ -89,8 +85,8 @@ public class CommentResource {
     Comment comment =
         commentMapper.from(
             request,
-            userRepository.getOne(userPrincipal.getId()),
-            blogPostRepository.getOne(request.getBlogPostId()));
+            userCache.getOne(userPrincipal.getId()),
+            blogPostCache.getOne(request.getBlogPostId()));
 
     // This line will currently try to load the user from database
     return commentMapper.toCommentResponse(commentCache.save(comment));
@@ -148,7 +144,7 @@ public class CommentResource {
             .id(userCommentReactionId)
             .type(UserCommentReaction.Type.UP_VOTE)
             .comment(comment)
-            .user(userRepository.getOne(userPrincipal.getId()))
+            .user(userCache.getOne(userPrincipal.getId()))
             .build());
   }
 
@@ -212,7 +208,7 @@ public class CommentResource {
             .id(userCommentReactionId)
             .type(UserCommentReaction.Type.DOWN_VOTE)
             .comment(comment)
-            .user(userRepository.getOne(userPrincipal.getId()))
+            .user(userCache.getOne(userPrincipal.getId()))
             .build());
   }
 

@@ -18,6 +18,11 @@ public abstract class SimpleMapCache<X extends CacheKey, Y> implements Cache<X, 
   }
 
   @Override
+  public void delete(X cacheKey) {
+    cache.remove(cacheKey.getKeyStr());
+  }
+
+  @Override
   public void clear() {
     cache.clear();
   }

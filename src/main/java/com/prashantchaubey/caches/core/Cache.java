@@ -5,5 +5,7 @@ public interface Cache<X extends CacheKey, Y> {
 
   Y get(X cacheKey);
 
+  void delete(X cacheKey);
+
   void clear();
 }

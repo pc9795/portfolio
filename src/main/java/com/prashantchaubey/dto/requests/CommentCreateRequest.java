@@ -9,13 +9,10 @@ import javax.validation.constraints.Size;
 
 @JsonDeserialize(builder = CommentCreateRequest.CommentCreateRequestBuilder.class)
 @Builder(builderClassName = "CommentCreateRequestBuilder")
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@Setter(value = AccessLevel.PACKAGE)
-@Getter
+@Value
 public class CommentCreateRequest {
   @NotNull
-  @Size(max = 5000)
+  @Size(min = 15, max = 600)
   private String message;
 
   @NotNull private Long blogPostId;

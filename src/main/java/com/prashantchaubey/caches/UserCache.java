@@ -32,7 +32,11 @@ public class UserCache {
   }
 
   public User save(User user) {
-    userEmailCache.clear();
+    userEmailCache.delete(UserEmailCacheKey.builder().email(user.getEmail()).build());
     return userRepository.save(user);
+  }
+
+  public User getOne(Long id) {
+    return userRepository.getOne(id);
   }
 }

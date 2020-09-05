@@ -43,4 +43,8 @@ public class BlogPostCache {
   public boolean existsById(Long id) {
     return blogPostRepository.existsById(id);
   }
+
+  public BlogPost getOne(Long id) {
+    return blogPostRepository.getOne(id);
+  }
 }
