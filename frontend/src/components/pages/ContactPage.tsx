@@ -1,10 +1,12 @@
-import React, {SyntheticEvent, useState} from "react";
+import React, {SyntheticEvent, useContext, useState} from "react";
 import {Helmet} from "react-helmet";
 import {FaviconConstants, RECAPTCHA_KEY, RESUME_URL} from "../../utils/constants";
 import Contact from "../../models/contact";
 import ContactsClient from "../../data/contactsClient";
 import {AxiosError} from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import {AppContext, AppReducerActionType} from "../../App";
+import Alarm from "../gui/Alarm";
 
 const styles = {
     gmap: {
@@ -13,21 +15,14 @@ const styles = {
     }
 };
 
-enum FormSubmissionState {
-    NOT_SUBMITTED,
-    SUBMITTED_SUCCESSFULLY,
-    SUBMITTED_UNSUCCESSFULLY
-}
-
 const RECAPTCHA_VALIDATION_ERROR = "Please verify CAPTCHA";
 
 function ContactPage() {
+    const {dispatch} = useContext(AppContext);
     const [name, setName] = useState("");
     const [contact, setContact] = useState("");
     const [email, setEmail] = useState("");
     const [purpose, setPurpose] = useState("");
-    const [formSubmissionState, setFormSubmittedState] = useState(FormSubmissionState.NOT_SUBMITTED);
-    const [formSubmissionResult, setFormSubmissionResult] = useState("");
     const [recaptchaToken, setRecaptchaToken] = useState(null as null | string);
 
     const renderHead = () => {
@@ -84,40 +79,40 @@ function ContactPage() {
         event.preventDefault();
 
         if (recaptchaToken === null) {
-            setFormSubmittedState(FormSubmissionState.SUBMITTED_UNSUCCESSFULLY);
-            setFormSubmissionResult(RECAPTCHA_VALIDATION_ERROR);
+            dispatch({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message: RECAPTCHA_VALIDATION_ERROR,
+                    type: Alarm.Type.ERROR
+                }
+            });
             return;
         }
 
         const contactObj = new Contact(name, contact, email, purpose);
         ContactsClient.create(contactObj).then(() => {
-                setFormSubmittedState(FormSubmissionState.SUBMITTED_SUCCESSFULLY);
-                setFormSubmissionResult("Details submitted successfully");
+                dispatch({
+                    type: AppReducerActionType.SET_ALARM,
+                    payload: {message: "Details submitted successfully", type: Alarm.Type.SUCCESS}
+                });
+                clearForm();
             }
         ).catch((error: AxiosError) => {
-            setFormSubmittedState(FormSubmissionState.SUBMITTED_UNSUCCESSFULLY);
-            if (error.response) {
-                setFormSubmissionResult((error.response.data as ServerError).error.message);
-            } else {
-                setFormSubmissionResult("Something bad happened!")
-            }
+            dispatch({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
+                    type: Alarm.Type.ERROR
+                }
+            });
         });
     };
 
-    const renderFormSubmissionResult = () => {
-        if (formSubmissionState === FormSubmissionState.SUBMITTED_SUCCESSFULLY) {
-            return <div className="alert alert-success">
-                {formSubmissionResult}
-            </div>
-        }
-
-        if (formSubmissionState === FormSubmissionState.SUBMITTED_UNSUCCESSFULLY) {
-            return <div className="alert alert-danger">
-                {formSubmissionResult}
-            </div>
-        }
-
-        return null;
+    const clearForm = () => {
+        setName("");
+        setContact("");
+        setEmail("");
+        setPurpose("");
     };
 
     const renderCurrentLocationMap = () => {
@@ -141,8 +136,7 @@ function ContactPage() {
     return <div className="container">
         {renderHead()}
         <div className="row">
-            <div className="col-sm-12 mt-3 col-md-4 p-1">
-                {renderFormSubmissionResult()}
+            <div className="col-12 mt-3 col-sm-4 p-1">
                 {renderContactForm()}
                 <div className="row mt-3">
                     <div className="col-12">
@@ -150,7 +144,7 @@ function ContactPage() {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-12 mt-3 col-md-8">
+            <div className="col-12 mt-3 col-sm-8">
                 {renderCurrentLocationMap()}
             </div>
         </div>

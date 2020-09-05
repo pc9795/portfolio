@@ -8,6 +8,7 @@ export class ImageConstants {
     static TWENTY_FIVE = process.env.REACT_APP_BASE_URL + "/img/25.png";
     static PROFILE_PICTURE = process.env.REACT_APP_BASE_URL + "/img/profile.jpg";
     static GOOGLE_LOGO = process.env.REACT_APP_BASE_URL + "/img/google-logo.png";
+    static AVATAR = process.env.REACT_APP_BASE_URL + "/img/avatar.png";
 }
 
 export class AppRoutes {
@@ -23,3 +24,5 @@ export class AppRoutes {
 export const RESUME_URL = process.env.REACT_APP_BASE_URL + "/PrashantChaubey_resume.pdf";
 export const RECAPTCHA_KEY = process.env.REACT_APP_RECAPTCHA_KEY as string;
 export const ACCESS_TOKEN = "accessToken";
+export const COMMENT_CHARS_MAX_LIMIT = 600;
+export const COMMENT_CHARS_MIN_LIMIT = 15;

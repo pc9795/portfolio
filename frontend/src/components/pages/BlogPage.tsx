@@ -204,11 +204,11 @@ function BlogPage() {
     return <div className="container my-3">
         {renderHead()}
         <div className="row">
-            <div className="col-md-8 col-sm-12">
+            <div className="col-sm-8 col-12">
                 {renderAllPostsNavigation()}
                 {renderBlogPosts()}
             </div>
-            <div className="col-md-4 col-sm-12">
+            <div className="col-sm-4 col-12">
                 <div className="row mt-3">
                     {renderSearchArea()}
                     {renderBlogTags()}

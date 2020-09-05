@@ -25,13 +25,14 @@ export enum AppReducerActionType {
 
 const appInitialState = {
     alarmMessage: "",
+    alarmType: Alarm.Type.INFO,
     authenticated: TokenManager.hasAccessToken()
 };
 
 function appReducer(state: any, action: AppReducerAction): any {
     switch (action.type) {
         case AppReducerActionType.SET_ALARM:
-            return {...state, alarmMessage: action.payload};
+            return {...state, alarmMessage: action.payload.message, alarmType: action.payload.type};
         case AppReducerActionType.AUTHENTICATE:
             const accessToken = action.payload;
             TokenManager.setAccessToken(accessToken);
@@ -51,7 +52,7 @@ function App() {
         if (!appState.alarmMessage) {
             return;
         }
-        return <Alarm message={appState.alarmMessage}/>
+        return <Alarm message={appState.alarmMessage} type={appState.alarmType}/>
     };
 
     return <Switch>

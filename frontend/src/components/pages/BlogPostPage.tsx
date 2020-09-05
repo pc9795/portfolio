@@ -4,6 +4,9 @@ import {Helmet} from "react-helmet";
 import BlogPost from "../../models/blogPost";
 import BlogPostsClient from "../../data/blogPostsClient";
 import {useMountEffect} from "../../utils/hooks";
+import Comments from "../gui/Comments";
+
+export const BlogPostPageContext = React.createContext(undefined as any);
 
 function BlogPostPage(props: any) {
     const {blogPostName} = props.match.params.name;
@@ -20,7 +23,7 @@ function BlogPostPage(props: any) {
         </Helmet>
     };
 
-    const renderBlogPost = (blogPost: null | BlogPost) => {
+    const renderBlogPost = () => {
         if (blogPost == null) {
             return null;
         }
@@ -45,10 +48,25 @@ function BlogPostPage(props: any) {
         })
     };
 
-    return <div className="container my-3">
-        {renderHead()}
-        {renderBlogPost(blogPost)}
-    </div>;
+    const renderComments = () => {
+        if (blogPost == null) {
+            return null;
+        }
+
+        return <div className="mt-3">
+            <Comments/>
+        </div>
+    };
+
+    return <BlogPostPageContext.Provider value={{blogPost: blogPost}}>
+        <div className="container my-3">
+            {renderHead()}
+            {renderBlogPost()}
+            {renderComments()}
+        </div>
+    </BlogPostPageContext.Provider>
+
+
 }
 
 export default BlogPostPage;

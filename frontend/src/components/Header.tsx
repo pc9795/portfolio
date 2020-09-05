@@ -17,7 +17,7 @@ function Header() {
 
         }
         return <a href={AppRoutes.GOOGLE_AUTH_URL} className="btn btn-light">
-            <img src={ImageConstants.GOOGLE_LOGO} height="30" width="30" alt="Google"/>
+            <img src={ImageConstants.GOOGLE_LOGO} height="25" width="25" alt="Google"/>
             Log In
         </a>
     };
