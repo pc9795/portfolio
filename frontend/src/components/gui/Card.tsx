@@ -2,6 +2,16 @@ import React, {ReactElement} from 'react';
 import PropTypes from 'prop-types';
 
 function Card(props: any) {
+    const getFooter = (footer: ReactElement) => {
+        if (footer) {
+            return <div className="card-footer">
+                {footer}
+            </div>;
+        }
+
+        return null;
+    };
+
     return <div className="card">
         <div className="card-body">
             <h4 className="card-title">{props.title}</h4>
@@ -11,16 +21,6 @@ function Card(props: any) {
         </div>
         {getFooter(props.footer)}
     </div>;
-}
-
-function getFooter(footer: ReactElement) {
-    if (footer) {
-        return <div className="card-footer">
-            {footer}
-        </div>;
-    }
-
-    return null;
 }
 
 Card.propTypes = {

@@ -21,7 +21,7 @@ function CommentCreator() {
             return renderLoginButton();
         }
 
-        return <form className="row" onSubmit={handleSubmit}>
+        return <form className="row mt-3" onSubmit={handleSubmit}>
             <div className="col-2 col-sm-1">
                 <img src={ImageConstants.AVATAR} height="50" width="50" alt="Default Avatar"/>
             </div>
@@ -56,7 +56,7 @@ function CommentCreator() {
     };
 
     const renderCommentHelpText = () => {
-        if (messageCharsCount == 0) {
+        if (messageCharsCount === 0) {
             return `enter at least ${COMMENT_CHARS_MIN_LIMIT} characters`;
         }
         if (messageCharsCount < COMMENT_CHARS_MIN_LIMIT) {
@@ -91,11 +91,7 @@ function CommentCreator() {
         });
     };
 
-    return <div className="row">
-        <div className="col-12">
-            {renderTextArea()}
-        </div>
-    </div>
+    return renderTextArea();
 }
 
 export default CommentCreator;

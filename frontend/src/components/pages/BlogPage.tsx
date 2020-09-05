@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Helmet} from "react-helmet";
 import {AppRoutes, FaviconConstants} from "../../utils/constants";
 import BlogPost from "../../models/blogPost";
@@ -6,6 +6,7 @@ import Card from "../gui/Card";
 import BlogPostsClient from "../../data/blogPostsClient";
 import BlogTag from "../../models/blogTag";
 import {BlogTagsClient} from "../../data/blogTagsClient";
+import {useMountEffect} from "../../utils/hooks";
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -21,10 +22,10 @@ function BlogPage() {
     const [searchResultsMessage, setSearchResultsMessage] = useState("");
     const [searchText, setSearchText] = useState("");
 
-    useEffect(() => {
+    useMountEffect(() => {
         BlogPostsClient.getAll().then((data: Page<BlogPost>) => setBlogPosts(data.content));
         BlogTagsClient.getAll().then((data: Page<BlogTag>) => setBlogTags(data.content));
-    }, []);
+    });
 
     const renderHead = () => {
         return <Helmet>
