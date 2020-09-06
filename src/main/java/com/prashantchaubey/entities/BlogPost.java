@@ -24,9 +24,11 @@ import java.util.Set;
 public class BlogPost {
   @Id @GeneratedValue private Long id;
 
+  @NonNull
   @Column(nullable = false, unique = true)
   private String name;
 
+  @NonNull
   @Column(nullable = false)
   private String heading;
 
@@ -34,13 +36,15 @@ public class BlogPost {
 
   @CreationTimestamp private LocalDateTime createdAt;
 
-  private String createdBy;
+  @NonNull private String createdBy;
 
+  @NonNull
   @Lob
   @Type(type = "org.hibernate.type.TextType")
   @Column(nullable = false)
   private String content;
 
+  @NonNull
   @ManyToMany
   @JoinTable(
       name = "blog_posts_to_blog_tags",

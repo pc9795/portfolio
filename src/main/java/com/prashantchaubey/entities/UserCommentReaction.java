@@ -21,6 +21,7 @@ public class UserCommentReaction {
 
   @EmbeddedId private UserCommentReactionId id;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
       name = "user_id",
@@ -28,6 +29,7 @@ public class UserCommentReaction {
   @MapsId("userId")
   private User user;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
       name = "comment_id",
@@ -35,6 +37,7 @@ public class UserCommentReaction {
   @MapsId("commentId")
   private Comment comment;
 
+  @NonNull
   @Enumerated(EnumType.STRING)
   private Type type;
 }

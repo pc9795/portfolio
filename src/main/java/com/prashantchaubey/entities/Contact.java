@@ -20,11 +20,11 @@ import java.time.LocalDateTime;
 public class Contact implements Serializable {
   @Id @GeneratedValue private Long id;
 
-  private String name;
+  @NonNull private String name;
 
   private String contact;
 
-  private String email;
+  @NonNull private String email;
 
   private String purpose;
 

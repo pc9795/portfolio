@@ -27,8 +27,9 @@ public class ListItem implements Serializable {
 
   @Id @GeneratedValue private Long id;
 
-  private String name;
+  @NonNull private String name;
 
+  @NonNull
   @Enumerated(EnumType.STRING)
   private Type type;
 

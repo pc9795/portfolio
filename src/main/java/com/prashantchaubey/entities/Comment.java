@@ -29,6 +29,7 @@ public class Comment {
 
   @Builder.Default private Integer downVotes = 0;
 
+  @NonNull
   @Lob
   @Type(type = "org.hibernate.type.TextType")
   @Column(nullable = false)
@@ -36,12 +37,14 @@ public class Comment {
 
   @CreationTimestamp private LocalDateTime createdAt;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
       name = "user_id",
       foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
   private User user;
 
+  @NonNull
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(
       name = "blog_post_id",

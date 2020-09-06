@@ -17,6 +17,7 @@ public class Permission {
 
   @Id @GeneratedValue private Long id;
 
+  @NonNull
   @Enumerated(EnumType.STRING)
   private Type type;
 }

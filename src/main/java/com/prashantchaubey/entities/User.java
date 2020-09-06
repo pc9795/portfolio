@@ -44,9 +44,11 @@ public class User {
 
   @Id @GeneratedValue private Long id;
 
+  @NonNull
   @Column(nullable = false)
   private String name;
 
+  @NonNull
   @Column(nullable = false)
   private String email;
 
@@ -54,13 +56,15 @@ public class User {
 
   private boolean emailVerified;
 
-  private String password;
+  @NonNull private String password;
 
+  @Builder.Default
   @Enumerated(EnumType.STRING)
-  private AuthProvider provider;
+  private AuthProvider provider = AuthProvider.LOCAL;
 
   private String providerId;
 
+  @NonNull
   @ManyToMany
   @JoinTable(
       name = "user_permissions",
