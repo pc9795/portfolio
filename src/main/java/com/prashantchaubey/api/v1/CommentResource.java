@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -55,11 +56,11 @@ public class CommentResource {
   }
 
   @GetMapping
-  public Set<CommentResponse> getAll(
+  public List<CommentResponse> getAll(
       @RequestParam("blog_post_id") Long blogPostId, Pageable pageable) {
     return commentCache.findAllByBlogPostId(blogPostId, pageable).stream()
         .map(commentMapper::toCommentResponse)
-        .collect(Collectors.toSet());
+        .collect(Collectors.toList());
   }
 
   @GetMapping("/reactions")

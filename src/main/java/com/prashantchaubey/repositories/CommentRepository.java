@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
   @EntityGraph(Constants.EntityGraphName.COMMENT_WITH_USERS)
-  Page<Comment> findAllByBlogPostIdOrderByCreatedAt(Long blogPostId, Pageable pageable);
+  Page<Comment> findAllByBlogPostIdOrderByCreatedAtDesc(Long blogPostId, Pageable pageable);
 
   @EntityGraph(Constants.EntityGraphName.COMMENT_WITH_USERS)
   Optional<Comment> findById(Long id);

@@ -19,7 +19,7 @@ public class CommentCache {
   }
 
   public Page<Comment> findAllByBlogPostId(Long blogPostId, Pageable pageable) {
-    return commentRepository.findAllByBlogPostIdOrderByCreatedAt(blogPostId, pageable);
+    return commentRepository.findAllByBlogPostIdOrderByCreatedAtDesc(blogPostId, pageable);
   }
 
   public Comment save(Comment comment) {
