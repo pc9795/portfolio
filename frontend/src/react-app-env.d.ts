@@ -4,6 +4,9 @@ import Alarm from "./components/gui/Alarm";
 import {AppReducerActionType} from "./App";
 import User from "./models/user";
 
+// todo remove imports so that these types don't need an explicit import
+// todo one possible solution: https://stackoverflow.com/questions/39040108/import-class-in-definition-file-d-ts
+
 interface Page<T> {
     content: T[]
 }

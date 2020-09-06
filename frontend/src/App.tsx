@@ -17,7 +17,7 @@ import TokenManager from "./utils/tokenManager";
 import {AlarmPayload, AppReducerAction, AppState, StringPayload} from "./react-app-env";
 import {useMountEffect} from "./utils/hooks";
 
-export const AppContext = React.createContext(undefined as any);
+export const AppContext = React.createContext({} as { appState: AppState, dispatch: Function });
 
 export enum AppReducerActionType {
     SET_ALARM = "set_alarm",
@@ -64,7 +64,6 @@ function App() {
     const [appState, dispatch] = useReducer(appReducer, appInitialState);
 
     const renderAlarms = () => {
-        console.log("Rendering alarms");
         const alarms: any = [];
         appState.alarmMap.forEach((value: ReactElement) => alarms.push(value));
 

@@ -18,7 +18,7 @@ function CommentCreator() {
             return null;
         }
 
-        if (!appState.authenticated) {
+        if (!appState.currUser) {
             return renderLoginButton();
         }
 

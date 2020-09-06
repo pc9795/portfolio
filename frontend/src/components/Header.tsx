@@ -8,7 +8,7 @@ function Header() {
     const {appState, dispatch} = useContext(AppContext);
 
     const renderUserArea = () => {
-        if (appState.authenticated) {
+        if (appState.currUser) {
             return <div>
                 <button className="btn btn-light" onClick={() => {
                     dispatch({type: AppReducerActionType.LOGOUT} as AppReducerAction)

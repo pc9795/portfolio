@@ -21,6 +21,7 @@ function Comments() {
 
     return <Fragment>
         <CommentCreator/>
+        <div className="mt-3"/>
         {renderComments()}
     </Fragment>
 }
