@@ -56,7 +56,7 @@ public class User {
 
   private boolean emailVerified;
 
-  @NonNull private String password;
+  private String password;
 
   @Builder.Default
   @Enumerated(EnumType.STRING)

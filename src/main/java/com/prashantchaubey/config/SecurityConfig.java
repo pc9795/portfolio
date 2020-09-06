@@ -6,6 +6,7 @@ import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -83,6 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticationEntryPoint(restAuthenticationEntryPoint)
         .and()
         .authorizeRequests()
+        .antMatchers(HttpMethod.GET, Constants.Endpoint.COMMENTS_V1)
+        .permitAll()
         .antMatchers(Constants.Endpoint.USERS_V1 + "/**", Constants.Endpoint.COMMENTS_V1 + "/**")
         .authenticated()
         .and()
