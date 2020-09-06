@@ -21,7 +21,7 @@ function CommentCreator() {
             return renderLoginButton();
         }
 
-        return <form className="row mt-3" onSubmit={handleSubmit}>
+        return <form className="row" onSubmit={handleSubmit}>
             <div className="col-2 col-sm-1">
                 <img src={ImageConstants.AVATAR} height="50" width="50" alt="Default Avatar"/>
             </div>

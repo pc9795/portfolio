@@ -58,15 +58,13 @@ function BlogPostPage(props: any) {
         </div>
     };
 
-    return <BlogPostPageContext.Provider value={{blogPost: blogPost}}>
+    return <BlogPostPageContext.Provider value={{blogPost}}>
         <div className="container my-3">
             {renderHead()}
             {renderBlogPost()}
             {renderComments()}
         </div>
     </BlogPostPageContext.Provider>
-
-
 }
 
 export default BlogPostPage;

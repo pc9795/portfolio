@@ -52,7 +52,7 @@ function App() {
         if (!appState.alarmMessage) {
             return;
         }
-        return <Alarm message={appState.alarmMessage} type={appState.alarmType}/>
+        return <div className="container mt-3"><Alarm message={appState.alarmMessage} type={appState.alarmType}/></div>
     };
 
     return <Switch>

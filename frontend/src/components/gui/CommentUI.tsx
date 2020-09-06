@@ -6,7 +6,7 @@ import {ImageConstants} from "../../utils/constants";
 function CommentUI(props: any) {
     const comment = props.comment as Comment;
 
-    return <div className="row mt-1">
+    return <div className="row">
         <div className="col-2 col-sm-1">
             <img src={comment.commenterImageUrl ? comment.commenterImageUrl : ImageConstants.AVATAR} height="50"
                  width="50" alt="Default Avatar"/>
@@ -23,7 +23,8 @@ function CommentUI(props: any) {
 }
 
 CommentUI.propTypes = {
-    comment: PropTypes.instanceOf(Comment).isRequired
+    // Not using a `instanceOf(Comment)` because of chrome warning
+    comment: PropTypes.object.isRequired
 };
 
 export default CommentUI;

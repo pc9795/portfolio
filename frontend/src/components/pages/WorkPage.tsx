@@ -35,8 +35,8 @@ function WorkPage() {
     };
 
     const renderProjectCard = (project: Project) => {
-        return <div className="col-sm-4 col-12 mt-3">
-            <Card key={project.name} title={project.heading} text={project.description}
+        return <div key={project.name} className="col-sm-4 col-12 mt-3">
+            <Card title={project.heading} text={project.description}
                   footer={<a href={project.link} className="text-secondary">Github Link</a>}/>
         </div>
     };

@@ -16,7 +16,7 @@ function Comments() {
 
 
     const renderComments = () => {
-        return comments.map(comment => <CommentUI comment={comment}/>);
+        return comments.map((comment, index) => <CommentUI key={index} comment={comment}/>);
     };
 
     return <Fragment>
