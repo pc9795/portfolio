@@ -1,6 +1,7 @@
 import axios from 'axios';
 import BlogPost from "../models/blogPost";
 import ApiClientUtils from "../utils/apiClientUtils";
+import {Page} from "../react-app-env";
 
 const RESOURCE_URL = process.env.REACT_APP_API_BASE_URL + "/v1/blog-posts";
 

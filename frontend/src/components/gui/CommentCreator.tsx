@@ -5,6 +5,7 @@ import {BlogPostPageContext} from "../pages/BlogPostPage";
 import CommentClient from "../../data/commentClient";
 import {AxiosError} from "axios";
 import Alarm from "./Alarm";
+import {AppReducerAction, ServerError} from "../../react-app-env";
 
 function CommentCreator() {
     const {appState, dispatch} = useContext(AppContext);
@@ -77,7 +78,7 @@ function CommentCreator() {
             dispatch({
                 type: AppReducerActionType.SET_ALARM,
                 payload: {message: "Comment posted!", type: Alarm.Type.SUCCESS}
-            });
+            } as AppReducerAction);
             setMessage("");
             setMessageCharsCount(0);
         }).catch((error: AxiosError) => {
@@ -87,7 +88,7 @@ function CommentCreator() {
                     message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
                     type: Alarm.Type.ERROR
                 }
-            })
+            } as AppReducerAction)
         });
     };
 

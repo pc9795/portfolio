@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
+import {AppContext, AppReducerActionType} from "../../App";
+import {AppReducerAction} from "../../react-app-env";
 
 enum Type {
-    ERROR, SUCCESS, INFO
+    ERROR, SUCCESS
 }
 
 function Alarm(props: any) {
+    const {dispatch} = useContext(AppContext);
+
     const getAlertClass = (type: Type) => {
         switch (type) {
             case Type.ERROR:
@@ -20,7 +24,10 @@ function Alarm(props: any) {
     return <div
         className={`alert ${getAlertClass(props.type)} alert-dismissible fade show`}>
         {props.message}
-        <button type="button" className="close" data-dismiss="alert">
+        <button type="button" className="close" data-dismiss="alert" onClick={() => dispatch({
+            type: AppReducerActionType.REMOVE_ALARM,
+            payload: {data: props.message}
+        } as AppReducerAction)}>
             <span>&times;</span>
         </button>
     </div>

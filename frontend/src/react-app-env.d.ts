@@ -1,5 +1,9 @@
 /// <reference types="react-scripts" />
 
+import Alarm from "./components/gui/Alarm";
+import {AppReducerActionType} from "./App";
+import User from "./models/user";
+
 interface Page<T> {
     content: T[]
 }
@@ -14,6 +18,20 @@ interface ServerErrorInfo {
 }
 
 declare interface AppReducerAction {
-    payload?: any,
-    type: ActionType
+    payload?: StringPayload | AlarmPayload,
+    type: AppReducerActionType
+}
+
+declare interface StringPayload {
+    data: string
+}
+
+declare interface AlarmPayload {
+    message: string
+    type: Alarm.Type
+}
+
+declare interface AppState {
+    currUser: null | User,
+    alarmMap: Map
 }

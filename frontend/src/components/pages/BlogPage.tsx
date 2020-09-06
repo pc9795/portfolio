@@ -7,6 +7,7 @@ import BlogPostsClient from "../../data/blogPostsClient";
 import BlogTag from "../../models/blogTag";
 import {BlogTagsClient} from "../../data/blogTagsClient";
 import {useMountEffect} from "../../utils/hooks";
+import {Page} from "../../react-app-env";
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"

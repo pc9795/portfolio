@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 import {AppRoutes, ImageConstants} from "../utils/constants";
 import {AppContext, AppReducerActionType} from "../App";
+import {AppReducerAction} from "../react-app-env";
 
 function Header() {
     const {appState, dispatch} = useContext(AppContext);
@@ -10,7 +11,7 @@ function Header() {
         if (appState.authenticated) {
             return <div>
                 <button className="btn btn-light" onClick={() => {
-                    dispatch({type: AppReducerActionType.LOGOUT})
+                    dispatch({type: AppReducerActionType.LOGOUT} as AppReducerAction)
                 }}>Logout
                 </button>
             </div>;

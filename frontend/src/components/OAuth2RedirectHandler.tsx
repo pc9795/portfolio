@@ -5,6 +5,7 @@ import {Helmet} from "react-helmet";
 import {AppContext, AppReducerActionType} from "../App";
 import {useMountEffect} from "../utils/hooks";
 import Alarm from "./gui/Alarm";
+import {AppReducerAction} from "../react-app-env";
 
 function OAuth2RedirectHandler(props: any) {
     const {dispatch} = useContext(AppContext);
@@ -14,9 +15,12 @@ function OAuth2RedirectHandler(props: any) {
 
     useMountEffect(() => {
         if (token) {
-            dispatch({type: AppReducerActionType.AUTHENTICATE, payload: token})
+            dispatch({type: AppReducerActionType.AUTHENTICATE, payload: {data: token}} as AppReducerAction)
         } else if (error) {
-            dispatch({type: AppReducerActionType.SET_ALARM, payload: {message: error, type: Alarm.Type.ERROR}});
+            dispatch({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {message: error, type: Alarm.Type.ERROR}
+            } as AppReducerAction);
         }
     });
 

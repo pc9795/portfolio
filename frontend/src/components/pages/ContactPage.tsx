@@ -7,6 +7,7 @@ import {AxiosError} from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import {AppContext, AppReducerActionType} from "../../App";
 import Alarm from "../gui/Alarm";
+import {AppReducerAction, ServerError} from "../../react-app-env";
 
 const styles = {
     gmap: {
@@ -85,7 +86,7 @@ function ContactPage() {
                     message: RECAPTCHA_VALIDATION_ERROR,
                     type: Alarm.Type.ERROR
                 }
-            });
+            } as AppReducerAction);
             return;
         }
 
@@ -94,7 +95,7 @@ function ContactPage() {
                 dispatch({
                     type: AppReducerActionType.SET_ALARM,
                     payload: {message: "Details submitted successfully", type: Alarm.Type.SUCCESS}
-                });
+                } as AppReducerAction);
                 clearForm();
             }
         ).catch((error: AxiosError) => {
@@ -104,7 +105,7 @@ function ContactPage() {
                     message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
                     type: Alarm.Type.ERROR
                 }
-            });
+            } as AppReducerAction);
         });
     };
 
