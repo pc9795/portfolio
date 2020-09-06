@@ -1,6 +1,7 @@
 package com.prashantchaubey.dto.responses;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -9,15 +10,15 @@ import java.util.Set;
 @Builder
 @Value
 public class BlogPostResponse {
-  private Long id;
+  @NonNull private Long id;
 
-  private String name;
+  @NonNull private String name;
 
-  private String heading;
+  @NonNull private String heading;
 
   private String description;
 
-  private LocalDateTime createdAt;
+  @NonNull private LocalDateTime createdAt;
 
-  private Set<BlogTagResponse> blogTags;
+  @NonNull private Set<BlogTagResponse> blogTags;
 }

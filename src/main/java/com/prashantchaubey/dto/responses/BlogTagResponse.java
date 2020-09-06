@@ -1,10 +1,11 @@
 package com.prashantchaubey.dto.responses;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 @Value
 @Builder
 public class BlogTagResponse {
-  private String name;
+  @NonNull private String name;
 }

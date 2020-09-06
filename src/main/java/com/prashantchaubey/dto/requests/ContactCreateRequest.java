@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class ContactCreateRequest {
   @NotNull @NotEmpty private String name;
 
-  @NotNull @NotEmpty private String contact;
+  private String contact;
 
   @Email @NotNull @NotEmpty private String email;
 

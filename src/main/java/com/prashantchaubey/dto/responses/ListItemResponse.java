@@ -2,6 +2,7 @@ package com.prashantchaubey.dto.responses;
 
 import com.prashantchaubey.entities.ListItem;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -9,9 +10,9 @@ import java.time.LocalDateTime;
 @Builder
 @Value
 public class ListItemResponse {
-  private String name;
+  @NonNull private String name;
 
-  private ListItem.Type type;
+  @NonNull private ListItem.Type type;
 
-  private LocalDateTime createdAt;
+  @NonNull private LocalDateTime createdAt;
 }

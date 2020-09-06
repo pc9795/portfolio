@@ -1,6 +1,7 @@
 package com.prashantchaubey.dto.responses;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -8,17 +9,17 @@ import java.time.LocalDateTime;
 @Builder
 @Value
 public class CommentResponse {
-  private Long id;
+  @NonNull private Long id;
 
-  private Integer upVotes;
+  @NonNull private Integer upVotes;
 
-  private Integer downVotes;
+  @NonNull private Integer downVotes;
 
-  private String message;
+  @NonNull private String message;
 
   private String commenterImageUrl;
 
-  private String commenterName;
+  @NonNull private String commenterName;
 
-  private LocalDateTime createdAt;
+  @NonNull private LocalDateTime createdAt;
 }

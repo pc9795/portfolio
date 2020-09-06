@@ -1,16 +1,18 @@
 package com.prashantchaubey.dto.responses;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 @Builder
 @Value
 public class ContactResponse {
-  private String name;
+
+  @NonNull private String name;
 
   private String contact;
 
-  private String email;
+  @NonNull private String email;
 
   private String purpose;
 }
