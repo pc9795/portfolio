@@ -4,7 +4,7 @@ import {Redirect} from "react-router";
 import {Helmet} from "react-helmet";
 import {AppContext, AppReducerActionType} from "../App";
 import {useMountEffect} from "../utils/hooks";
-import Alarm from "./gui/Alarm";
+import {AlarmType} from "./gui/Alarm";
 import {AppReducerAction} from "../react-app-env";
 
 function OAuth2RedirectHandler(props: any) {
@@ -19,7 +19,7 @@ function OAuth2RedirectHandler(props: any) {
         } else if (error) {
             dispatch({
                 type: AppReducerActionType.SET_ALARM,
-                payload: {message: error, type: Alarm.Type.ERROR}
+                payload: {message: error, type: AlarmType.ERROR}
             } as AppReducerAction);
         }
     });

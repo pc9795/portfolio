@@ -4,7 +4,7 @@ import {AppRoutes, COMMENT_CHARS_MAX_LIMIT, COMMENT_CHARS_MIN_LIMIT, ImageConsta
 import {BlogPostPageContext} from "../pages/BlogPostPage";
 import CommentClient from "../../data/commentClient";
 import {AxiosError} from "axios";
-import Alarm from "./Alarm";
+import {AlarmType} from "./Alarm";
 import {AppReducerAction, ServerError} from "../../react-app-env";
 
 function CommentCreator() {
@@ -14,10 +14,6 @@ function CommentCreator() {
     const [messageCharsCount, setMessageCharsCount] = useState(0);
 
     const renderTextArea = () => {
-        if (blogPost == null) {
-            return null;
-        }
-
         if (!appState.currUser) {
             return renderLoginButton();
         }
@@ -77,7 +73,7 @@ function CommentCreator() {
         CommentClient.createComment(message, blogPost.id).then(() => {
             dispatch({
                 type: AppReducerActionType.SET_ALARM,
-                payload: {message: "Comment posted!", type: Alarm.Type.SUCCESS}
+                payload: {message: "Comment posted!", type: AlarmType.SUCCESS}
             } as AppReducerAction);
             setMessage("");
             setMessageCharsCount(0);
@@ -86,7 +82,7 @@ function CommentCreator() {
                 type: AppReducerActionType.SET_ALARM,
                 payload: {
                     message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
-                    type: Alarm.Type.ERROR
+                    type: AlarmType.ERROR
                 }
             } as AppReducerAction)
         });

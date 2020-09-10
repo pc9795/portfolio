@@ -6,7 +6,7 @@ import ContactsClient from "../../data/contactsClient";
 import {AxiosError} from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import {AppContext, AppReducerActionType} from "../../App";
-import Alarm from "../gui/Alarm";
+import {AlarmType} from "../gui/Alarm";
 import {AppReducerAction, ServerError} from "../../react-app-env";
 
 const styles = {
@@ -84,7 +84,7 @@ function ContactPage() {
                 type: AppReducerActionType.SET_ALARM,
                 payload: {
                     message: RECAPTCHA_VALIDATION_ERROR,
-                    type: Alarm.Type.ERROR
+                    type: AlarmType.ERROR
                 }
             } as AppReducerAction);
             return;
@@ -94,7 +94,7 @@ function ContactPage() {
         ContactsClient.create(contactObj).then(() => {
                 dispatch({
                     type: AppReducerActionType.SET_ALARM,
-                    payload: {message: "Details submitted successfully", type: Alarm.Type.SUCCESS}
+                    payload: {message: "Details submitted successfully", type: AlarmType.SUCCESS}
                 } as AppReducerAction);
                 clearForm();
             }
@@ -103,7 +103,7 @@ function ContactPage() {
                 type: AppReducerActionType.SET_ALARM,
                 payload: {
                     message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
-                    type: Alarm.Type.ERROR
+                    type: AlarmType.ERROR
                 }
             } as AppReducerAction);
         });

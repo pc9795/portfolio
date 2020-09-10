@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import {AppContext, AppReducerActionType} from "../../App";
 import {AppReducerAction} from "../../react-app-env";
 
-enum Type {
+export enum AlarmType {
     ERROR, SUCCESS
 }
 
 function Alarm(props: any) {
     const {dispatch} = useContext(AppContext);
 
-    const getAlertClass = (type: Type) => {
+    const getAlertClass = (type: AlarmType) => {
         switch (type) {
-            case Type.ERROR:
+            case AlarmType.ERROR:
                 return "alert-danger";
-            case Type.SUCCESS:
+            case AlarmType.SUCCESS:
                 return "alert-success";
             default:
                 return "alert-info";
@@ -38,7 +38,5 @@ Alarm.propTypes = {
     // Not using a `oneOf` because of chrome warning
     type: PropTypes.any.isRequired
 };
-
-Alarm.Type = Type;
 
 export default Alarm;

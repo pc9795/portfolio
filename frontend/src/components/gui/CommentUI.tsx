@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import Comment from "../../models/comment";
 import {ImageConstants} from "../../utils/constants";
 
+const UP_VOTE = "UP_VOTE";
+const DOWN_VOTE = "DOWN_VOTE";
+
 function CommentUI(props: any) {
     const comment = props.comment as Comment;
 
     const getCreatedAtText = (createdAt: string) => {
         try {
-            // for + see: https://github.com/microsoft/TypeScript/issues/5710
+            // for '+' see: https://github.com/microsoft/TypeScript/issues/5710
             const createdAtObj = +new Date(createdAt);
             const currDate = +new Date();
             const diffTime = currDate - createdAtObj;
@@ -47,14 +50,30 @@ function CommentUI(props: any) {
                 created {getCreatedAtText(comment.createdAt)}
             </small>
             <div>{comment.message}</div>
-            <small>{`up-votes: ${comment.upVotes} down-votes: ${comment.downVotes}`}</small>
+            <small>
+                <a style={props.reaction && props.reaction === UP_VOTE ? {
+                    textDecoration: 'none',
+                    color: 'blue'
+                } : {textDecoration: 'none'}} href={"#"}>
+                    <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
+                </a>
+                &nbsp;
+                <a style={props.reaction && props.reaction === DOWN_VOTE ? {
+                    textDecoration: 'none',
+                    color: 'red'
+                } : {textDecoration: 'none'}} href={"#"}>
+                    <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
+                </a>
+            </small>
         </div>
     </div>
 }
 
 CommentUI.propTypes = {
     // Not using a `instanceOf(Comment)` because of chrome warning
-    comment: PropTypes.object.isRequired
-};
+    comment: PropTypes.object.isRequired,
+    reaction: PropTypes.string
+}
+;
 
 export default CommentUI;
