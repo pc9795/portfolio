@@ -27,4 +27,16 @@ export default class CommentClient {
 
         return res.data;
     }
+
+    static async updateComment(id: number, message: string): Promise<Comment> {
+        const res = await axios.put(`${RESOURCE_URL}/${id}`, {message}, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
+
+    static async deleteComment(id: number, message: string) {
+        const res = await axios.delete(`${RESOURCE_URL}/${id}`, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
 }

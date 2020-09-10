@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Helmet} from "react-helmet";
 import {AppRoutes, FaviconConstants} from "../../utils/constants";
 import BlogPost from "../../models/blogPost";
@@ -7,7 +7,11 @@ import BlogPostsClient from "../../data/blogPostsClient";
 import BlogTag from "../../models/blogTag";
 import {BlogTagsClient} from "../../data/blogTagsClient";
 import {useMountEffect} from "../../utils/hooks";
-import {Page} from "../../react-app-env";
+import {AppReducerAction, Page, ServerError} from "../../react-app-env";
+import {AppContext, AppReducerActionType} from "../../App";
+import {AlarmType} from "../gui/Alarm";
+import {AxiosError} from "axios";
+import Logger from "../../utils/logger";
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -16,6 +20,7 @@ const MONTH_THREE_LETTER_NAMES = ["jan", "feb", "mar", "apr", "may", "jun",
     "jul", "aug", "sep", "oct", "nov", "dec"];
 
 function BlogPage() {
+    const {dispatch: dispatchApp} = useContext(AppContext);
     const [blogPosts, setBlogPosts] = useState([] as BlogPost[]);
     const [blogTags, setBlogTags] = useState([] as BlogTag[]);
     const [navigationPerformed, setNavigationPerformed] = useState(false);
@@ -24,8 +29,26 @@ function BlogPage() {
     const [searchText, setSearchText] = useState("");
 
     useMountEffect(() => {
-        BlogPostsClient.getAll().then((data: Page<BlogPost>) => setBlogPosts(data.content));
-        BlogTagsClient.getAll().then((data: Page<BlogTag>) => setBlogTags(data.content));
+        BlogPostsClient.getAll().then((data: Page<BlogPost>) => setBlogPosts(data.content)).catch((error: AxiosError) => {
+            Logger.log("Error in getting all the blog posts in Blog page", error);
+            dispatchApp({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
+                    type: AlarmType.ERROR
+                }
+            } as AppReducerAction)
+        });
+        BlogTagsClient.getAll().then((data: Page<BlogTag>) => setBlogTags(data.content)).catch((error: AxiosError) => {
+            Logger.log("Error in getting all the blog tags in Blog page", error);
+            dispatchApp({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
+                    type: AlarmType.ERROR
+                }
+            } as AppReducerAction)
+        });
     });
 
     const renderHead = () => {

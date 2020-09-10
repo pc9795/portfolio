@@ -5,10 +5,14 @@ import {BlogPostPageContext} from "../pages/BlogPostPage";
 import CommentClient from "../../data/commentClient";
 import {AxiosError} from "axios";
 import {AlarmType} from "./Alarm";
-import {AppReducerAction, ServerError} from "../../react-app-env";
+import {AppReducerAction, CommentsReducerAction, ServerError} from "../../react-app-env";
+import {CommentsContext, CommentsReducerActionType} from "./Comments";
+import Comment from "../../models/comment";
+import Logger from "../../utils/logger";
 
 function CommentCreator() {
-    const {appState, dispatch} = useContext(AppContext);
+    const {appState, dispatch: dispatchApp} = useContext(AppContext);
+    const {dispatch: dispatchComments} = useContext(CommentsContext);
     const {blogPost} = useContext(BlogPostPageContext);
     const [message, setMessage] = useState("");
     const [messageCharsCount, setMessageCharsCount] = useState(0);
@@ -70,18 +74,24 @@ function CommentCreator() {
         (document.activeElement as HTMLElement).blur();
         event.preventDefault();
 
-        CommentClient.createComment(message, blogPost.id).then(() => {
-            dispatch({
+        CommentClient.createComment(message, blogPost.id).then((data: Comment) => {
+            dispatchApp({
                 type: AppReducerActionType.SET_ALARM,
                 payload: {message: "Comment posted!", type: AlarmType.SUCCESS}
             } as AppReducerAction);
+            dispatchComments({
+                type: CommentsReducerActionType.ADD_COMMENT,
+                payload: {data}
+            }as CommentsReducerAction);
             setMessage("");
             setMessageCharsCount(0);
         }).catch((error: AxiosError) => {
-            dispatch({
+            const message = error.response ? (error.response.data as ServerError).error.message : "Something bad happened";
+            Logger.log("Error while creating comment", error);
+            dispatchApp({
                 type: AppReducerActionType.SET_ALARM,
                 payload: {
-                    message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
+                    message,
                     type: AlarmType.ERROR
                 }
             } as AppReducerAction)
