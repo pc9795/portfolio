@@ -57,9 +57,11 @@ public class CommentResource {
 
   @GetMapping
   public List<CommentResponse> getAll(
-      @RequestParam("blog_post_id") Long blogPostId, Pageable pageable) {
+      @RequestParam("blog_post_id") Long blogPostId,
+      Pageable pageable,
+      @AuthenticationPrincipal UserPrincipal userPrincipal) {
     return commentCache.findAllByBlogPostId(blogPostId, pageable).stream()
-        .map(commentMapper::toCommentResponse)
+        .map(comment -> commentMapper.toCommentResponse(comment, userPrincipal))
         .collect(Collectors.toList());
   }
 
@@ -90,7 +92,7 @@ public class CommentResource {
             blogPostCache.getOne(request.getBlogPostId()));
 
     // This line will currently try to load the user from database
-    return commentMapper.toCommentResponse(commentCache.save(comment));
+    return commentMapper.toCommentResponse(commentCache.save(comment), userPrincipal);
   }
 
   @PutMapping("/{id}")
@@ -113,7 +115,7 @@ public class CommentResource {
 
     commentCache.updateMessage(id, request.getMessage());
 
-    return commentMapper.toCommentResponse(originalComment, request.getMessage());
+    return commentMapper.toCommentResponse(originalComment, request.getMessage(), userPrincipal);
   }
 
   @PatchMapping("/{id}/up_vote")

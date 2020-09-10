@@ -22,4 +22,6 @@ public class CommentResponse {
   @NonNull private String commenterName;
 
   @NonNull private LocalDateTime createdAt;
+
+  @NonNull private Boolean createdByRequester;
 }

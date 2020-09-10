@@ -1,5 +1,6 @@
 package com.prashantchaubey.dto.mappers;
 
+import com.prashantchaubey.config.UserPrincipal;
 import com.prashantchaubey.dto.requests.CommentCreateRequest;
 import com.prashantchaubey.dto.responses.CommentResponse;
 import com.prashantchaubey.entities.BlogPost;
@@ -14,19 +15,34 @@ import org.mapstruct.ReportingPolicy;
 public abstract class CommentMapper {
 
   @Mapping(
-      source = "user",
+      source = "comment.user",
       target = "commenterImageUrl",
       qualifiedByName = "userToCommenterImageUrl")
-  @Mapping(source = "user", target = "commenterName", qualifiedByName = "userToCommenterName")
-  public abstract CommentResponse toCommentResponse(Comment comment);
+  @Mapping(
+      source = "comment.user",
+      target = "commenterName",
+      qualifiedByName = "userToCommenterName")
+  @Mapping(
+      target = "createdByRequester",
+      expression = "java(requester!=null && requester.getId()==comment.getUser().getId())")
+  @Mapping(target = "id", source = "comment.id")
+  public abstract CommentResponse toCommentResponse(Comment comment, UserPrincipal requester);
 
   @Mapping(
       source = "comment.user",
       target = "commenterImageUrl",
       qualifiedByName = "userToCommenterImageUrl")
-  @Mapping(source = "comment.user", target = "commenterName", qualifiedByName = "userToCommenterName")
+  @Mapping(
+      source = "comment.user",
+      target = "commenterName",
+      qualifiedByName = "userToCommenterName")
   @Mapping(source = "updatedMessage", target = "message")
-  public abstract CommentResponse toCommentResponse(Comment comment, String updatedMessage);
+  @Mapping(
+      target = "createdByRequester",
+      expression = "java(requester!=null && requester.getId()==comment.getUser().getId())")
+  @Mapping(target = "id", source = "comment.id")
+  public abstract CommentResponse toCommentResponse(
+      Comment comment, String updatedMessage, UserPrincipal requester);
 
   public Comment from(CommentCreateRequest commentCreateRequest, User user, BlogPost blogPost) {
     return Comment.builder()
