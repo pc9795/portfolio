@@ -14,7 +14,6 @@ import WorkPage from "./components/pages/WorkPage";
 import NotFound from "./components/pages/NotFound";
 import Alarm, {AlarmType} from "./components/gui/Alarm";
 import TokenManager from "./utils/tokenManager";
-import {AlarmPayload, AppReducerAction, AppState, StringPayload, UserPayload} from "./react-app-env";
 import UsersClient from "./data/userClient";
 import User from "./models/user";
 import {AxiosError} from "axios";

@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {AppContext, AppReducerActionType} from "../../App";
-import {AppReducerAction} from "../../react-app-env";
 
 export enum AlarmType {
     ERROR, SUCCESS

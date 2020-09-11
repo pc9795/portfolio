@@ -9,7 +9,6 @@ import BlogPostsClient from "../../data/blogPostsClient";
 import Project from "../../models/project";
 import ProjectsClient from "../../data/projectsClient";
 import {useMountEffect} from "../../utils/hooks";
-import {Page} from "../../react-app-env";
 
 const HOME_PAGE_BLOG_POSTS_COUNT = 3;
 const HOME_PAGE_PROJECTS_COUNT = 2;

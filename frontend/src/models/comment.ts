@@ -5,6 +5,7 @@ export default class Comment {
                 public message: string,
                 public commenterName: string,
                 public createdAt: string,
+                public createdByRequester: boolean,
                 public commenterImageUrl?: string) {
     }
 }

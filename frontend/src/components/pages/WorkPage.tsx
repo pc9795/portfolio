@@ -5,7 +5,6 @@ import {StaticData} from "../../data/staticData";
 import Project from "../../models/project";
 import ProjectsClient from "../../data/projectsClient";
 import Card from "../gui/Card";
-import {Page} from "../../react-app-env";
 
 function WorkPage() {
     const [projects, setProjects] = useState([] as Project[]);

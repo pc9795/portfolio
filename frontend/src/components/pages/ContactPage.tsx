@@ -7,7 +7,6 @@ import {AxiosError} from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import {AppContext, AppReducerActionType} from "../../App";
 import {AlarmType} from "../gui/Alarm";
-import {AppReducerAction, ServerError} from "../../react-app-env";
 
 const styles = {
     gmap: {

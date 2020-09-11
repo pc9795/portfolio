@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useReducer} from 'react';
+import React, {useContext, useReducer} from 'react';
 import CommentCreator from "./CommentCreator";
 import {useMountEffect} from "../../utils/hooks";
 import CommentClient from "../../data/commentClient";
@@ -6,15 +6,6 @@ import Comment from "../../models/comment";
 import {BlogPostPageContext} from "../pages/BlogPostPage";
 import CommentUI from "./CommentUI";
 import UserCommentReaction from "../../models/userCommentReaction";
-import {
-    AppReducerAction,
-    CommentPayload,
-    CommentsPayload,
-    CommentsReducerAction,
-    CommentsState,
-    ServerError,
-    UserCommentReactionsPayload
-} from "../../react-app-env";
 import {AppContext, AppReducerActionType} from "../../App";
 import {AlarmType} from "./Alarm";
 import {AxiosError} from "axios";

@@ -5,7 +5,6 @@ import {BlogPostPageContext} from "../pages/BlogPostPage";
 import CommentClient from "../../data/commentClient";
 import {AxiosError} from "axios";
 import {AlarmType} from "./Alarm";
-import {AppReducerAction, CommentsReducerAction, ServerError} from "../../react-app-env";
 import {CommentsContext, CommentsReducerActionType} from "./Comments";
 import Comment from "../../models/comment";
 import Logger from "../../utils/logger";

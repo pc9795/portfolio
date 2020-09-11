@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {Fragment, useContext} from 'react';
 import PropTypes from 'prop-types';
 import Comment from "../../models/comment";
 import {ImageConstants} from "../../utils/constants";
+import Logger from "../../utils/logger";
+import CommentClient from "../../data/commentClient";
+import {AppContext, AppReducerActionType} from "../../App";
+import {AlarmType} from "./Alarm";
+import {AxiosError} from "axios";
+import {CommentsContext, CommentsReducerActionType} from "./Comments";
 
 const UP_VOTE = "UP_VOTE";
 const DOWN_VOTE = "DOWN_VOTE";
 
 function CommentUI(props: any) {
     const comment = props.comment as Comment;
+    const {dispatch: dispatchApp} = useContext(AppContext);
+    const {dispatch: dispatchComments} = useContext(CommentsContext);
 
     const getCreatedAtText = (createdAt: string) => {
         try {
@@ -32,12 +40,81 @@ function CommentUI(props: any) {
             }
             return `${Math.round(diffTime / (1000 * 60 * 60 * 24 * 365))} years ago`;
         } catch (e) {
-            //todo make configurable according to environment or use a custom logger
-            console.log(e);
-            //we don't want to crash the page due to silly date conversions.
-            return "";
+            Logger.log("Error while creating 'created at' text for a comment", e);
+            return ""; //we don't want to crash the page due to silly date conversions.
         }
     };
+
+    const renderUpVoteOption = () => {
+        if (props.reaction && props.reaction === UP_VOTE) {
+            return <button style={{textDecoration: 'none', color: 'blue'}} onClick={() => {
+                handleUpVote()
+            }}>
+                <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
+            </button>
+        }
+        return <Fragment> <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}</Fragment>
+    };
+
+    const handleUpVote = () => {
+        //todo implement
+    };
+
+    const renderDownVoteOption = () => {
+        if (props.reaction && props.reaction === DOWN_VOTE) {
+            return <button style={{textDecoration: 'none', color: 'red'}} onClick={() => {
+                handleDownVote()
+            }}>
+                <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
+            </button>
+        }
+        return <Fragment> <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}</Fragment>
+    };
+
+    const handleDownVote = () => {
+        //todo implement
+    };
+
+    const renderUserOptions = () => {
+        if (!comment.createdByRequester) {
+            return null;
+        }
+        return <Fragment>
+            <button className="btn btn-sm btn-link text-secondary p-0 text-sm-left" onClick={() => {
+                handleUpdate()
+            }}>edit
+            </button>
+            &nbsp;
+            <button className="btn btn-sm btn-link text-secondary p-0 text-sm-left" onClick={() => {
+                handleDelete()
+            }}>delete
+            </button>
+        </Fragment>
+    };
+
+    const handleDelete = () => {
+        CommentClient.deleteComment(comment.id).then(() => {
+            dispatchComments({
+                type: CommentsReducerActionType.DELETE_COMMENT,
+                payload: {data: comment}
+            }as CommentsReducerAction)
+        }).catch((error: AxiosError) => {
+            const message = error.response ? (error.response.data as ServerError).error.message : "Something bad happened";
+            Logger.log("Error while creating comment", error);
+            dispatchApp({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message,
+                    type: AlarmType.ERROR
+                }
+            } as AppReducerAction)
+        });
+    };
+
+    const handleUpdate = () => {
+        //todo implement
+    };
+
 
     return <div className="row">
         <div className="col-2 col-sm-1">
@@ -51,19 +128,11 @@ function CommentUI(props: any) {
             </small>
             <div>{comment.message}</div>
             <small>
-                <a style={props.reaction && props.reaction === UP_VOTE ? {
-                    textDecoration: 'none',
-                    color: 'blue'
-                } : {textDecoration: 'none'}} href={"#"}>
-                    <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
-                </a>
+                {renderUpVoteOption()}
                 &nbsp;
-                <a style={props.reaction && props.reaction === DOWN_VOTE ? {
-                    textDecoration: 'none',
-                    color: 'red'
-                } : {textDecoration: 'none'}} href={"#"}>
-                    <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
-                </a>
+                {renderDownVoteOption()}
+                &nbsp;
+                {renderUserOptions()}
             </small>
         </div>
     </div>

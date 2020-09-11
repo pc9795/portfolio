@@ -5,7 +5,6 @@ import {Helmet} from "react-helmet";
 import {AppContext, AppReducerActionType} from "../App";
 import {useMountEffect} from "../utils/hooks";
 import {AlarmType} from "./gui/Alarm";
-import {AppReducerAction} from "../react-app-env";
 
 function OAuth2RedirectHandler(props: any) {
     const {dispatch} = useContext(AppContext);

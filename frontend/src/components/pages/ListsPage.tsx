@@ -3,7 +3,6 @@ import {Helmet} from "react-helmet";
 import {FaviconConstants} from "../../utils/constants";
 import ListItem from "../../models/listItem";
 import {ListsClient} from "../../data/listsClient";
-import {Page} from "../../react-app-env";
 
 function ListsPage() {
     const [technicalList, setTechnicalList] = useState([] as ListItem[]);
