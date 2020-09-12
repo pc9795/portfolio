@@ -119,7 +119,6 @@ public class CommentResource {
   }
 
   @PatchMapping("/{id}/up_vote")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
   public CommentResponse upVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
@@ -155,7 +154,6 @@ public class CommentResource {
   }
 
   @PatchMapping("/{id}/up_vote/remove")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
   public CommentResponse removeUpVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
@@ -190,7 +188,6 @@ public class CommentResource {
   }
 
   @PatchMapping("/{id}/down_vote")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
   public CommentResponse downVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
@@ -226,7 +223,6 @@ public class CommentResource {
   }
 
   @PatchMapping("/{id}/down_vote/remove")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
   public CommentResponse removeDownVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
