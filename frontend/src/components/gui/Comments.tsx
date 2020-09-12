@@ -83,7 +83,7 @@ function Comments() {
 
     const [commentsState, dispatch] = useReducer(commentsReducer, commentsInitialState);
     const {blogPost} = useContext(BlogPostPageContext);
-    const {dispatch: dispatchApp} = useContext(AppContext);
+    const {appState, dispatch: dispatchApp} = useContext(AppContext);
 
     useMountEffect(() => {
         CommentClient.getAllComments(blogPost.id).then((data: Comment[]) => dispatch({
@@ -99,19 +99,21 @@ function Comments() {
                 }
             } as AppReducerAction);
         });
-        CommentClient.getAllReactions(blogPost.id).then((data: UserCommentReaction[]) => dispatch({
-            type: CommentsReducerActionType.SET_USER_COMMENT_REACTIONS,
-            payload: {data}
-        }as CommentsReducerAction)).catch((error: AxiosError) => {
-            Logger.log("Error while getting all reactions", error);
-            dispatchApp({
-                type: AppReducerActionType.SET_ALARM,
-                payload: {
-                    message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
-                    type: AlarmType.ERROR
-                }
-            } as AppReducerAction);
-        });
+        if (appState.currUser) {
+            CommentClient.getAllReactions(blogPost.id).then((data: UserCommentReaction[]) => dispatch({
+                type: CommentsReducerActionType.SET_USER_COMMENT_REACTIONS,
+                payload: {data}
+            }as CommentsReducerAction)).catch((error: AxiosError) => {
+                Logger.log("Error while getting all reactions", error);
+                dispatchApp({
+                    type: AppReducerActionType.SET_ALARM,
+                    payload: {
+                        message: error.response ? (error.response.data as ServerError).error.message : "Something bad happened",
+                        type: AlarmType.ERROR
+                    }
+                } as AppReducerAction);
+            });
+        }
     });
 
     const renderComments = () => {

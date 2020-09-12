@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Comment from "../../models/comment";
 import {ImageConstants} from "../../utils/constants";
@@ -12,7 +12,7 @@ import Confirm from "./Confirm";
 
 function CommentUI(props: any) {
     const comment = props.comment as Comment;
-    const {dispatch: dispatchApp} = useContext(AppContext);
+    const {appState, dispatch: dispatchApp} = useContext(AppContext);
     const {dispatch: dispatchComments} = useContext(CommentsContext);
 
     const getCreatedAtText = (createdAt: string) => {
@@ -44,6 +44,10 @@ function CommentUI(props: any) {
     };
 
     const renderUpVoteOption = () => {
+        if (!appState.currUser) {
+            return <Fragment><i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}</Fragment>
+        }
+
         return <button
             className={`btn btn-sm btn-link p-0 text-decoration-none ${props.reaction && props.reaction === UP_VOTE ? 'text-primary' : 'text-secondary'}`}
             onClick={() => {
@@ -105,6 +109,10 @@ function CommentUI(props: any) {
     };
 
     const renderDownVoteOption = () => {
+        if (!appState.currUser) {
+            return <Fragment> <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}</Fragment>;
+        }
+
         return <button
             className={`btn btn-sm btn-link p-0 text-decoration-none ${props.reaction && props.reaction === DOWN_VOTE ? 'text-danger' : 'text-secondary'}`}
             onClick={() => {
@@ -165,9 +173,10 @@ function CommentUI(props: any) {
     };
 
     const renderUserOptions = () => {
-        if (!comment.createdByRequester) {
+        if (!appState.currUser || !comment.createdByRequester) {
             return null;
         }
+
         return <Confirm title={"Confirm delete"} body={"Do you want to DELETE this comment?"} confirmText={"Delete"}
                         onClick={handleDelete}
                         childBtnBSClassName={"btn btn-sm btn-link text-secondary p-0 text-sm-left"}
