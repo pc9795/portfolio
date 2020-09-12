@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Value
 public class CommentEditRequest {
   @NotNull
-  @Size(max = 5000)
+  @Size(min = 15, max = 5000)
   private String message;
 
   @JsonPOJOBuilder(withPrefix = "")
