@@ -8,6 +8,7 @@ import {AppContext, AppReducerActionType} from "../../App";
 import {AlarmType} from "./Alarm";
 import {AxiosError} from "axios";
 import {CommentsContext, CommentsReducerActionType} from "./Comments";
+import Confirm from "./Confirm";
 
 const UP_VOTE = "UP_VOTE";
 const DOWN_VOTE = "DOWN_VOTE";
@@ -47,7 +48,7 @@ function CommentUI(props: any) {
 
     const renderUpVoteOption = () => {
         if (props.reaction && props.reaction === UP_VOTE) {
-            return <button style={{textDecoration: 'none', color: 'blue'}} onClick={() => {
+            return <button className="text-decoration-none text-primary" onClick={() => {
                 handleUpVote()
             }}>
                 <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
@@ -62,7 +63,7 @@ function CommentUI(props: any) {
 
     const renderDownVoteOption = () => {
         if (props.reaction && props.reaction === DOWN_VOTE) {
-            return <button style={{textDecoration: 'none', color: 'red'}} onClick={() => {
+            return <button className="text-decoration-none text-danger" onClick={() => {
                 handleDownVote()
             }}>
                 <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
@@ -85,10 +86,9 @@ function CommentUI(props: any) {
             }}>edit
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-link text-secondary p-0 text-sm-left" onClick={() => {
-                handleDelete()
-            }}>delete
-            </button>
+            <Confirm title={"Confirm delete"} body={"Do you want to DELETE this comment?"} confirmText={"Delete"}
+                     onClick={handleDelete} childBtnBSClassName={"btn btn-sm btn-link text-secondary p-0 text-sm-left"}
+                     childBtnText="delete"/>
         </Fragment>
     };
 
