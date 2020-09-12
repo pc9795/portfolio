@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -76,7 +77,8 @@ public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
             .provider(
                 User.AuthProvider.fromValue(
                     oAuth2UserRequest.getClientRegistration().getRegistrationId()))
-            .providerId(oAuth2UserInfo.getId());
+            .providerId(oAuth2UserInfo.getId())
+            .permissionSet(new HashSet<>());
 
     return userCache.save(builder.build());
   }

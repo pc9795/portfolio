@@ -121,7 +121,7 @@ public class CommentResource {
   @PatchMapping("/{id}/up_vote")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
-  public void upVote(
+  public CommentResponse upVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
     Comment comment =
         commentCache
@@ -149,20 +149,24 @@ public class CommentResource {
             .comment(comment)
             .user(userCache.getOne(userPrincipal.getId()))
             .build());
+
+    return commentMapper.toCommentResponse(
+        comment, comment.getUpVotes() + 1, comment.getDownVotes(), userPrincipal);
   }
 
   @PatchMapping("/{id}/up_vote/remove")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
-  public void removeUpVote(
+  public CommentResponse removeUpVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
-    commentCache
-        .findById(id)
-        .orElseThrow(
-            () -> {
-              throw new ResourceNotFoundException(
-                  String.format("Comment with id [%s] is not found", id));
-            });
+    Comment comment =
+        commentCache
+            .findById(id)
+            .orElseThrow(
+                () -> {
+                  throw new ResourceNotFoundException(
+                      String.format("Comment with id [%s] is not found", id));
+                });
 
     UserCommentReactionId userCommentReactionId =
         UserCommentReactionId.builder().commentId(id).userId(userPrincipal.getId()).build();
@@ -180,12 +184,15 @@ public class CommentResource {
 
     commentCache.decrementUpVote(id);
     userCommentReactionCache.delete(userCommentReaction);
+
+    return commentMapper.toCommentResponse(
+        comment, comment.getUpVotes() - 1, comment.getDownVotes(), userPrincipal);
   }
 
   @PatchMapping("/{id}/down_vote")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
-  public void downVote(
+  public CommentResponse downVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
     Comment comment =
         commentCache
@@ -213,20 +220,24 @@ public class CommentResource {
             .comment(comment)
             .user(userCache.getOne(userPrincipal.getId()))
             .build());
+
+    return commentMapper.toCommentResponse(
+        comment, comment.getUpVotes(), comment.getDownVotes() + 1, userPrincipal);
   }
 
   @PatchMapping("/{id}/down_vote/remove")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Transactional
-  public void removeDownVote(
+  public CommentResponse removeDownVote(
       @PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
-    commentCache
-        .findById(id)
-        .orElseThrow(
-            () -> {
-              throw new ResourceNotFoundException(
-                  String.format("Comment with id [%s] is not found", id));
-            });
+    Comment comment =
+        commentCache
+            .findById(id)
+            .orElseThrow(
+                () -> {
+                  throw new ResourceNotFoundException(
+                      String.format("Comment with id [%s] is not found", id));
+                });
 
     UserCommentReactionId userCommentReactionId =
         UserCommentReactionId.builder().commentId(id).userId(userPrincipal.getId()).build();
@@ -244,6 +255,9 @@ public class CommentResource {
 
     commentCache.decrementDownVote(id);
     userCommentReactionCache.delete(userCommentReaction);
+
+    return commentMapper.toCommentResponse(
+        comment, comment.getUpVotes(), comment.getDownVotes() - 1, userPrincipal);
   }
 
   @DeleteMapping("/{id}")
