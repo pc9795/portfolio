@@ -8,7 +8,7 @@ import {AlarmType} from "../components/gui/Alarm";
 import {AppReducerActionType} from "../App";
 
 // todo when we import any external modules then the declaration file turns into a module. We can still utilize
-// todo its declaration capabilities by using `declare global` which lests us to declare without explicitly importing
+// todo its declaration capabilities by using `declare global` which lets us to declare without explicitly importing
 // todo these
 // todo one possible solution: https://stackoverflow.com/questions/39040108/import-class-in-definition-file-d-ts
 
@@ -64,9 +64,5 @@ declare global {
 
     declare interface CommentPayload {
         data: Comment
-    }
-
-    declare interface UserCommentReactionPayload {
-        data: UserCommentReaction
     }
 }

@@ -21,15 +21,9 @@ export default class CommentClient {
     }
 
     static async getAllReactions(blogPostId: number): Promise<UserCommentReaction[]> {
-        const url = new URL(RESOURCE_URL);
+        const url = new URL(`${RESOURCE_URL}/reactions`);
         url.searchParams.append('blog_post_id', blogPostId.toString());
         const res = await axios.get(url.href, ApiClientUtils.getConfig());
-
-        return res.data;
-    }
-
-    static async updateComment(id: number, message: string): Promise<Comment> {
-        const res = await axios.put(`${RESOURCE_URL}/${id}`, {message}, ApiClientUtils.getConfig());
 
         return res.data;
     }
@@ -39,4 +33,29 @@ export default class CommentClient {
 
         return res.data;
     }
+
+    static async upvoteComment(id: number): Promise<Comment> {
+        const res = await axios.patch(`${RESOURCE_URL}/${id}/up_vote`, {}, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
+
+    static async removeUpvoteComment(id: number): Promise<Comment> {
+        const res = await axios.patch(`${RESOURCE_URL}/${id}/up_vote/remove`, {}, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
+
+    static async downvoteComment(id: number): Promise<Comment> {
+        const res = await axios.patch(`${RESOURCE_URL}/${id}/down_vote`, {}, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
+
+    static async removeDownvoteComment(id: number): Promise<Comment> {
+        const res = await axios.patch(`${RESOURCE_URL}/${id}/down_vote/remove`, {}, ApiClientUtils.getConfig());
+
+        return res.data;
+    }
+
 }

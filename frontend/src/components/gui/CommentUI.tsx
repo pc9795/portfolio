@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import Comment from "../../models/comment";
 import {ImageConstants} from "../../utils/constants";
@@ -7,11 +7,8 @@ import CommentClient from "../../data/commentClient";
 import {AppContext, AppReducerActionType} from "../../App";
 import {AlarmType} from "./Alarm";
 import {AxiosError} from "axios";
-import {CommentsContext, CommentsReducerActionType} from "./Comments";
+import {CommentsContext, CommentsReducerActionType, DOWN_VOTE, UP_VOTE} from "./Comments";
 import Confirm from "./Confirm";
-
-const UP_VOTE = "UP_VOTE";
-const DOWN_VOTE = "DOWN_VOTE";
 
 function CommentUI(props: any) {
     const comment = props.comment as Comment;
@@ -47,49 +44,134 @@ function CommentUI(props: any) {
     };
 
     const renderUpVoteOption = () => {
-        if (props.reaction && props.reaction === UP_VOTE) {
-            return <button className="text-decoration-none text-primary" onClick={() => {
+        return <button
+            className={`btn btn-sm btn-link p-0 text-decoration-none ${props.reaction && props.reaction === UP_VOTE ? 'text-primary' : 'text-secondary'}`}
+            onClick={() => {
                 handleUpVote()
             }}>
-                <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
-            </button>
-        }
-        return <Fragment> <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}</Fragment>
+            <i className="fa fa-thumbs-o-up"/>&nbsp;{comment.upVotes}
+        </button>
     };
 
     const handleUpVote = () => {
-        //todo implement
+        (document.activeElement as HTMLElement).blur();
+        let promise;
+        if (props.reaction) {
+            if (props.reaction === DOWN_VOTE) {
+                promise = CommentClient.removeDownvoteComment(comment.id).then((updatedComment: Comment) => {
+                    dispatchComments({
+                        type: CommentsReducerActionType.REMOVE_REACTION,
+                        payload: {data: updatedComment}
+                    }as CommentsReducerAction);
+
+                    CommentClient.upvoteComment(comment.id).then((updatedComment: Comment) => {
+                        dispatchComments({
+                            type: CommentsReducerActionType.UP_VOTE,
+                            payload: {data: updatedComment}
+                        }as CommentsReducerAction);
+                    });
+                });
+            } else if (props.reaction === UP_VOTE) {
+                promise = CommentClient.removeUpvoteComment(comment.id).then((updatedComment: Comment) => {
+                    dispatchComments({
+                        type: CommentsReducerActionType.REMOVE_REACTION,
+                        payload: {data: updatedComment}
+                    }as CommentsReducerAction);
+                });
+            }
+        } else {
+            promise = CommentClient.upvoteComment(comment.id).then((updatedComment: Comment) => {
+                dispatchComments({
+                    type: CommentsReducerActionType.UP_VOTE,
+                    payload: {data: updatedComment}
+                }as CommentsReducerAction);
+            });
+        }
+        if (!promise) {
+            Logger.log("Promise is not initialized while handling up-vote", props.reaction);
+            return;
+        }
+        promise.catch((error: AxiosError) => {
+            const message = error.response ? (error.response.data as ServerError).error.message : "Something bad happened";
+            Logger.log("Error while up-voting comment", error);
+            dispatchApp({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message,
+                    type: AlarmType.ERROR
+                }
+            } as AppReducerAction)
+        });
     };
 
     const renderDownVoteOption = () => {
-        if (props.reaction && props.reaction === DOWN_VOTE) {
-            return <button className="text-decoration-none text-danger" onClick={() => {
+        return <button
+            className={`btn btn-sm btn-link p-0 text-decoration-none ${props.reaction && props.reaction === DOWN_VOTE ? 'text-danger' : 'text-secondary'}`}
+            onClick={() => {
                 handleDownVote()
             }}>
-                <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
-            </button>
-        }
-        return <Fragment> <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}</Fragment>
+            <i className="fa fa-thumbs-o-down"/>&nbsp;{comment.downVotes}
+        </button>
     };
 
     const handleDownVote = () => {
-        //todo implement
+        (document.activeElement as HTMLElement).blur();
+        let promise;
+        if (props.reaction) {
+            if (props.reaction === UP_VOTE) {
+                promise = CommentClient.removeUpvoteComment(comment.id).then((updatedComment: Comment) => {
+                    dispatchComments({
+                        type: CommentsReducerActionType.REMOVE_REACTION,
+                        payload: {data: updatedComment}
+                    }as CommentsReducerAction);
+                    CommentClient.downvoteComment(comment.id).then((updatedComment: Comment) => {
+                        dispatchComments({
+                            type: CommentsReducerActionType.DOWN_VOTE,
+                            payload: {data: updatedComment}
+                        }as CommentsReducerAction);
+                    });
+                });
+            } else if (props.reaction === DOWN_VOTE) {
+                promise = CommentClient.removeDownvoteComment(comment.id).then((updatedComment: Comment) => {
+                    dispatchComments({
+                        type: CommentsReducerActionType.REMOVE_REACTION,
+                        payload: {data: updatedComment}
+                    }as CommentsReducerAction);
+                });
+            }
+        } else {
+            promise = CommentClient.downvoteComment(comment.id).then((updatedComment: Comment) => {
+                dispatchComments({
+                    type: CommentsReducerActionType.DOWN_VOTE,
+                    payload: {data: updatedComment}
+                }as CommentsReducerAction);
+            });
+        }
+        if (!promise) {
+            Logger.log("Promise is not initialized while handling down-vote", props.reaction);
+            return;
+        }
+        promise.catch((error: AxiosError) => {
+            const message = error.response ? (error.response.data as ServerError).error.message : "Something bad happened";
+            Logger.log("Error while down-voting comment", error);
+            dispatchApp({
+                type: AppReducerActionType.SET_ALARM,
+                payload: {
+                    message,
+                    type: AlarmType.ERROR
+                }
+            } as AppReducerAction)
+        });
     };
 
     const renderUserOptions = () => {
         if (!comment.createdByRequester) {
             return null;
         }
-        return <Fragment>
-            <button className="btn btn-sm btn-link text-secondary p-0 text-sm-left" onClick={() => {
-                handleUpdate()
-            }}>edit
-            </button>
-            &nbsp;
-            <Confirm title={"Confirm delete"} body={"Do you want to DELETE this comment?"} confirmText={"Delete"}
-                     onClick={handleDelete} childBtnBSClassName={"btn btn-sm btn-link text-secondary p-0 text-sm-left"}
-                     childBtnText="delete"/>
-        </Fragment>
+        return <Confirm title={"Confirm delete"} body={"Do you want to DELETE this comment?"} confirmText={"Delete"}
+                        onClick={handleDelete}
+                        childBtnBSClassName={"btn btn-sm btn-link text-secondary p-0 text-sm-left"}
+                        childBtnText="delete"/>
     };
 
     const handleDelete = () => {
@@ -110,11 +192,6 @@ function CommentUI(props: any) {
             } as AppReducerAction)
         });
     };
-
-    const handleUpdate = () => {
-        //todo implement
-    };
-
 
     return <div className="row">
         <div className="col-2 col-sm-1">

@@ -11,18 +11,19 @@ import {AlarmType} from "./Alarm";
 import {AxiosError} from "axios";
 import Logger from "../../utils/logger";
 
+export const UP_VOTE = "UP_VOTE";
+export const DOWN_VOTE = "DOWN_VOTE";
+
 export const CommentsContext = React.createContext({}as{ commentsState: CommentsState, dispatch: Function });
 
 export enum CommentsReducerActionType {
-    ADD_COMMENT = "add_comment",
-    UPDATE_COMMENT = "update_comment",
-    DELETE_COMMENT = "delete_comment",
-    UPVOTE = "up_vote",
-    REMOVE_UPVOTE = "remove_up_vote",
-    DOWNVOTE = "down_vote",
-    REMOVE_DOWNVOTE = "remove_down_vote",
     SET_COMMENTS = "set_comments",
     SET_USER_COMMENT_REACTIONS = "set_user_reactions",
+    ADD_COMMENT = "add_comment",
+    DELETE_COMMENT = "delete_comment",
+    UP_VOTE = "up_vote",
+    DOWN_VOTE = "down_vote",
+    REMOVE_REACTION = "remove_reaction",
 }
 
 function Comments() {
@@ -44,17 +45,37 @@ function Comments() {
                     ...state,
                     comments: state.comments.filter(comment => comment.id !== (action.payload as CommentPayload).data.id)
                 };
-            case CommentsReducerActionType.UPDATE_COMMENT:
+            case CommentsReducerActionType.UP_VOTE:
                 return {
                     ...state,
                     comments: state.comments.map(comment => {
                         return comment.id === (action.payload as CommentPayload).data.id ? (action.payload as CommentPayload).data : comment;
-                    })
+                    }),
+                    userCommentReactions: [...state.userCommentReactions, {
+                        commentId: (action.payload as CommentPayload).data.id,
+                        type: UP_VOTE
+                    }]
                 };
-            case CommentsReducerActionType.UPVOTE:
-            case CommentsReducerActionType.REMOVE_UPVOTE:
-            case CommentsReducerActionType.DOWNVOTE:
-            case CommentsReducerActionType.REMOVE_DOWNVOTE:
+            case CommentsReducerActionType.DOWN_VOTE:
+                return {
+                    ...state,
+                    comments: state.comments.map(comment => {
+                        return comment.id === (action.payload as CommentPayload).data.id ? (action.payload as CommentPayload).data : comment;
+                    }),
+                    userCommentReactions: [...state.userCommentReactions, {
+                        commentId: (action.payload as CommentPayload).data.id,
+                        type: DOWN_VOTE
+                    }]
+                };
+            case CommentsReducerActionType.REMOVE_REACTION:
+                return {
+                    ...state,
+                    comments: state.comments.map(comment => {
+                        return comment.id === (action.payload as CommentPayload).data.id ? (action.payload as CommentPayload).data : comment;
+                    }),
+                    userCommentReactions: state.userCommentReactions.filter(userCommentReaction =>
+                        userCommentReaction.commentId !== (action.payload as CommentPayload).data.id)
+                };
             default:
                 return state;
         }
