@@ -54,11 +54,11 @@ function ListsPage() {
     return <div className="container my-3">
         {renderHead()}
         <div className="row mt-3">
-            <div className="col-md-6 col-sm-12">
+            <div className="col-sm-6 col-12">
                 <h3>Technical Readings <i className="fa fa-meh-o"/></h3>
                 {renderTechnicalList()}
             </div>
-            <div className="col-md-6 col-sm-12">
+            <div className="col-sm-6 col-12">
                 <h3>Video Games <i className="fa fa-smile-o"/></h3>
                 {renderVideoGameList()}
             </div>

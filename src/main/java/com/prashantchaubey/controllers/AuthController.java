@@ -1,6 +1,6 @@
 package com.prashantchaubey.controllers;
 
-import com.prashantchaubey.services.JWTTokenProvider;
+import com.prashantchaubey.caches.UserCache;
 import com.prashantchaubey.dto.mappers.UserMapper;
 import com.prashantchaubey.dto.requests.LoginRequest;
 import com.prashantchaubey.dto.requests.SignupRequest;
@@ -8,7 +8,7 @@ import com.prashantchaubey.dto.responses.AuthResponse;
 import com.prashantchaubey.dto.responses.UserResponse;
 import com.prashantchaubey.entities.User;
 import com.prashantchaubey.exceptions.BadDataException;
-import com.prashantchaubey.repositories.UserRepository;
+import com.prashantchaubey.services.JWTTokenProvider;
 import com.prashantchaubey.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,20 +25,20 @@ import javax.validation.Valid;
 @RequestMapping(Constants.Endpoint.AUTH)
 public class AuthController {
   private AuthenticationManager authenticationManager;
-  private UserRepository userRepository;
+  private UserCache userCache;
   private PasswordEncoder passwordEncoder;
   private JWTTokenProvider JWTTokenProvider;
   private UserMapper userMapper;
 
   @Autowired
   public AuthController(
-          AuthenticationManager authenticationManager,
-          UserRepository userRepository,
-          PasswordEncoder passwordEncoder,
-          JWTTokenProvider JWTTokenProvider,
-          UserMapper userMapper) {
+      AuthenticationManager authenticationManager,
+      UserCache userCache,
+      PasswordEncoder passwordEncoder,
+      JWTTokenProvider JWTTokenProvider,
+      UserMapper userMapper) {
     this.authenticationManager = authenticationManager;
-    this.userRepository = userRepository;
+    this.userCache = userCache;
     this.passwordEncoder = passwordEncoder;
     this.JWTTokenProvider = JWTTokenProvider;
     this.userMapper = userMapper;
@@ -60,7 +60,7 @@ public class AuthController {
   @PostMapping("/register")
   @ResponseStatus(HttpStatus.CREATED)
   public UserResponse register(@Valid @RequestBody SignupRequest signupRequest) {
-    if (userRepository.existsByEmail(signupRequest.getEmail())) {
+    if (userCache.findByEmail(signupRequest.getEmail()).isPresent()) {
       throw new BadDataException(
           String.format("Email [%s] already in use", signupRequest.getEmail()));
     }
@@ -69,11 +69,10 @@ public class AuthController {
         SignupRequest.builder()
             .name(signupRequest.getName())
             .email(signupRequest.getEmail())
-            .provider(signupRequest.getProvider())
             .password(passwordEncoder.encode(signupRequest.getPassword()))
             .build();
-    User user = userMapper.to(passwordEncryptedSignupRequest);
+    User user = userMapper.from(passwordEncryptedSignupRequest);
 
-    return userMapper.from(user);
+    return userMapper.toUserResponse(userCache.save(user));
   }
 }

@@ -15,9 +15,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = Constants.Endpoint.CONTACTS_V1)
 public class ContactResource {
-
-  private ContactRepository contactRepository;
-  private ContactMapper contactMapper;
+  private final ContactRepository contactRepository;
+  private final ContactMapper contactMapper;
 
   @Autowired
   public ContactResource(ContactRepository contactRepository, ContactMapper contactMapper) {
@@ -28,9 +27,9 @@ public class ContactResource {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public ContactResponse create(@Valid @RequestBody ContactCreateRequest request) {
-    Contact contact = contactMapper.from(request);
+    Contact contact = contactMapper.fromContactCreateRequest(request);
     contactRepository.save(contact);
 
-    return contactMapper.to(contact);
+    return contactMapper.toContactResponse(contact);
   }
 }

@@ -25,6 +25,6 @@ public class BlogTagResource {
 
   @GetMapping
   public Page<BlogTagResponse> getAll(Pageable pageable) {
-    return blogTagCache.findAll(pageable).map(blogTagMapper::to);
+    return blogTagCache.findAll(pageable).map(blogTagMapper::toBlogTagResponse);
   }
 }

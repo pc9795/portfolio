@@ -50,3 +50,8 @@ from the OAuth2 provider. We’ll be storing the state as well as the `redirect_
 
 Right now not able to test Google OAuth flow locally with docker because Google doesn't accepts IP addresses for redirect
 URLs
+
+# 
+
+If `BindException` is thrown instead of `MethodArgumentNotValidException` then maybe you forget to add `@RequestBody` to
+method argument as it is now handled as a form parameter.

@@ -2,9 +2,9 @@ package com.prashantchaubey.services;
 
 import com.prashantchaubey.beans.oauth.OAuth2UserInfo;
 import com.prashantchaubey.beans.oauth.OAuth2UserInfoFactory;
+import com.prashantchaubey.caches.UserCache;
 import com.prashantchaubey.config.UserPrincipal;
 import com.prashantchaubey.entities.User;
-import com.prashantchaubey.repositories.UserRepository;
 import com.prashantchaubey.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -15,15 +15,16 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 @Service
 public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
-  private UserRepository userRepository;
+  private UserCache userCache;
 
   @Autowired
-  public PortfolioOAuth2UserService(UserRepository userRepository) {
-    this.userRepository = userRepository;
+  public PortfolioOAuth2UserService(UserCache userCache) {
+    this.userCache = userCache;
   }
 
   @Override
@@ -48,7 +49,7 @@ public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
       throw new RuntimeException("Email not found from OAuth2 provider");
     }
 
-    Optional<User> maybeUser = userRepository.findByEmail(oAuth2UserInfo.getEmail());
+    Optional<User> maybeUser = userCache.findByEmail(oAuth2UserInfo.getEmail());
     User user;
     if (!maybeUser.isPresent()) {
       user = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
@@ -76,9 +77,10 @@ public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
             .provider(
                 User.AuthProvider.fromValue(
                     oAuth2UserRequest.getClientRegistration().getRegistrationId()))
-            .providerId(oAuth2UserInfo.getId());
+            .providerId(oAuth2UserInfo.getId())
+            .permissionSet(new HashSet<>());
 
-    return userRepository.save(builder.build());
+    return userCache.save(builder.build());
   }
 
   private User updateExistingUser(User existingUser, OAuth2UserInfo oAuth2UserInfo) {
@@ -91,8 +93,9 @@ public class PortfolioOAuth2UserService extends DefaultOAuth2UserService {
             .emailVerified(existingUser.isEmailVerified())
             .password(existingUser.getPassword())
             .provider(existingUser.getProvider())
-            .providerId(existingUser.getProviderId());
+            .providerId(existingUser.getProviderId())
+            .permissionSet(existingUser.getPermissionSet());
 
-    return userRepository.save(builder.build());
+    return userCache.save(builder.build());
   }
 }

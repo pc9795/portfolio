@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, {ReactElement, useReducer} from "react";
 import {Route, Switch} from "react-router-dom";
 import SunshinePage from "./components/pages/SunshinePage";
 import Header from "./components/Header";
@@ -12,46 +12,90 @@ import ContactPage from "./components/pages/ContactPage";
 import HomePage from "./components/pages/HomePage";
 import WorkPage from "./components/pages/WorkPage";
 import NotFound from "./components/pages/NotFound";
-import Alarm from "./components/gui/Alarm";
+import Alarm, {AlarmType} from "./components/gui/Alarm";
 import TokenManager from "./utils/tokenManager";
+import UsersClient from "./data/userClient";
+import User from "./models/user";
+import {AxiosError} from "axios";
+import {useMountEffect} from "./utils/hooks";
 
-export const AppContext = React.createContext(undefined as any);
+export const AppContext = React.createContext({} as { appState: AppState, dispatch: Function });
 
 export enum AppReducerActionType {
     SET_ALARM = "set_alarm",
     AUTHENTICATE = "authenticate",
-    LOGOUT = "logout"
-}
-
-const appInitialState = {
-    alarmMessage: "",
-    authenticated: TokenManager.hasAccessToken()
-};
-
-function appReducer(state: any, action: AppReducerAction): any {
-    switch (action.type) {
-        case AppReducerActionType.SET_ALARM:
-            return {...state, alarmMessage: action.payload};
-        case AppReducerActionType.AUTHENTICATE:
-            const accessToken = action.payload;
-            TokenManager.setAccessToken(accessToken);
-            return {...state, authenticated: true};
-        case AppReducerActionType.LOGOUT:
-            TokenManager.removeAccessToken();
-            return {...state, authenticated: false};
-        default:
-            return state;
-    }
+    LOGOUT = "logout",
+    REMOVE_ALARM = "remove_alarm",
+    SET_USER = "set_user"
 }
 
 function App() {
+    const appInitialState: AppState = {
+        currUser: null,
+        alarmMap: new Map()
+    };
+
+    const appReducer = (state: AppState, action: AppReducerAction): AppState => {
+        switch (action.type) {
+            case AppReducerActionType.SET_ALARM:
+                let additionMap = new Map(state.alarmMap);
+                additionMap.set((action.payload as AlarmPayload).message, <Alarm
+                    key={(action.payload as AlarmPayload).message}
+                    type={(action.payload as AlarmPayload).type}
+                    message={(action.payload as AlarmPayload).message}/>);
+                return {...state, alarmMap: additionMap};
+            case AppReducerActionType.REMOVE_ALARM:
+                let deletionMap = new Map(state.alarmMap);
+                deletionMap.delete((action.payload as StringPayload).data);
+                return {...state, alarmMap: deletionMap};
+            case AppReducerActionType.AUTHENTICATE:
+                TokenManager.setAccessToken((action.payload as StringPayload).data);
+                return state;
+            case AppReducerActionType.LOGOUT:
+                TokenManager.removeAccessToken();
+                return {...state, currUser: null};
+            case AppReducerActionType.SET_USER:
+                return {...state, currUser: (action.payload as UserPayload).data};
+            default:
+                return state;
+        }
+    };
+
     const [appState, dispatch] = useReducer(appReducer, appInitialState);
 
-    const renderAlarm = () => {
-        if (!appState.alarmMessage) {
-            return;
+    const renderAlarms = () => {
+        const alarms: any = [];
+        appState.alarmMap.forEach((value: ReactElement) => alarms.push(value));
+
+        return alarms;
+    };
+
+    useMountEffect(() => {
+        if (TokenManager.hasAccessToken()) {
+            getCurrentUser();
         }
-        return <Alarm message={appState.alarmMessage}/>
+    });
+
+    const getCurrentUser = () => {
+        UsersClient.getCurrentUser().then((data: User) => dispatch({
+            type: AppReducerActionType.SET_USER,
+            payload: {data}
+        }as AppReducerAction)).catch((e: AxiosError) => {
+            if (e.response && e.response.status === 401) {
+                dispatch({
+                    type: AppReducerActionType.SET_ALARM,
+                    payload: {type: AlarmType.ERROR, message: "Unable to sign in automatically! Please sign-in again"}
+                }as AppReducerAction);
+            } else {
+                dispatch({
+                    type: AppReducerActionType.SET_ALARM,
+                    payload: {
+                        type: AlarmType.ERROR,
+                        message: "Something is not working correctly! Please try after sometime"
+                    }
+                }as AppReducerAction);
+            }
+        })
     };
 
     return <Switch>
@@ -59,7 +103,7 @@ function App() {
         <AppContext.Provider value={{appState, dispatch}}>
             <Route path="/">
                 <Header/>
-                {renderAlarm()}
+                <div className="container mt-3"> {renderAlarms()}</div>
                 <Switch>
                     <Route exact path={AppRoutes.HOME} component={HomePage}/>
                     <Route exact path={AppRoutes.BLOG} component={BlogPage}/>

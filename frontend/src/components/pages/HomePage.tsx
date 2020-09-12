@@ -35,13 +35,13 @@ function HomePage() {
 
     const renderInfoCards = () => {
         return <div className="row card-deck">
-            <div className="col-md-4 col-xs-12">
+            <div className="col-sm-4 col-12">
                 {renderAboutMeCard()}
             </div>
-            <div className="col-md-4 col-xs-12">
+            <div className="col-sm-4 col-12">
                 {renderInterestsCard()}
             </div>
-            <div className="col-md-4 col-xs-12">
+            <div className="col-sm-4 col-12">
                 {renderReadingsCard()}
             </div>
         </div>;
@@ -69,8 +69,8 @@ function HomePage() {
 
     const renderBlogPostsHeading = () => {
         return <div className="row my-3">
-            <div className="col-8 col-xs-12"><h3>Articles <i className="fa fa-rocket"/></h3></div>
-            <div className="col-4 col-xs-12">
+            <div className="col-sm-8 col-12"><h3>Articles <i className="fa fa-rocket"/></h3></div>
+            <div className="col-sm-4 col-12">
                 <Link className="text-secondary pull-right" to={AppRoutes.BLOG}>All articles</Link>
             </div>
         </div>;
@@ -85,15 +85,15 @@ function HomePage() {
     const renderBlogPostCard = (blogPost: BlogPost) => {
         const footer = <a href={AppRoutes.BLOG + "/" + blogPost.name} className="text-secondary">Read More</a>;
 
-        return <div key={blogPost.name} className="col-md-4 col-sm-12">
+        return <div key={blogPost.name} className="col-sm-4 col-12">
             <Card title={blogPost.heading} text={blogPost.description} footer={footer}/>
         </div>
     };
 
     const renderProjectsHeading = () => {
         return <div className="row my-3">
-            <div className="col-8 col-xs-12"><h3>Projects <i className="fa fa-code"/></h3></div>
-            <div className="col-4 col-xs-12">
+            <div className="col-sm-8 col-12"><h3>Projects <i className="fa fa-code"/></h3></div>
+            <div className="col-sm-4 col-12">
                 <Link className="text-secondary pull-right" to={AppRoutes.WORK}>See more of my work</Link>
             </div>
         </div>
@@ -101,7 +101,7 @@ function HomePage() {
 
     const renderProjectCards = () => {
         return <div className="row card-deck">
-            <div className="col-md-4 col-sm-12">
+            <div className="col-sm-4 col-12">
                 <Card title={"Portfolio website"} text={StaticData.getPortfolioDesc()}/>
             </div>
             {projects.map(project => renderProjectCard(project))}
@@ -111,7 +111,7 @@ function HomePage() {
     const renderProjectCard = (project: Project) => {
         const footer = <a href={project.link} className="text-secondary">Project Repo</a>;
 
-        return <div key={project.name} className="col-md-4 col-sm-12">
+        return <div key={project.name} className="col-sm-4 col-12">
             <Card title={project.heading} text={project.description} footer={footer}/>
         </div>
     };

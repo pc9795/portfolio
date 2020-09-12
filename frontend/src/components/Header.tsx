@@ -7,17 +7,17 @@ function Header() {
     const {appState, dispatch} = useContext(AppContext);
 
     const renderUserArea = () => {
-        if (appState.authenticated) {
+        if (appState.currUser) {
             return <div>
                 <button className="btn btn-light" onClick={() => {
-                    dispatch({type: AppReducerActionType.LOGOUT})
+                    dispatch({type: AppReducerActionType.LOGOUT} as AppReducerAction)
                 }}>Logout
                 </button>
             </div>;
 
         }
         return <a href={AppRoutes.GOOGLE_AUTH_URL} className="btn btn-light">
-            <img src={ImageConstants.GOOGLE_LOGO} height="30" width="30" alt="Google"/>
+            <img src={ImageConstants.GOOGLE_LOGO} height="25" width="25" alt="Google"/>
             Log In
         </a>
     };

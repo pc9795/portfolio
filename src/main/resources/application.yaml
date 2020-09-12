@@ -12,6 +12,8 @@ spring:
             # Workaround for an error with postgres and hibernate
             non_contextual_creation: true
         format_sql: false
+        use_sql_comments: false
+        show_sql: false
     generate-ddl: true
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
   # Below 2 are required to handle 404 with controller advice
@@ -40,7 +42,6 @@ logging:
   level:
     org:
       hibernate:
-        SQL: error
         type:
           descriptor:
             sql:
@@ -62,13 +63,14 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        use_sql_comments: true
+        show_sql: true
 
 # Below 2 are for printing sql queries and there parameters
 logging:
   level:
     org:
       hibernate:
-        SQL: debug
         type:
           descriptor:
             sql:

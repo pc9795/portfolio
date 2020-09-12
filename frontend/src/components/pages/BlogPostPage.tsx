@@ -4,6 +4,9 @@ import {Helmet} from "react-helmet";
 import BlogPost from "../../models/blogPost";
 import BlogPostsClient from "../../data/blogPostsClient";
 import {useMountEffect} from "../../utils/hooks";
+import Comments from "../gui/Comments";
+
+export const BlogPostPageContext = React.createContext({} as { blogPost: BlogPost });
 
 function BlogPostPage(props: any) {
     const {blogPostName} = props.match.params.name;
@@ -20,11 +23,7 @@ function BlogPostPage(props: any) {
         </Helmet>
     };
 
-    const renderBlogPost = (blogPost: null | BlogPost) => {
-        if (blogPost == null) {
-            return null;
-        }
-
+    const renderBlogPost = (blogPost: BlogPost) => {
         return <div className="row">
             <div className="col-12">
                 <h1>{blogPost.heading}</h1>
@@ -32,6 +31,8 @@ function BlogPostPage(props: any) {
             <div className="col-12 mt-3">
                 <p className="font-italic">
                     Created on: {blogPost.createdAt}
+                </p>
+                <p className="font-italic">
                     {renderBlogTagsForBlogPost(blogPost)}
                 </p>
             </div>
@@ -41,14 +42,26 @@ function BlogPostPage(props: any) {
 
     const renderBlogTagsForBlogPost = (blogPost: BlogPost) => {
         return blogPost.blogTags.map(blogTag => {
-            return <span key={blogTag.name} className="badge-secondary badge pull-right mx-1">{blogTag.name}</span>
+            return <span key={blogTag.name} className="badge-secondary badge mx-1">{blogTag.name}</span>
         })
+    };
+
+    const renderComments = () => {
+        return <div className="mt-3">
+            <Comments/>
+        </div>
     };
 
     return <div className="container my-3">
         {renderHead()}
-        {renderBlogPost(blogPost)}
-    </div>;
+        {
+            blogPost != null && <BlogPostPageContext.Provider value={{blogPost}}>
+                {renderBlogPost(blogPost)}
+                {renderComments()}
+            </BlogPostPageContext.Provider>
+        }
+    </div>
+
 }
 
 export default BlogPostPage;

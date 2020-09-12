@@ -19,17 +19,19 @@ public class Project {
 
   @Id @GeneratedValue private Long id;
 
+  @NonNull
   @Column(nullable = false, unique = true)
   private String name;
 
+  @NonNull
   @Column(nullable = false)
   private String heading;
 
-  private String description;
+  @NonNull private String description;
 
   @CreationTimestamp private LocalDateTime createdAt;
 
-  private String createdBy;
+  @NonNull private String createdBy;
 
-  private String link;
+  @NonNull private String link;
 }

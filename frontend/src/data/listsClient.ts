@@ -12,7 +12,7 @@ export class ListsClient {
         return res.data;
     }
 
-    static async getGamingList(page?: number, size?: number) {
+    static async getGamingList(page?: number, size?: number): Promise<Page<ListItem>> {
         const url = ApiClientUtils.getPageableURL(new URL(`${RESOURCE_URL}/gaming`), page, size);
         const res = await axios.get(url.href, ApiClientUtils.getConfig());
 

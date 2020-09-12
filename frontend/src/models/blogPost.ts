@@ -1,7 +1,8 @@
 import BlogTag from './blogTag'
 
 export default class BlogPost {
-    constructor(public name: string,
+    constructor(public id: number,
+                public name: string,
                 public heading: string,
                 public description: string,
                 public createdAt: string,

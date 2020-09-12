@@ -14,6 +14,8 @@ public final class Constants {
     public static final String PROJECTS_V1 = V1_PREFIX + "/projects";
     public static final String LISTS_V1 = V1_PREFIX + "/lists";
     public static final String CONTACTS_V1 = V1_PREFIX + "/contacts";
+    public static final String COMMENTS_V1 = V1_PREFIX + "/comments";
+    public static final String USERS_V1 = V1_PREFIX + "/users";
   }
 
   public static final class ErrorMsg {
@@ -22,11 +24,13 @@ public final class Constants {
     public static final String NOT_FOUND = "Resource not found:%s";
     public static final String INTERNAL_SERVER_ERROR = "Something bad happened";
     public static final String BAD_REQUEST = "Bad request";
+    public static final String BAD_CREDENTIALS = "Bad credentials";
   }
 
   public static final class EntityGraphName {
     private EntityGraphName() {}
 
     public static final String BLOG_POST_WITH_BLOG_TAGS = "blog-post-entity-graph-with-blog-tags";
+    public static final String COMMENT_WITH_USERS = "comment-entity-graph-with-users";
   }
 }

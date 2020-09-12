@@ -1,6 +1,7 @@
 package com.prashantchaubey.dto.responses;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -8,13 +9,13 @@ import java.time.LocalDateTime;
 @Builder
 @Value
 public class ProjectResponse {
-  private String name;
+  @NonNull private String name;
 
-  private String heading;
+  @NonNull private String heading;
 
-  private String description;
+  @NonNull private String description;
 
-  private LocalDateTime createdAt;
+  @NonNull private LocalDateTime createdAt;
 
-  private String link;
+  @NonNull private String link;
 }

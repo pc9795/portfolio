@@ -35,15 +35,15 @@ function WorkPage() {
     };
 
     const renderProjectCard = (project: Project) => {
-        return <div className="col-md-4 col-sm-12 mt-3">
-            <Card key={project.name} title={project.heading} text={project.description}
+        return <div key={project.name} className="col-sm-4 col-12 mt-3">
+            <Card title={project.heading} text={project.description}
                   footer={<a href={project.link} className="text-secondary">Github Link</a>}/>
         </div>
     };
 
     const renderGameTrailersHeading = () => {
         return <div className="row my-3">
-            <div className="col-8 col-xs-12"><h3>Game Trailers <i className="fa fa-gamepad"/></h3></div>
+            <div className="col-sm-8 col-12"><h3>Game Trailers <i className="fa fa-gamepad"/></h3></div>
         </div>;
     };
 
@@ -53,10 +53,10 @@ function WorkPage() {
 
     const renderProfileSummary = () => {
         return <div className="row">
-            <div className="col-md-4 bg-light col-sm-12">
+            <div className="col-sm-4 bg-light col-12">
                 {renderProfileSideBar()}
             </div>
-            <div className="col-md-8 col-sm-12 mt-3">
+            <div className="col-sm-8 col-12 mt-3">
                 {StaticData.getProfileInfo()}
             </div>
         </div>

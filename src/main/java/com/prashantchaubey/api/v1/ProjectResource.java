@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(Constants.Endpoint.PROJECTS_V1)
 public class ProjectResource {
-
-  private ProjectCache projectCache;
-  private ProjectMapper projectMapper;
+  private final ProjectCache projectCache;
+  private final ProjectMapper projectMapper;
 
   @Autowired
   public ProjectResource(ProjectCache projectCache, ProjectMapper projectMapper) {
@@ -26,6 +25,6 @@ public class ProjectResource {
 
   @GetMapping
   public Page<ProjectResponse> getAll(Pageable pageable) {
-    return projectCache.findAll(pageable).map(projectMapper::to);
+    return projectCache.findAll(pageable).map(projectMapper::toProjectResponse);
   }
 }

@@ -1,16 +1,17 @@
 package com.prashantchaubey.dto.responses;
 
-import com.prashantchaubey.entities.User;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 @Builder
 @Value
 public class UserResponse {
-  private String name;
-  private String email;
+  @NonNull private Long id;
+
+  @NonNull private String name;
+
+  @NonNull private String email;
+
   private String imageUrl;
-  private boolean emailVerified;
-  private User.AuthProvider authProvider;
-  private String providerId;
 }

@@ -3,6 +3,7 @@ package com.prashantchaubey.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
@@ -43,9 +44,11 @@ public class User {
 
   @Id @GeneratedValue private Long id;
 
+  @NonNull
   @Column(nullable = false)
   private String name;
 
+  @NonNull
   @Column(nullable = false)
   private String email;
 
@@ -55,8 +58,19 @@ public class User {
 
   private String password;
 
+  @Builder.Default
   @Enumerated(EnumType.STRING)
-  private AuthProvider provider;
+  private AuthProvider provider = AuthProvider.LOCAL;
 
   private String providerId;
+
+  @NonNull
+  @ManyToMany
+  @JoinTable(
+      name = "user_permissions",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "permission_id"),
+      foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT),
+      inverseForeignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+  private Set<Permission> permissionSet;
 }

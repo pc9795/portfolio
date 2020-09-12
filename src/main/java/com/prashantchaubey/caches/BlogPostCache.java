@@ -1,7 +1,5 @@
 package com.prashantchaubey.caches;
 
-import com.prashantchaubey.caches.core.CacheKey;
-import com.prashantchaubey.caches.core.SimpleMapCache;
 import com.prashantchaubey.entities.BlogPost;
 import com.prashantchaubey.repositories.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Component
-public class BlogPostCache extends SimpleMapCache<BlogPost> {
+public class BlogPostCache {
   private BlogPostRepository blogPostRepository;
 
   @Autowired
@@ -30,7 +28,8 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
   }
 
   public Page<BlogPost> findByHeadingContaining(String searchText, Pageable pageable) {
-    return blogPostRepository.findByHeadingContainingIgnoreCaseOrderByCreatedAtDesc(searchText, pageable);
+    return blogPostRepository.findByHeadingContainingIgnoreCaseOrderByCreatedAtDesc(
+        searchText, pageable);
   }
 
   public BlogPost findByName(String name) {
@@ -41,8 +40,11 @@ public class BlogPostCache extends SimpleMapCache<BlogPost> {
     return blogPostRepository.findByBlogTagsNameOrderByCreatedAtDesc(blogTagName, pageable);
   }
 
-  @Override
-  public BlogPost load(CacheKey key) {
-    return null;
+  public boolean existsById(Long id) {
+    return blogPostRepository.existsById(id);
+  }
+
+  public BlogPost getOne(Long id) {
+    return blogPostRepository.getOne(id);
   }
 }
